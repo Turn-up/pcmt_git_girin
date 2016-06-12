@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">회계매니저</string>
+    <string name="estimate_do">견적 요청하기</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_condition_search">ConditionSearchActivity</string>
+    <string name="title_activity_condition_search_result">전문가찾기</string>
+    <string name="title_activity_detail_condition_search">DetailConditionSearchActivity</string>
+    <string name="title_activity_expert_detail_info">ExpertDetailInfoActivity</string>
+    <string name="title_activity_notice">NoticeActivity</string>
+    <string name="title_activity_estimate_request">견적 요청하기</string>
+    <string name="title_activity_nomal_user_estimate_list">내 견적</string>
+    <string name="title_activity_nomal_user_estimate_ldetail">NomalUserEstimateLDetailActivity
+    </string>
+    <string name="title_activity_nomal_user_info_edit">NomalUserInfoEditActivity</string>
+    <string name="title_activity_expert_info_edit">ExpertInfoEditActivity</string>
+    <string name="title_activity_bid_do">BidDoActivity</string>
+
+    <string name="dialog_estimate_confirm_comment1">고객님에 대한 정보가 전문가에게 전달됩니다.</string>
+
+    <string name="dialog_estimate_confirm_comment2">위 전문가에게 낙찰하시겠습니까?</string>
+    <string name="title_activity_expert_main">ExpertMainActivity</string>
+    <string name="title_activity_notice_text_detail">NoticeTextDetailActivity</string>
+    <string name="title_activity_ask">AskActivity</string>
+    <string name="title_activity_signup_nomal">SignupNomalActivity</string>
+    <string name="title_activity_signup_epert">SignupEpertActivity</string>
+
+    <string name="gcm_defaultSenderId">316898785717</string>
+    <string name="title_activity_auction_search_list">AuctionSearchList</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_my_estimate_entry_modify">MyEstimateEntryModify</string>
+    <string name="title_activity_my_estimate_tax_modify">MyEstimateTaxModify</string>
+    <string name="title_activity_my_estimate_etc_modify">MyEstimateEtcModify</string>
+    <string name="title_activity_notice_event">NoticeEventActivity</string>
+    <string name="title_activity_point_list">PointListActivity</string>
+    <string name="title_activity_use_way">UseWayActivity</string>
+</resources>

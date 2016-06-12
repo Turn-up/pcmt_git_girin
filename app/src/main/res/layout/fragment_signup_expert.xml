@@ -1,0 +1,132 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/signup_expert_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".login.SignupExpertFragment">
+
+    <EditText
+        android:id="@+id/signup_expert_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/signp_expert_name"
+        android:hint="이름"
+        android:inputType="textPersonName"
+        android:paddingLeft="27dp"
+        android:textColor="#a0a0a0"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/signup_expert_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/signp_expert_email"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="27dp"
+        android:textColor="#a0a0a0"
+        android:textSize="13sp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/signup_expert_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signp_expert_password"
+            android:ems="10"
+            android:hint="비밀번호(8자이상)"
+            android:inputType="textPassword"
+            android:paddingLeft="27dp"
+            android:textColor="#a0a0a0"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/user_password_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/signp_expert_password_check_icon"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/signup_expert_password_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signp_expert_password_check"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:paddingLeft="27dp"
+            android:textColor="#a0a0a0"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/user_password_check_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/signp_expert_password_check_icon"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/signup_expert_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/signp_expert_phone"
+        android:ems="11"
+        android:hint="전화번호"
+        android:inputType="phone"
+        android:paddingLeft="27dp"
+        android:textColor="#a0a0a0"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/underbar_10" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="전문가 회원을 이메일을 통한 인증 완료 후"
+        android:textColor="#777777"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서비스 이용이 가능합니다."
+        android:textColor="#777777"
+        android:textSize="13sp" />
+
+    <ImageButton
+        android:id="@+id/signup_expert_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/signp_expert_add_btn" />
+</LinearLayout>

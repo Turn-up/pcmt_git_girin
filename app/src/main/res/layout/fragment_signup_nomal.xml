@@ -1,0 +1,208 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/signup_expert_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".login.SignupNomalFragment">
+
+    <EditText
+        android:id="@+id/signup_nomal_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/signp_expert_name"
+        android:hint="이름"
+        android:inputType="textPersonName"
+        android:paddingLeft="27dp"
+        android:textColor="#a0a0a0"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/signup_nomal_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/signp_expert_email"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="27dp"
+        android:textColor="#a0a0a0"
+        android:textSize="13sp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/signup_nomal_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signp_expert_password"
+            android:ems="10"
+            android:hint="비밀번호(8자이상)"
+            android:inputType="textPassword"
+            android:paddingLeft="27dp"
+            android:textColor="#a0a0a0"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/user_password_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/signp_expert_password_check_icon"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/signup_nomal_password_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signp_expert_password_check"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:paddingLeft="27dp"
+            android:textColor="#a0a0a0"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/user_password_check_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/signp_expert_password_check_icon"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/signup_nomal_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/signp_expert_phone"
+        android:ems="11"
+        android:hint="전화번호"
+        android:inputType="phone"
+        android:paddingLeft="27dp"
+        android:textColor="#a0a0a0"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/underbar_10" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="사업자 분류" />
+
+        <RadioGroup
+            android:id="@+id/business_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_entry_personal_radio"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_background_person"
+                android:button="@null"
+                android:checked="true" />
+            <!--                android:button="@drawable/btn_entry_personal_radio"-->
+
+            <RadioButton
+                android:id="@+id/btn_entry_artifical_radio"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_background_arti_person"
+                android:button="@null" />
+            <!--                android:button="@drawable/btn_entry_artifical_radio"-->
+
+            <RadioButton
+                android:id="@+id/btn_entry_ease_radio"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_background_ease"
+                android:button="@null" />
+            <!--                android:button="@drawable/btn_entry_ease_radio"-->
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:text="과세 여부" />
+
+        <RadioGroup
+            android:id="@+id/taxation_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/taxation_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:background="@drawable/radio_signup_taxation_no"
+                android:button="@null"
+                android:checked="true" />
+            <!--                android:button="@drawable/btn_entry_personal_radio"-->
+
+            <RadioButton
+                android:id="@+id/taxation_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_signup_taxation_yes"
+                android:button="@null" />
+            <!--                android:button="@drawable/btn_entry_artifical_radio"-->
+        </RadioGroup>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/signup_nomal_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/signp_expert_add_btn" />
+
+
+</LinearLayout>

@@ -1,0 +1,385 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="291dp"
+    android:layout_height="618dp"
+    android:background="@drawable/nomal_nav_backround"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context="com.pcm.pcmmanager.expert.drawer.ExpertNavigationDrawerFramgent">
+
+    <LinearLayout
+        android:id="@+id/layout_un_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/expert_drawer_nmae"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="전문가님은 현재 검증을 진행중입니다."
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/expert_drawer_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/nav_header_expert_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/expert_drawer_semoo_man" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <!--나눔바른고딕-->
+                <TextView
+                    android:id="@+id/nav_header_expert_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Medium Text"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_weight="1"
+                    android:text="전문가"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/setting_icon" />
+            </LinearLayout>
+            <!--notosansregular-->
+            <TextView
+                android:id="@+id/nav_header_expert_profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="email"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="1"
+                    android:text="포인트 잔액"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <!--notosansregular-->
+                <TextView
+                    android:id="@+id/nav_header_expert_profile_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onPoint"
+                    android:text="point"
+                    android:textColor="#ffc21f"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/expert_drawer_point_icon" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/expert_drawer_underbar"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/expert_drawer_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/nav_header_expert_profile_entry_count"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="myEstimateInfoOnClick"
+                android:text="12"
+                android:textColor="#ffc21f"
+                android:textSize="33sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/expert_drawer_bar" />
+
+            <TextView
+                android:id="@+id/nav_header_expert_profile_bid_success_count"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="myEstimateInfoOnClick"
+                android:text="12"
+                android:textColor="#ffc21f"
+                android:textSize="33sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/expert_drawer_bar" />
+
+            <TextView
+                android:id="@+id/nav_header_expert_profile_bid_finish_count"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="myEstimateInfoOnClick"
+                android:text="12"
+                android:textColor="#ffc21f"
+                android:textSize="33sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="입찰"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="낙찰"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="마감"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/expert_drawer_alarm"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:onClick="onNavClick"
+                android:text="알림 설정"
+                android:textColor="#515151"
+                android:textSize="16sp" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
+        <TextView
+            android:id="@+id/expert_drawer_ask"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:onClick="onNavClick"
+            android:text="문의하기"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
+        <TextView
+            android:id="@+id/expert_drawer_notice"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:onClick="onNavClick"
+            android:text="공지사항"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
+        <TextView
+            android:id="@+id/expert_drawer_event"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:onClick="onNavClick"
+            android:text="이벤트"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
+        <TextView
+            android:id="@+id/expert_drawer_use_way"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:onClick="onNavClick"
+            android:text="이용방법"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
+        <Button
+            android:id="@+id/expert_drawer_logout"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:gravity="center_vertical"
+            android:text="회원탈퇴 및 로그아웃"
+            style="?attr/borderlessButtonStyle"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:background="@drawable/expert_drawer_logout_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/expert_drawer_logout_layout"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/expert_drawer_user_out_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="21dp"
+                android:text="회원탈퇴"
+                android:onClick="onLogout"
+                android:textSize="13sp"
+                android:textColor="#959595"/>
+            <TextView
+                android:id="@+id/expert_drawer_logout_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="7dp"
+                android:onClick="onLogout"
+                android:text="로그아웃"
+                android:textSize="13sp"
+                android:textColor="#959595"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="323dp"
+    android:layout_height="180dp"
+    android:background="@drawable/estimate_detail_backround"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/dialog_btn_bid_list_go_expert"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/estimate_detail_person_confirm_icon"
+        android:drawablePadding="20dp"
+        android:gravity="left|center_vertical"
+        android:text="전문가 정보 보기"
+        android:textColor="#464646"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:background="@drawable/underbar_20" />
+
+    <Button
+        android:id="@+id/dialog_btn_bid_list_confirm"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/estimate_detail_bid_confirm_icon"
+        android:drawablePadding="20dp"
+        android:gravity="left|center_vertical"
+        android:text="낙찰하기"
+        android:textColor="#464646"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/underbar_20" />
+
+    <Button
+        android:id="@+id/dialog_btn_bid_list_cancel"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="259dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/estimate_detail_bid_confirm_cancel" />
+</LinearLayout>

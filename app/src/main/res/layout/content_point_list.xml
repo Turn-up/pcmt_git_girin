@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.pcm.pcmmanager.expert.point.PointListActivity"
+    tools:showIn="@layout/activity_point_list">
+
+    <!--나눔바른고딕-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="포인트 잔액"
+        android:textColor="#4c4c4c"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/point_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="12dp"
+        android:layout_marginTop="13dp"
+        android:drawableRight="@drawable/point_list_point_icon"
+        android:text="150000"
+        android:textColor="#ffc21f"
+        android:textSize="30sp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/underbar_point_list_21"
+        android:layout_marginTop="42dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/point_rv_list"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="124dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="21dp"
+    android:layout_marginRight="21dp"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/bids_list_expert_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/expert_info_bar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp">
+
+            <TextView
+                android:id="@+id/bids_list_expert_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium Text"
+                android:textColor="#515151"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/bids_list_expert_name"
+                android:layout_toEndOf="@+id/bids_list_expert_name"
+                android:layout_toRightOf="@+id/bids_list_expert_name"
+                android:text="회계사"
+                android:textColor="#515151"
+                android:textSize="13sp"
+                android:layout_marginLeft="5dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/bids_list_expert_name"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/bids_list_coment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="coment"
+                    android:textColor="#666666"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:src="@drawable/tex_icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignTop="@+id/textView9"
+                android:layout_toLeftOf="@+id/textView10"
+                android:layout_toStartOf="@+id/textView10"
+                android:layout_marginRight="2dp"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/bids_list_month_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Small Text"
+                    android:textColor="#ff8f00"
+                    android:textSize="13sp" />
+
+
+                <TextView
+                    android:id="@+id/bids_list_modify_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Small Text"
+                    android:textColor="#ff8f00"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/linearLayout4"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/linearLayout4"
+                android:layout_toStartOf="@+id/linearLayout4"
+                android:gravity="right"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:layout_marginBottom="1dp">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="월"
+                    android:textColor="#666666"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="조정료"
+                    android:textColor="#666666"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/textView9"
+                android:layout_marginTop="4dp"
+                android:text="원"
+                android:textColor="#ff8f00"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_marginTop="13dp"
+                android:text="원"
+                android:textColor="#ff8f00"
+                android:textSize="13sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/underbar21_" />
+
+</LinearLayout>

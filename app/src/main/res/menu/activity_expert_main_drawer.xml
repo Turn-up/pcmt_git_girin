@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_expert_ask"
+            android:title="문의하기" />
+        <item
+            android:id="@+id/nav_expert_notice_text"
+            android:title="공지사항" />
+        <item
+            android:id="@+id/nav_expert_notice_event"
+            android:title="이벤트" />
+        <item
+            android:id="@+id/nav_expert_use_way"
+            android:title="이용방법" />
+        <item
+            android:id="@+id/nav_expert_logout"
+            android:title="로그아웃"/>
+
+    </group>
+
+</menu>

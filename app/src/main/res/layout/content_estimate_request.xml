@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.pcm.pcmmanager.nomal.estimate_request.EstimateRequestActivity"
+    tools:showIn="@layout/activity_estimate_request">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="92dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="40dp"
+            android:textSize="16sp"
+            android:textColor="#515151"
+            android:text="업무" />
+
+        <RadioGroup
+            android:id="@+id/entry_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="28dp"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_toRightOf="@+id/textView3"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_estimate_entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estimate_entry_btn"
+                android:button="@null"
+                android:checked="true"
+                android:layout_marginTop="2dp" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/imageView9"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@+id/btn_estimate_tax"
+                android:layout_toRightOf="@+id/btn_estimate_tax"
+                android:src="@drawable/sorting_line" />
+
+            <RadioButton
+                android:id="@+id/btn_estimate_tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/estimate_tax_btn"
+                android:button="@null"
+                android:layout_marginBottom="2dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/imageView9"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@+id/btn_estimate_tax"
+                android:layout_toRightOf="@+id/btn_estimate_tax"
+                android:src="@drawable/sorting_line" />
+
+            <RadioButton
+                android:id="@+id/btn_estimate_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/estimate_etc_btn"
+                android:button="@null" />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+</LinearLayout>

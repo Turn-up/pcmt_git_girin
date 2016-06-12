@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="28dp"
+    android:layout_marginRight="28dp"
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/expert_estimate_market_type_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Large Text"
+        android:textSize="17sp"
+        android:textColor="#515151" />
+
+    <TextView
+        android:id="@+id/expert_estimate_market_type_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expert_estimate_market_type_title"
+        android:text="Small Text"
+        android:layout_marginTop="10dp"
+        android:textSize="13sp"
+        android:textColor="#838383" />
+
+    <TextView
+        android:id="@+id/expert_estimate_end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Small Text"
+        android:textSize="13sp"
+        android:textColor="#838383" />
+
+    <ImageView
+        android:id="@+id/expert_estimate_bid_count_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bidcount_icon"
+        android:layout_below="@+id/expert_estimate_end_date"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="14dp" />
+
+    <TextView
+        android:id="@+id/expert_estimate_bid_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Small Text"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/expert_estimate_bid_count_image"
+        android:layout_toStartOf="@+id/expert_estimate_bid_count_image"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="7dp"
+        android:textSize="13sp"
+        android:textColor="#ff8f00" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView21"
+        android:src="@drawable/underbar28"
+        android:layout_below="@+id/expert_estimate_bid_count_image"
+        android:layout_alignRight="@+id/expert_estimate_bid_count_image"
+        android:layout_alignEnd="@+id/expert_estimate_bid_count_image"
+        android:layout_marginTop="20dp" />
+</RelativeLayout>

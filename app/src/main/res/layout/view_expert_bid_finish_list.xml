@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/bid_finish_market_type_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="24dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/bid_finish_market_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="Large Text"
+                    android:textColor="#515151"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/bid_finish_market_type_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bid_finish_market_type_title"
+                    android:layout_marginTop="10dp"
+                    android:text="Small Text"
+                    android:textColor="#838383"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/bid_finish_end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="2dp"
+                    android:text="16.05.08 마감"
+                    android:textColor="#838383"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/bid_finish_bid_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/bid_finish_end_date"
+                    android:layout_alignRight="@+id/bid_finish_end_date"
+                    android:layout_alignTop="@+id/bid_finish_market_type_sub"
+                    android:drawablePadding="7dp"
+                    android:drawableRight="@drawable/bidcount_icon"
+                    android:text="New Text"
+                    android:textColor="#ff8f00"
+                    android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/bid_finish_bid_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/bid_finish_end_date"
+                    android:layout_alignRight="@+id/bid_finish_end_date"
+                    android:layout_alignTop="@+id/bid_finish_market_type_sub"
+                    android:text="New Text"
+                    android:textColor="#ff8f00"
+                    android:textSize="13sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/underbar66_18" />
+
+
+</LinearLayout>

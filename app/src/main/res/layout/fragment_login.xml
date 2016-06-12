@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_backround"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.pcm.pcmmanager.login.LoginFragment">
+
+    <EditText
+        android:id="@+id/login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/login_email"
+        android:singleLine="true"
+        android:hint="이메일"
+        android:paddingLeft="23dp"
+        android:textColor="#515151"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:background="@drawable/login_password"
+        android:singleLine="true"
+        android:paddingLeft="23dp"
+        android:hint="비밀번호"
+        android:textColor="#515151"
+        android:textSize="13sp" />
+
+    <ImageButton
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/login_btn" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/underbar_login_40" />
+
+    <ImageButton
+        android:id="@+id/join_user_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/login_user_join_btn" />
+
+    <ImageButton
+        android:id="@+id/join_expert_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/login_expert_join_btn" />
+
+</LinearLayout>

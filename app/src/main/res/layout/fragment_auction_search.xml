@@ -1,0 +1,155 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".expert.auction.AuctionSearchFragment">
+
+
+    <ImageView
+        android:id="@+id/auction_search_main_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/expert_search_man_image" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center_horizontal"
+        android:text="검색 항목은 세개까지 설정이 가능합니다."
+        android:textSize="13sp"
+        android:textColor="#515151" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="18dp"
+            android:text="위치"
+            android:textSize="16sp"
+            android:textColor="#515151" />
+
+        <Spinner
+            android:id="@+id/auction_search_address1_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/box_midle_dropdown"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:id="@+id/auction_search_address2_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="28dp"
+            android:layout_weight="1"
+            android:background="@drawable/box_midle_dropdown"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/underbar_20" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="23dp"
+            android:text="업무"
+            android:textSize="16sp"
+            android:textColor="#515151" />
+
+        <ImageButton
+            android:id="@+id/auction_search_marketType_entry_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="87dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:onClick="onEstimateClick"
+            android:src="@drawable/expert_search_entry_icon_unselect" />
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:src="@drawable/expert_search_bar" />
+
+        <ImageButton
+            android:id="@+id/auction_search_marketType_tax_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:onClick="onEstimateClick"
+            android:src="@drawable/expert_search_tax_icon_unselect" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/underbar_20" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="27dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="18dp"
+            android:text="업종"
+            android:textSize="16sp"
+            android:textColor="#515151" />
+
+        <Spinner
+            android:id="@+id/auction_search_marketSub_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="28dp"
+            android:background="@drawable/expert_search_market_box" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/auction_search_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/expert_search_btn" />
+
+</LinearLayout>

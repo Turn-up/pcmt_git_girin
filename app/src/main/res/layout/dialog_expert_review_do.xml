@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/expert_review_backround"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="114dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/expert_review_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#515151"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#515151"
+            android:textSize="13sp"
+            android:text="회계사님과의 협업은 어떠셨나요?" />
+    </LinearLayout>
+
+    <RatingBar
+        style="@style/StoreBigRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:stepSize="1"
+        android:id="@+id/expert_review_rating" />
+
+    <EditText
+        android:id="@+id/expert_review_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/expert_review_text_backround"
+        android:padding="4dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/underbar_20" />
+
+    <ImageButton
+        android:id="@+id/expert_review_do_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/expert_review_do_btn" />
+
+    <ImageButton
+        android:id="@+id/expert_review_cancel_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/expert_review_cancel_btn" />
+</LinearLayout>

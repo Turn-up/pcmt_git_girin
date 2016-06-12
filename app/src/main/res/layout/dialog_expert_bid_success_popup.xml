@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:background="@drawable/dialog_expert_bid_success_backround"
+    android:orientation="vertical">
+
+    <!--배달의 민족 도현-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#464646"
+        android:text="축하드립니다!"
+        android:layout_marginTop="123dp"/>
+
+    <!--나눔바른 고딕-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#515151"
+        android:text="고객님의 입찰이 최종 낙찰되었습니다."
+        android:layout_marginTop="24dp"/>
+    <!--나눔바른 고딕-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#515151"
+        android:text="확인하시겠습니까?"
+        android:layout_marginTop="7dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/dialog_expert_bid_success_ok_btn"/>
+</LinearLayout>

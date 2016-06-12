@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2a9af3</color>
+    <color name="colorPrimaryDark">#0c7fdb</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="radio_button_selected_color">#ff33b5e5</color>
+    <color name="radio_button_unselected_color">#000000</color>
+    <color name="window_background">#ffffff</color>
+    <color name="tab_bakground_unselected">#ffffff</color>
+
+    <color name="tab_text_selected">#3F51B5</color>
+    <color name="tab_text_unselected">#000000</color>
+    <color name="seek_select_day">#515151</color>
+    <color name="seek_unselect_day">#cecece</color>
+    <color name="bid_do_layout_backround">#eeeeee</color>
+    <color name="bid_finish">#c6c6c6</color>
+</resources>
