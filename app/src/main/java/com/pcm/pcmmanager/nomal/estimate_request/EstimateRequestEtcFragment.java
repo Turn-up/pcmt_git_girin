@@ -35,7 +35,7 @@ public class EstimateRequestEtcFragment extends Fragment {
     EditText etcContent;
     ArrayAdapter<String> a1Adapter, a2Adapter; //업종, 주소
     Spinner address1Spinner, address2Spinner;
-    String endDate = "1"; // 마감일
+    String endDate = "7"; // 마감일
     Button etcAdd;
 
     public EstimateRequestEtcFragment() {
@@ -92,6 +92,7 @@ public class EstimateRequestEtcFragment extends Fragment {
             }
         });
         seekBar = (SeekBar) view.findViewById(R.id.etc_seekbar);
+        seekBar.setProgress(6);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

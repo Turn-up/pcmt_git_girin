@@ -28,14 +28,6 @@ public class ConditionSearchList {
         this.sex = sex;
     }
 
-    public int getExpertsn() {
-        return expertsn;
-    }
-
-    public void setExpertsn(int expertsn) {
-        this.expertsn = expertsn;
-    }
-
     public int getExpertSn() {
         return expertsn;
     }

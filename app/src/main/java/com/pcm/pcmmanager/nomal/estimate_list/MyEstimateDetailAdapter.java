@@ -64,9 +64,9 @@ public class MyEstimateDetailAdapter extends RecyclerView.Adapter<RecyclerView.V
             if(mItem.getSuccess_expertsn() != 0){
                 for(int i = 0 ; i<mItem.getBids().size() ; i++)
                     if(mItem.getBids().get(i).getExpertSn() == mItem.getSuccess_expertsn())
-                        h.setBidsList(mItem.getBids().get(i));
+                        h.setBidsList(mItem.getBids().get(i),mItem.getMarketType());
             }else{
-                h.setBidsList(mItem.getBids().get(position - 1));
+                h.setBidsList(mItem.getBids().get(position - 1),mItem.getMarketType());
             }
             h.setOnItemClickListener(mListener);
             return;

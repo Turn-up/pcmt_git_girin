@@ -125,7 +125,7 @@ public class AuctionSearchFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!a2Adapter.getItem(position).equals("전체"))
-                    region2 = PropertyManager.getInstance().getCommonRegionLists().get(a1Adapter.getPosition(tempResgion)).getList().get(position).getCode();
+                    region2 = PropertyManager.getInstance().getCommonRegionLists().get(a1Adapter.getPosition(tempResgion)-1).getList().get(position-1).getCode();
             }
 
             @Override

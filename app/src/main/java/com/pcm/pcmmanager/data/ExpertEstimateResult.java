@@ -10,7 +10,7 @@ import java.util.List;
 public class ExpertEstimateResult {
     int result;
     String message;
-    @SerializedName("totlacount")
+    @SerializedName("totalcount")
     int totalCount;
     @SerializedName("list")
     List<ExpertEstimateList> estimateList;

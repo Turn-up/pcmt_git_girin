@@ -40,4 +40,5 @@
     <string name="title_activity_notice_event">NoticeEventActivity</string>
     <string name="title_activity_point_list">PointListActivity</string>
     <string name="title_activity_use_way">UseWayActivity</string>
+    <string name="title_activity_my_deatila_info">MyDeatilaInfoActivity</string>
 </resources>

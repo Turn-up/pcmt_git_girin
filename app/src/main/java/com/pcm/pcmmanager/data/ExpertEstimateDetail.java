@@ -108,17 +108,19 @@ public class ExpertEstimateDetail {
     public String getBusinessScale() {
         String bs;
         if (businessScale < 1000000) {
-            bs = businessScale/1000 +"만원";
+            bs = businessScale / 1000 + "만원";
         } else if (1000000 <= businessScale && businessScale < 100000000) {
-            bs = businessScale / 100000 + "만원";
+            bs = businessScale / 10000 + "만";
         } else {
-            bs = businessScale / 10000000 + "억";
+            bs = businessScale / 100000000 + "." + (businessScale % 100000000) / 10000000 + "억";
         }
         return bs;
     }
-    public long getNumberBusinessScale(){
+
+    public long getNumberBusinessScale() {
         return businessScale;
     }
+
     public void setBusinessScale(long businessScale) {
         this.businessScale = businessScale;
     }
@@ -131,13 +133,14 @@ public class ExpertEstimateDetail {
         this.employeeCount = employeeCount;
     }
 
-    public long getNumberAssetMoney(){
+    public long getNumberAssetMoney() {
         return assetMoney;
     }
+
     public String getAssetMoney() {
         String bs;
         if (assetMoney < 1000000) {
-            bs = assetMoney/1000 +"만원";
+            bs = assetMoney / 1000 + "만원";
         } else if (1000000 <= assetMoney && assetMoney < 100000000) {
             bs = assetMoney / 100000 + "만원";
         } else {
@@ -201,6 +204,7 @@ public class ExpertEstimateDetail {
     public void setEnddate(String enddate) {
         this.enddate = enddate;
     }
+
     public String get_id() {
         return _id;
     }
@@ -216,6 +220,7 @@ public class ExpertEstimateDetail {
     public void setAsset_type(List<String> asset_type) {
         this.asset_type = asset_type;
     }
+
     public String getReviewsn() {
         return reviewsn;
     }

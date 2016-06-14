@@ -9,4 +9,5 @@
     tools:context=".expert.auction.AuctionSearchListActivity"
     tools:showIn="@layout/activity_auction_search_list">
 
+
 </android.support.v7.widget.RecyclerView>

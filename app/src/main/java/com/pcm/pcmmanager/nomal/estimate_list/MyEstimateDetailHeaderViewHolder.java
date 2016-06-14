@@ -36,11 +36,14 @@ public class MyEstimateDetailHeaderViewHolder extends RecyclerView.ViewHolder {
             marketType_sub.setText("종업원" + item.getEmployeeCount() + "명, 매출 " + item.getBusinessScale());
 
         } else if (item.getMarketType().equals("TAX")) {
-            String temp="자산내용 ";
-            for(int i = 0; i<item.getAsset_type().size(); i++){
-                temp += item.getAsset_type().get(i) + " ";
+            String temp="";
+            if(!item.getMarketSubType().equals("세무조사")) {
+                temp = ", 자산내용 ";
+                for (int i = 0; i < item.getAsset_type().size(); i++) {
+                    temp += item.getAsset_type().get(i) + " ";
+                }
             }
-            marketType_sub.setText(temp + ", 자산 " + item.getAssetMoney());
+            marketType_sub.setText("자산 " + item.getAssetMoney()+temp);
         } else if (item.getMarketType().equals("기타")) {
             marketType_sub.setText("상세 페이지를 확인하세요");
         }
@@ -49,6 +52,5 @@ public class MyEstimateDetailHeaderViewHolder extends RecyclerView.ViewHolder {
         content.setText(item.getContent());
         address.setText(item.getAddress1()+" "+item.getAddress2());
         bidCount.setText(""+item.getBidCount());
-
     }
 }

@@ -61,32 +61,37 @@ public class BidSucessViewHolder extends RecyclerView.ViewHolder {
 
     public void setBidSuccessList(ExpertBidStatus expertBidStatus) {
         this.expertBidStatus = expertBidStatus;
-        Bid_success_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
         if (this.expertBidStatus.getMarketType().equals("기장")) {
+            Bid_success_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
             Bid_success_marketType_image.setImageResource(R.drawable.entry_icon);
-            Bid_success_marketType_sub.setText("종업원 " + this.expertBidStatus.getEmployeeCount() + "명, 매출" + this.expertBidStatus.getBusinessScale());
+            Bid_success_marketType_sub.setText("매출 " + this.expertBidStatus.getBusinessScale() + ", 종업원" + this.expertBidStatus.getEmployeeCount()+"명");
             bid_success_month_money_type.setText("월 기장료");
             bid_success_month_money_type2.setText("조정료");
-            Bid_success_month_money.setText(""+this.expertBidStatus.getPrice1());
-            Bid_success_edit_money.setText(""+this.expertBidStatus.getPrice2());
+            Bid_success_month_money.setText("" + this.expertBidStatus.getPrice1());
+            Bid_success_edit_money.setText("" + this.expertBidStatus.getPrice2());
             persent.setVisibility(View.GONE);
         } else if (this.expertBidStatus.getMarketType().equals("TAX")) {
+            Bid_success_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
             Bid_success_marketType_image.setImageResource(R.drawable.tax_icon);
-            String temp = "자산 내용 ";
-            for (int i = 0; i < this.expertBidStatus.getAssetType().size(); i++)
-                temp += this.expertBidStatus.getAssetType().get(i) + " ";
+            String temp="";
+            if(!this.expertBidStatus.getMarketSubtype().equals("세무조사")) {
+                temp = "자산 내용";
+                for (int i = 0; i < this.expertBidStatus.getAssetType().size(); i++)
+                    temp += this.expertBidStatus.getAssetType().get(i) + " ";
+            }
             bid_success_month_money_type.setText("제시금액");
             bid_success_month_money_type2.setText("과세금액");
-            Bid_success_marketType_sub.setText(temp + "자산 " + this.expertBidStatus.getMarketPrice());
-            Bid_success_month_money.setText(""+this.expertBidStatus.getPrice1());
-            Bid_success_edit_money.setText(""+this.expertBidStatus.getPrice2());
+            Bid_success_marketType_sub.setText("자산 " + this.expertBidStatus.getMarketPrice()+temp);
+            Bid_success_month_money.setText("" + this.expertBidStatus.getPrice1());
+            Bid_success_edit_money.setText("" + this.expertBidStatus.getPrice2());
             won.setVisibility(View.GONE);
 
         } else {
             Bid_success_marketType_image.setImageResource(R.drawable.etc_icon);
+            Bid_success_marketType_title.setText("기타");
             Bid_success_marketType_sub.setText("상세 내용을 확인하세요");
             bid_success_month_money_type.setText("제시금액");
-            Bid_success_month_money.setText(""+this.expertBidStatus.getPrice1() + "원");
+            Bid_success_month_money.setText("" + this.expertBidStatus.getPrice1() + "원");
             Bid_success_edit_money.setVisibility(View.GONE);
         }
         Bid_bids_count.setText("" + this.expertBidStatus.getBidCount());

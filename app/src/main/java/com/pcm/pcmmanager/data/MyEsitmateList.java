@@ -134,9 +134,9 @@ public class MyEsitmateList {
         if (businessScale < 1000000) {
             bs = businessScale / 1000 + "만원";
         } else if (1000000 <= businessScale && businessScale < 100000000) {
-            bs = businessScale / 100000 + "만원";
+            bs = businessScale / 10000 + "만원";
         } else {
-            bs = businessScale / 10000000 + "억";
+            bs = businessScale / 100000000 + "." + (businessScale % 100000000) / 10000000 + "억원";
         }
         return bs;
     }
@@ -158,9 +158,9 @@ public class MyEsitmateList {
         if (marketPrice < 1000000) {
             bs = marketPrice / 1000 + "만원";
         } else if (1000000 <= marketPrice && marketPrice < 100000000) {
-            bs = marketPrice / 100000 + "만원";
+            bs = marketPrice / 10000 + "만원";
         } else {
-            bs = marketPrice / 10000000 + "억";
+            bs = marketPrice / 100000000 + "." + (marketPrice % 100000000) / 10000000 + "억원";
         }
         return bs;
     }

@@ -25,11 +25,13 @@ import okhttp3.Request;
 
 public class ConditionSearchResultActivity extends AppCompatActivity {
 
-    public static final String CONDITION_SEARCH_PAGESIZE = "10";
+    public static final String PAGE_SIZE = "10";
 
     RecyclerView recyclerView;
     ConditionSearchResultAdapter mAdapter;
     String marketType, marketSubType, regionType, regionSubType;
+    LinearLayoutManager mLayoutManager;
+    Boolean isLast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,12 @@ public class ConditionSearchResultActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mLayoutManager = new LinearLayoutManager(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.expert_condition_search_rv_list);
         mAdapter = new ConditionSearchResultAdapter();
         recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(mLayoutManager);
         mAdapter.setOnItemClickListener(new ConditionSearchResultViewHolder.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, ConditionSearchList conditionSearchList) {
@@ -56,6 +59,26 @@ public class ConditionSearchResultActivity extends AppCompatActivity {
         marketSubType = getIntent().getStringExtra("marketsubtype");
         regionType = getIntent().getStringExtra("regiontype");
         regionSubType = getIntent().getStringExtra("regionsubtype");
+
+        isLast = false;
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (isLast && newState == RecyclerView.SCROLL_STATE_IDLE)
+                    getMoreData();
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                int totalcount = mAdapter.getItemCount();
+                int lastVisibaleItem = mLayoutManager.findLastVisibleItemPosition();
+                if (totalcount > 0 && lastVisibaleItem >= totalcount - 1) {
+                    isLast = true;
+                } else
+                    isLast = false;
+            }
+        });
+
     }
 
     @Override
@@ -65,17 +88,45 @@ public class ConditionSearchResultActivity extends AppCompatActivity {
     }
 
     public void setData(String marketType, String marketSubType, String regionType, String regionSubType) {
-        NetworkManager.getInstance().getExpertConditionSearch(CONDITION_SEARCH_PAGESIZE, "0", marketType, marketSubType, regionType, regionSubType, new NetworkManager.OnResultListener<ConditionSearchListResult>() {
+        NetworkManager.getInstance().getExpertConditionSearch(PAGE_SIZE, "0", marketType, marketSubType, regionType, regionSubType, new NetworkManager.OnResultListener<ConditionSearchListResult>() {
             @Override
             public void onSuccess(Request request, ConditionSearchListResult result) {
                 mAdapter.clear();
                 mAdapter.addAll(result.getConditionSearchLists());
+                mAdapter.setTotal(result.getTotalCount());
             }
 
             @Override
             public void onFail(Request request, IOException exception) {
             }
         });
+    }
+
+    private Boolean isMoreData = false;
+    private void getMoreData() {
+        if (!isMoreData && mAdapter.isMoreData()) {
+            isMoreData = true;
+            final int sn = mAdapter.getLastSn(mAdapter.getItemCount() - 1);
+            try {
+                NetworkManager.getInstance().getExpertConditionSearch(PAGE_SIZE, String.valueOf(sn), marketType, marketSubType, regionType, regionSubType,
+                        new NetworkManager.OnResultListener<ConditionSearchListResult>() {
+                            @Override
+                            public void onSuccess(Request request, ConditionSearchListResult result) {
+                                mAdapter.addAll(result.getConditionSearchLists());
+                                isMoreData = false;
+                            }
+
+                            @Override
+                            public void onFail(Request request, IOException exception) {
+
+                            }
+                        });
+            } catch (Exception e) {
+                e.printStackTrace();
+                isMoreData = false;
+
+            }
+        }
     }
 
     @Override

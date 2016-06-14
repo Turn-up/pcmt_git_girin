@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -79,29 +81,29 @@ public class BidDoActivity extends AppCompatActivity {
                     if (TextUtils.isEmpty(moneyEdit1.getText())) {
                         Toast.makeText(BidDoActivity.this, "금액을 제시해 주시기 바랍니다.", Toast.LENGTH_SHORT).show();
                     } else {
-                        if (marketTypeView.getText().equals("기타") || !TextUtils.isEmpty(moneyEdit2.getText())) {
-                            String editMoney = moneyEdit2.getText().toString();
+                        String editMoney = moneyEdit2.getText().toString();
+                        if (!TextUtils.isEmpty(editMoney)) {
+                            editMoney = moneyEdit2.getText().toString();
                             editMoney = editMoney.replaceAll(",", "");
-                            //네트워크 호출 후에 메인으로가서 팝업
-                            NetworkManager.getInstance().getBidDo(monthMoney, editMoney, marketSn, new NetworkManager.OnResultListener<BidDoResult>() {
-                                @Override
-                                public void onSuccess(Request request, BidDoResult result) {
-                                    if(result.getResult()==-1){
-                                        Toast.makeText(BidDoActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        //팝업 띄우기
-                                        finish();
-                                    }
+                        }else
+                            editMoney = "0";
+                        //네트워크 호출 후에 메인으로가서 팝업
+                        NetworkManager.getInstance().getBidDo(monthMoney, editMoney, marketSn, new NetworkManager.OnResultListener<BidDoResult>() {
+                            @Override
+                            public void onSuccess(Request request, BidDoResult result) {
+                                if (result.getResult() == -1) {
+                                    Toast.makeText(BidDoActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //팝업 띄우기
+                                    finish();
                                 }
+                            }
 
-                                @Override
-                                public void onFail(Request request, IOException exception) {
+                            @Override
+                            public void onFail(Request request, IOException exception) {
 
-                                }
-                            });
-                        } else {
-                            Toast.makeText(BidDoActivity.this, "금액을 제시해 주시기 바랍니다.", Toast.LENGTH_SHORT).show();
-                        }
+                            }
+                        });
                     }
                 }
             }
@@ -117,27 +119,32 @@ public class BidDoActivity extends AppCompatActivity {
                     Toast.makeText(BidDoActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
                     ExpertEstimateDetail item = result.getItem();
-                    marketTypeView.setText(item.getMarketSubType());
                     if (item.getMarketType().equals("기장")) {
+                        marketTypeView.setText(item.getMarketSubType());
                         moneyTitle1.setText("월 기장료");
                         moneyTitle2.setText("조정료");
                         marketSubView.setText("매출" + item.getBusinessScale() + ", 종업원 " + item.getEmployeeCount() + "명");
 
                     } else if (item.getMarketType().equals("TAX")) {
+                        marketTypeView.setText(item.getMarketSubType());
                         moneyTitle1.setText("제시금액");
                         moneyTitle2.setText("과세금액");
                         moneyEdit2.setBackgroundResource(R.drawable.expert_bid_do_persent_box);
-                        String temp = ", 자산내용 ";
-                        for (int i = 0; i < item.getAsset_type().size(); i++) {
-                            temp += item.getAsset_type().get(i);
+                        String temp = "";
+                        if (!item.getMarketSubType().equals("세무조사")) {
+                            temp = ", 자산내용 ";
+                            for (int i = 0; i < item.getAsset_type().size(); i++) {
+                                temp += item.getAsset_type().get(i);
+                            }
                         }
                         marketSubView.setText("자산 " + item.getAssetMoney() + temp);
                     } else if (item.getMarketType().equals("기타")) {
+                        marketTypeView.setText("기타");
+                        marketSubView.setText("상세 내용을 확인해주세요");
                         moneyTitle1.setText("제시금액");
                         moneyTitle2.setVisibility(View.GONE);
                         moneyEdit2.setText("");
                         moneyEdit2.setVisibility(View.GONE);
-
                     }
                     endDateView.setText("D-" + item.getEnddate());
                     bidCountView.setText("" + item.getBidCount());
@@ -145,6 +152,7 @@ public class BidDoActivity extends AppCompatActivity {
                     contentView.setText(item.getContent());
                 }
             }
+
             @Override
             public void onFail(Request request, IOException exception) {
 
@@ -166,5 +174,29 @@ public class BidDoActivity extends AppCompatActivity {
                 layout.setBackgroundResource(R.color.bid_do_layout_backround);
                 break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.expert_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

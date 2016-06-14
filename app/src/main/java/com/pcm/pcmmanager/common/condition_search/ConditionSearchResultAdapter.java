@@ -22,6 +22,15 @@ public class ConditionSearchResultAdapter extends RecyclerView.Adapter<Condition
         items.clear();
         notifyDataSetChanged();
     }
+    private int totalCount = 0;
+
+    public int getTotal() {
+        return totalCount;
+    }
+
+    public void setTotal(int total) {
+        this.totalCount = total;
+    }
 
     public void add(ConditionSearchList conditionSearchList) {
         items.add(conditionSearchList);
@@ -53,5 +62,13 @@ public class ConditionSearchResultAdapter extends RecyclerView.Adapter<Condition
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public boolean isMoreData() {
+        return totalCount == 0 ? false : (totalCount) > items.size() ? true : false;
+    }
+
+    public int getLastSn(int sn) {
+        return items.get(sn).getExpertSn();
     }
 }

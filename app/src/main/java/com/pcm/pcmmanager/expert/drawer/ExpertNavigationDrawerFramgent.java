@@ -1,6 +1,7 @@
 package com.pcm.pcmmanager.expert.drawer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.pcm.pcmmanager.R;
+import com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity;
 import com.pcm.pcmmanager.data.ExpertNavInfo;
 import com.pcm.pcmmanager.data.ExpertNavInfoResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
@@ -27,10 +29,10 @@ import okhttp3.Request;
 
 public class ExpertNavigationDrawerFramgent extends Fragment {
     ImageView profileImage, underbar;
-    TextView profileName, profileEmail, profilePoint, profileEntryCount, profileBidSuccessCount,
+    TextView profileName, profileEmail, profilePoint, profileEntryCount, profileBidSuccessCount, Myinfo,
             profileBidFinishCount, ask, notice, event, use_way;
     Button logout;
-    LinearLayout layout1, layout_un_confirm, layout,logout_layout;
+    LinearLayout layout1, layout_un_confirm, layout, logout_layout;
     FrameLayout layout2;
 
     public interface OnMenuClickListener {
@@ -59,11 +61,12 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
         profileEntryCount = (TextView) v.findViewById(R.id.nav_header_expert_profile_entry_count);
         profileBidSuccessCount = (TextView) v.findViewById(R.id.nav_header_expert_profile_bid_success_count);
         profileBidFinishCount = (TextView) v.findViewById(R.id.nav_header_expert_profile_bid_finish_count);
+        Myinfo = (TextView) v.findViewById(R.id.expert_drawer_myInfo);
         ask = (TextView) v.findViewById(R.id.expert_drawer_ask);
         notice = (TextView) v.findViewById(R.id.expert_drawer_notice);
         event = (TextView) v.findViewById(R.id.expert_drawer_event);
         use_way = (TextView) v.findViewById(R.id.expert_drawer_use_way);
-        logout = (Button)v.findViewById(R.id.expert_drawer_logout);
+        logout = (Button) v.findViewById(R.id.expert_drawer_logout);
         underbar = (ImageView) v.findViewById(R.id.textView);
         layout1 = (LinearLayout) v.findViewById(R.id.expert_drawer_layout1);
         layout2 = (FrameLayout) v.findViewById(R.id.expert_drawer_layout2);
@@ -74,9 +77,9 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(logout_layout.getVisibility()==View.VISIBLE){
+                if (logout_layout.getVisibility() == View.VISIBLE) {
                     logout_layout.setVisibility(View.GONE);
-                }else
+                } else
                     logout_layout.setVisibility(View.VISIBLE);
             }
         });
@@ -89,10 +92,11 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
         super.onResume();
         setNavData();
     }
+
     private void setNavData() {
         NetworkManager.getInstance().getExpertsNavInfo(new NetworkManager.OnResultListener<ExpertNavInfoResult>() {
             @Override
-            public void onSuccess(Request request, ExpertNavInfoResult result) {
+            public void onSuccess(Request request, final ExpertNavInfoResult result) {
                 ExpertNavInfo item = result.getExpertNavInfo();
                 if (PropertyManager.getInstance().getExpertCheck()) {
                     layout.setBackgroundResource(R.drawable.expert_drawer_background);
@@ -115,7 +119,15 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
                     profileEntryCount.setText(String.valueOf(item.getEntryCount()));
                     profileBidSuccessCount.setText(String.valueOf(item.getBidSuccessCount()));
                     profileBidFinishCount.setText(String.valueOf(item.getBidFinishCount()));
+                    Myinfo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), ExpertDetailInfoActivity.class);
+                            intent.putExtra("expertSn",String.valueOf(result.getExpertNavInfo().getExpertSn()));
+                            startActivity(intent);
 
+                        }
+                    });
                 } else {
                     //승인이 아닐때 보여줄 fragment
                     layout.setBackgroundResource(R.drawable.nomal_nav_backround);

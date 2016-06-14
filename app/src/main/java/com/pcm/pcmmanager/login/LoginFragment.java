@@ -74,7 +74,7 @@ public class LoginFragment extends Fragment {
                     public void onSuccess(Request request, LoginResult result) {
                         loginResult = result;
                         if(result.getResult() == -1){
-                            Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "아이디 또는 패스워드를 확인하세요", Toast.LENGTH_SHORT).show();
                         }else{
                             PropertyManager.getInstance().setAuthorizationToken(loginResult.getToken());
                             if(loginResult.getRoles().equals("Users")) {

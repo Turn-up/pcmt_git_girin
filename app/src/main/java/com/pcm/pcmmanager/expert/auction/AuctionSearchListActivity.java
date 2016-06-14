@@ -15,6 +15,7 @@ import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertEstimateList;
 import com.pcm.pcmmanager.data.ExpertEstimateResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
+import com.pcm.pcmmanager.expert.bid_do.BidDoActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.nomal.NomalMainActivity;
 
@@ -22,14 +23,15 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class AuctionSearchListActivity extends AppCompatActivity {
+public class AuctionSearchListActivity extends AppCompatActivity{
 
     public static final String PAGE_SIZE="10";
 
     RecyclerView recyclerView;
     AuctionAdapter mAdapter;
     String marketType, marketSubType, regionType, regionSubType;
-
+    Boolean isLast;
+    LinearLayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +41,17 @@ public class AuctionSearchListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        mLayoutManager = new LinearLayoutManager(this);
         recyclerView = (RecyclerView) findViewById(R.id.expert_auction_search_recycler);
         mAdapter = new AuctionAdapter();
         recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(mLayoutManager);
         mAdapter.setOnItemClickListener(new AuctionViewHolder.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, ExpertEstimateList expertEstimateList) {
-
+                Intent intent = new Intent(AuctionSearchListActivity.this, BidDoActivity.class);
+                intent.putExtra("marketSn", String.valueOf(expertEstimateList.getMarketSn()));
+                startActivity(intent);
             }
         });
         marketType = getIntent().getStringExtra("markettype");
@@ -54,19 +59,67 @@ public class AuctionSearchListActivity extends AppCompatActivity {
         regionType = getIntent().getStringExtra("regiontype");
         regionSubType = getIntent().getStringExtra("regionsubtype");
 
-    }
+        isLast = false;
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(isLast && newState == RecyclerView.SCROLL_STATE_IDLE){
+                    getMoreData();
+                }
+            }
 
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int totalCount = mAdapter.getItemCount();
+                int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                if (totalCount > 0 && lastVisibleItem >= totalCount - 1){
+                    isLast =true;
+                }else
+                    isLast= false;
+            }
+        });
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
         setData(marketType, marketSubType, regionType, regionSubType);
     }
 
+    private boolean isMoreData = false;
+    public void getMoreData(){
+        if(!isMoreData && mAdapter.isMoreData()){
+            isMoreData = true;
+            final int sn = mAdapter.getLastSn(mAdapter.getItemCount()-1);
+            try {
+                NetworkManager.getInstance().getExpertEstimateSearch(PAGE_SIZE, String.valueOf(sn),marketType,marketSubType, regionType,regionSubType,new NetworkManager.OnResultListener<ExpertEstimateResult>() {
+                    @Override
+                    public void onSuccess(Request request, ExpertEstimateResult result) {
+                        mAdapter.addAll(result.getEstimateList());
+                        isMoreData = false;
+                    }
+
+                    @Override
+                    public void onFail(Request request, IOException exception) {
+
+                    }
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+                isMoreData = false;
+
+            }
+        }
+    }
     public void setData(String marketType, String marketSubType, String regionType, String regionSubType) {
         NetworkManager.getInstance().getExpertEstimateSearch(PAGE_SIZE, "0", marketType, marketSubType, regionType, regionSubType, new NetworkManager.OnResultListener<ExpertEstimateResult>() {
             @Override
             public void onSuccess(Request request, ExpertEstimateResult result) {
+                mAdapter.clear();
                 mAdapter.addAll(result.getEstimateList());
+                mAdapter.setTotalCount(result.getTotalCount());
             }
 
             @Override

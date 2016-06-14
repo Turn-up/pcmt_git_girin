@@ -50,22 +50,27 @@ public class BidIngViewHolder extends RecyclerView.ViewHolder {
 
     public void setBidIngList(ExpertBidStatus expertBidStatus) {
         this.expertBidStatus = expertBidStatus;
-        Bid_ing_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
         if (this.expertBidStatus.getMarketType().equals("기장")) {
+            Bid_ing_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
             Bid_ing_marketType_image.setImageResource(R.drawable.entry_icon);
-            Bid_ing_marketType_sub.setText("종업원 " + this.expertBidStatus.getEmployeeCount() + "명, 매출" + this.expertBidStatus.getBusinessScale());
+            Bid_ing_marketType_sub.setText("매출 " + this.expertBidStatus.getBusinessScale() + ", 종업원" + this.expertBidStatus.getEmployeeCount()+"명");
         } else if (this.expertBidStatus.getMarketType().equals("TAX")) {
+            Bid_ing_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
             Bid_ing_marketType_image.setImageResource(R.drawable.tax_icon);
-            String temp = "자산 내용 ";
-            for (int i = 0; i < this.expertBidStatus.getAssetType().size(); i++)
-                temp += this.expertBidStatus.getAssetType().get(i) + " ";
-            Bid_ing_marketType_sub.setText(temp + "자산 " + this.expertBidStatus.getMarketPrice());
+            String temp="";
+            if(!this.expertBidStatus.getMarketSubtype().equals("세무조사")) {
+                temp = "자산 내용";
+                for (int i = 0; i < this.expertBidStatus.getAssetType().size(); i++)
+                    temp += this.expertBidStatus.getAssetType().get(i) + " ";
+            }
+            Bid_ing_marketType_sub.setText("자산 " + this.expertBidStatus.getMarketPrice()+temp);
         } else {
             Bid_ing_marketType_image.setImageResource(R.drawable.etc_icon);
-            Bid_ing_marketType_sub.setText("금액");
+            Bid_ing_marketType_title.setText("기타");
+            Bid_ing_marketType_sub.setText("상세 내용을 확인하세요");
         }
-        endDate.setText("D-" + this.expertBidStatus.getEndDate());
         bidCount.setText("" + this.expertBidStatus.getBidCount());
+        endDate.setText("D-" + this.expertBidStatus.getEndDate());
     }
 }
 

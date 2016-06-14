@@ -14,7 +14,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/estimate_detail_person_confirm_icon"
         android:drawablePadding="20dp"
         android:gravity="left|center_vertical"

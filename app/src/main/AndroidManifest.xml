@@ -20,50 +20,69 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:clearTaskOnLaunch="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".nomal.NomalMainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".common.condition_search.ConditionSearchResultActivity"
             android:label="@string/title_activity_condition_search_result"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".common.expert_detail_info.ExpertDetailInfoActivity"
             android:label="@string/title_activity_expert_detail_info"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".common.notice.text.NoticeListActivity"
             android:label="@string/title_activity_notice"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".nomal.estimate_request.EstimateRequestActivity"
             android:label="@string/title_activity_estimate_request"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".nomal.estimate_list.MyEstimateListActivity"
             android:label="@string/title_activity_nomal_user_estimate_list"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".nomal.estimate_list.MyEstimateDetailActivity"
             android:label="@string/title_activity_nomal_user_estimate_ldetail"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".nomal.info.NomalUserInfoEditActivity"
             android:label="@string/title_activity_nomal_user_info_edit"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".expert.info.ExpertInfoEditActivity"
             android:label="@string/title_activity_expert_info_edit"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".expert.bid_do.BidDoActivity"
             android:label="@string/title_activity_bid_do"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -78,7 +97,9 @@
         <activity
             android:name=".expert.ExpertMainActivity"
             android:label="@string/title_activity_expert_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -87,11 +108,15 @@
         <activity
             android:name=".common.notice.text.NoticeTextDetailActivity"
             android:label="@string/title_activity_notice_text_detail"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".common.ask.AskActivity"
             android:label="@string/title_activity_ask"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
@@ -129,35 +154,51 @@
         <activity
             android:name=".expert.auction.AuctionSearchListActivity"
             android:label="@string/title_activity_auction_search_list"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".login.LoginActivity"
             android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".nomal.estimate_modify.MyEstimateEntryModify"
             android:label="@string/title_activity_my_estimate_entry_modify"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".nomal.estimate_modify.MyEstimateTaxModify"
             android:label="@string/title_activity_my_estimate_tax_modify"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".nomal.estimate_modify.MyEstimateEtcModify"
             android:label="@string/title_activity_my_estimate_etc_modify"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".common.notice.event.NoticeEventActivity"
             android:label="@string/title_activity_notice_event"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".expert.point.PointListActivity"
             android:label="@string/title_activity_point_list"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".common.use_way.UseWayActivity"
             android:label="@string/title_activity_use_way"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

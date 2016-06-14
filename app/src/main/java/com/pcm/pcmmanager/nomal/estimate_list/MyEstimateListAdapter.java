@@ -18,28 +18,40 @@ public class MyEstimateListAdapter extends RecyclerView.Adapter<MyEstimateListVi
 
     List<MyEsitmateList> items = new ArrayList<>();
 
-    public void clear(){
+    public void clear() {
         items.clear();
         notifyDataSetChanged();
     }
 
-    public void add(MyEsitmateList myEsitmateList){
+    private int totalCount = 0;
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public void add(MyEsitmateList myEsitmateList) {
         items.add(myEsitmateList);
         notifyDataSetChanged();
     }
-    public void addAll(List<MyEsitmateList> items){
+
+    public void addAll(List<MyEsitmateList> items) {
         this.items.addAll(items);
         notifyDataSetChanged();
     }
 
     MyEstimateListViewHolder.OnItemClickListener mListener;
-    public void setOnItemClickListener(MyEstimateListViewHolder.OnItemClickListener listener){
+
+    public void setOnItemClickListener(MyEstimateListViewHolder.OnItemClickListener listener) {
         mListener = listener;
     }
 
     @Override
     public MyEstimateListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_list,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_list, parent, false);
         return new MyEstimateListViewHolder(view);
     }
 
@@ -53,4 +65,13 @@ public class MyEstimateListAdapter extends RecyclerView.Adapter<MyEstimateListVi
     public int getItemCount() {
         return items.size();
     }
+
+    public boolean isMoreData() {
+        return totalCount == 0 ? false : (totalCount) > items.size() ? true : false;
+    }
+
+    public int getLastSn(int sn) {
+        return items.get(sn).getMarketSn();
+    }
+
 }

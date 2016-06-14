@@ -30,22 +30,33 @@
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="1">
 
-                <ImageView
-                    android:id="@+id/expert_detail_image_office"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="82dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/office_image" />
+                    android:layout_height="82dp">
+
+                    <ImageView
+                        android:id="@+id/expert_detail_image_office"
+                        android:layout_width="match_parent"
+                        android:layout_height="82dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/office_image" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="82dp"
+                        android:alpha="0.4"
+                        android:background="#000000"/>
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/expert_detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
                     android:gravity="center_horizontal"
                     android:text="회계사"
                     android:textColor="#ffffff"
-                    android:textSize="18sp"
-                    android:layout_marginTop="17dp" />
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/expert_detail_image_profile"
@@ -131,14 +142,14 @@
 
             </RelativeLayout>
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:orientation="vertical"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:titleMarginTop="13dp" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="vertical"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleMarginTop="13dp" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -146,7 +157,8 @@
             android:id="@+id/htab_tabs"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:tabBackground="@drawable/tab_background_color" />
+            app:tabBackground="@drawable/tab_background_color"
+            app:tabIndicatorColor="@color/colorPrimary" />
 
     </android.support.design.widget.AppBarLayout>
 

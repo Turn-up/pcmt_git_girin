@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.matthewtamlin.sliding_intro_screen_library.DotIndicator;
 import com.pcm.pcmmanager.R;
@@ -32,11 +32,13 @@ import okhttp3.Request;
 public class NomalUserFragment extends Fragment implements View.OnClickListener {
 
     Button btn_estimate_do, btn_condition_search;
-    TextView total_auction_count, total_doing_estimate_count;  //총 경매수, 입찰진행중인 수 나중에 정의해
     DotIndicator infoIndicator, noticeIndicator;
     ViewPager accountInfoPager, noticeInfoPager;
     AccountInfoViewPagerAdpater mAIPagerAdapter;
     NoticeViewPagerAdapter mNoticePagerAdapter;
+
+
+    ImageView totalCount[], auctionCount[];
 
     public NomalUserFragment() {
         // Required empty public constructor
@@ -48,12 +50,24 @@ public class NomalUserFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nomal_user, container, false);
-        total_auction_count = (TextView) view.findViewById(R.id.nomal_total_auction_count_value);
-        total_doing_estimate_count = (TextView) view.findViewById(R.id.nomal_total_doing_estimate_count);
-
         infoIndicator = (DotIndicator) view.findViewById(R.id.info_indicator_ad);
         infoIndicator.setSelectedDotColor(Color.parseColor("#dcdcdc"));
         infoIndicator.setUnselectedDotColor(Color.parseColor("#7d7d7d"));
+
+        totalCount = new ImageView[5];
+        totalCount[0] = (ImageView) view.findViewById(R.id.total_count_one);
+        totalCount[1] = (ImageView) view.findViewById(R.id.total_count_two);
+        totalCount[2] = (ImageView) view.findViewById(R.id.total_count_three);
+        totalCount[3] = (ImageView) view.findViewById(R.id.total_count_four);
+        totalCount[4] = (ImageView) view.findViewById(R.id.total_count_five);
+
+        auctionCount = new ImageView[5];
+        auctionCount[0] = (ImageView) view.findViewById(R.id.biding_count_one);
+        auctionCount[1] = (ImageView) view.findViewById(R.id.biding_count_two);
+        auctionCount[2] = (ImageView) view.findViewById(R.id.biding_count_three);
+        auctionCount[3] = (ImageView) view.findViewById(R.id.biding_count_four);
+        auctionCount[4] = (ImageView) view.findViewById(R.id.biding_count_five);
+
 
         /*AccountInfoViewPager*/
         accountInfoPager = (ViewPager) view.findViewById(R.id.accountInfoViewPager);
@@ -131,10 +145,10 @@ public class NomalUserFragment extends Fragment implements View.OnClickListener 
         NetworkManager.getInstance().getNomalMainContentList(new NetworkManager.OnResultListener<NomalMainContentResult>() {
             @Override
             public void onSuccess(Request request, NomalMainContentResult result) {
-                    mAIPagerAdapter.addAll(result.getItem().getTipList());
-                    infoIndicator.setNumberOfItems(mAIPagerAdapter.getCount());
-                    mNoticePagerAdapter.addAll(result.getItem().getNoticeList());
-                    noticeIndicator.setNumberOfItems(mNoticePagerAdapter.getCount());
+                mAIPagerAdapter.addAll(result.getItem().getTipList());
+                infoIndicator.setNumberOfItems(mAIPagerAdapter.getCount());
+                mNoticePagerAdapter.addAll(result.getItem().getNoticeList());
+                noticeIndicator.setNumberOfItems(mNoticePagerAdapter.getCount());
             }
 
             @Override
@@ -148,8 +162,87 @@ public class NomalUserFragment extends Fragment implements View.OnClickListener 
         NetworkManager.getInstance().getMainBidCount(new NetworkManager.OnResultListener<MainBidCountResult>() {
             @Override
             public void onSuccess(Request request, MainBidCountResult result) {
-                total_auction_count.setText(""+result.getMainBidCount().getBidCount());
-                total_doing_estimate_count.setText(""+result.getMainBidCount().getBidEndCount());
+                String total = "" + result.getMainBidCount().getBidEndCount();
+                for (int i = total.length() - 1; i >= 0; i--) {
+                    switch (total.charAt(i)) {
+                        case '0':
+                            totalCount[4 - i].setImageResource(R.drawable.count_zero_icon);
+                            break;
+
+                        case '1':
+                            totalCount[4 - i].setImageResource(R.drawable.count_one_icon);
+                            break;
+
+                        case '2':
+                            totalCount[4 - i].setImageResource(R.drawable.count_two_icon);
+                            break;
+
+                        case '3':
+                            totalCount[4 - i].setImageResource(R.drawable.count_three_icon);
+                            break;
+
+                        case '4':
+                            totalCount[4 - i].setImageResource(R.drawable.count_four_icon);
+                            break;
+
+                        case '5':
+                            totalCount[4 - i].setImageResource(R.drawable.count_five_icon);
+                            break;
+
+                        case '6':
+                            totalCount[4 - i].setImageResource(R.drawable.count_six_icon);
+                            break;
+
+                        case '7':
+                            totalCount[4 - i].setImageResource(R.drawable.count_seven_icon);
+                            break;
+
+                        case '8':
+                            totalCount[4 - i].setImageResource(R.drawable.count_eight_icon);
+                            break;
+
+                        case '9':
+                            totalCount[4 - i].setImageResource(R.drawable.count_nine_icon);
+                    }
+                    break;
+
+                }
+                String bidIng = "" + result.getMainBidCount().getBidCount();
+                for (int i = bidIng.length() - 1; i >= 0; i--) {
+                    switch (bidIng.charAt(i)) {
+                        case '0':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_zero_icon);
+                            break;
+                        case '1':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_one_icon);
+                            break;
+                        case '2':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_two_icon);
+                            break;
+                        case '3':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_three_icon);
+                            break;
+                        case '4':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_four_icon);
+                            break;
+                        case '5':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_five_icon);
+                            break;
+                        case '6':
+
+                            auctionCount[4 - i].setImageResource(R.drawable.count_six_icon);
+                            break;
+                        case '7':
+                        auctionCount[4 - i].setImageResource(R.drawable.count_seven_icon);
+                            break;
+                        case '8':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_eight_icon);
+                            break;
+                        case '9':
+                            auctionCount[4 - i].setImageResource(R.drawable.count_nine_icon);
+                            break;
+                    }
+                }
             }
 
             @Override

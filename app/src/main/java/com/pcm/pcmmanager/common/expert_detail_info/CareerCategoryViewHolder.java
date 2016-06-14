@@ -16,37 +16,34 @@ import java.util.List;
  */
 public class CareerCategoryViewHolder extends RecyclerView.ViewHolder {
 
-    ImageView category_image1, category_image2, category_image3;
-    TextView category_text1, category_text2, category_text3;
     List<ExpertDetailCategory> expertDetailCategories = new ArrayList<>();
+    ImageView category_image[];
+    TextView category_text[];
 
     public CareerCategoryViewHolder(View itemView) {
         super(itemView);
 
-        category_image1 = (ImageView) itemView.findViewById(R.id.expert_career_category_image1);
-        category_image2 = (ImageView) itemView.findViewById(R.id.expert_career_category_image2);
-        category_image3 = (ImageView) itemView.findViewById(R.id.expert_career_category_image3);
+        category_image = new ImageView[3];
+        category_text = new TextView[3];
 
-        category_text1 = (TextView) itemView.findViewById(R.id.expert_career_category_text1);
-        category_text2 = (TextView) itemView.findViewById(R.id.expert_career_category_text2);
-        category_text3 = (TextView) itemView.findViewById(R.id.expert_career_category_text3);
+        category_image[0] = (ImageView) itemView.findViewById(R.id.expert_career_category_image1);
+        category_image[1] = (ImageView) itemView.findViewById(R.id.expert_career_category_image2);
+        category_image[2] = (ImageView) itemView.findViewById(R.id.expert_career_category_image3);
+
+        category_text[0] = (TextView) itemView.findViewById(R.id.expert_career_category_text1);
+        category_text[1] = (TextView) itemView.findViewById(R.id.expert_career_category_text2);
+        category_text[2] = (TextView) itemView.findViewById(R.id.expert_career_category_text3);
     }
 
     public void setCategory(List<ExpertDetailCategory> item) {
-        if (item.get(0).equals("기장")) category_image1.setImageResource(R.drawable.entry_icon);
-        else if (item.get(0).equals("TAX")) category_image1.setImageResource(R.drawable.tax_icon);
-        else if (item.get(0).equals("기타")) category_image1.setImageResource(R.drawable.etc_icon);
-
-        if (item.get(1).equals("기장")) category_image1.setImageResource(R.drawable.entry_icon);
-        else if (item.get(1).equals("TAX")) category_image1.setImageResource(R.drawable.tax_icon);
-        else if (item.get(1).equals("기타")) category_image1.setImageResource(R.drawable.etc_icon);
-
-        if (item.get(2).equals("기장")) category_image1.setImageResource(R.drawable.entry_icon);
-        else if (item.get(2).equals("TAX")) category_image1.setImageResource(R.drawable.tax_icon);
-        else if (item.get(2).equals("기타")) category_image1.setImageResource(R.drawable.etc_icon);
-
-        category_text1.setText(item.get(0).getMarketType());
-        category_text2.setText(item.get(1).getMarketType());
-        category_text3.setText(item.get(2).getMarketType());
+        for (int i = 0; i < 3; i++) {
+            if (item.get(i).getMarketType().equals("기장"))
+                category_image[i].setImageResource(R.drawable.entry_icon);
+            else if (item.get(i).getMarketType().equals("TAX"))
+                category_image[i].setImageResource(R.drawable.tax_icon);
+            else if (item.get(i).getMarketType().equals("기타"))
+                category_image[i].setImageResource(R.drawable.etc_icon);
+            category_text[i].setText(item.get(i).getMarketSubType());
+       }
     }
 }

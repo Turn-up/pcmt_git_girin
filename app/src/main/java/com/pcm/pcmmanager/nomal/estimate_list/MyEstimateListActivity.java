@@ -35,7 +35,8 @@ public class MyEstimateListActivity extends AppCompatActivity {
     String last_marketSn,marketSn,markettype,status;
     RecyclerView listView;
     MyEstimateListAdapter mAdapter;
-
+    LinearLayoutManager mLayoutManager;
+    Boolean isLast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class MyEstimateListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         last_marketSn="0";
+        mLayoutManager = new LinearLayoutManager(this);
 
         mAdapter = new MyEstimateListAdapter();
         listView = (RecyclerView) findViewById(R.id.rv_list);
@@ -72,12 +74,31 @@ public class MyEstimateListActivity extends AppCompatActivity {
             }
         });
         listView.setAdapter(mAdapter);
-        listView.setLayoutManager(new LinearLayoutManager(this));
+        listView.setLayoutManager(mLayoutManager);
 
+        isLast=false;
+        listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if(isLast && newState == RecyclerView.SCROLL_STATE_IDLE){
+                    getMoreData();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                int totalCount = mAdapter.getItemCount();
+                int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                if (totalCount > 0 && lastVisibleItem >= totalCount - 1){
+                    isLast =true;
+                }else
+                    isLast= false;
+            }
+        });
         setData();
         //recycler view 구현
     }
-    //입찰 목록의 전문가 선택하면 나오는 커스텀 다이얼로그
+    //입찰 수정 다이얼로그
     class ModifyDialog extends Dialog implements View.OnClickListener {
 
         Button estimate_detail_btn, estimate_modify_btn, btn_cancel;
@@ -126,12 +147,41 @@ public class MyEstimateListActivity extends AppCompatActivity {
             }
         }
     }
+    private boolean isMoreData = false;
+    public void getMoreData(){
+        if(!isMoreData && mAdapter.isMoreData()){
+            isMoreData = true;
+            final int sn = mAdapter.getLastSn(mAdapter.getItemCount()-1);
+            try {
+                NetworkManager.getInstance().getNomalEstiamteList(PAGESIZE, String.valueOf(sn),new NetworkManager.OnResultListener<MyEstimateListResult>() {
+                    @Override
+                    public void onSuccess(Request request, MyEstimateListResult result) {
+                        mAdapter.addAll(result.getList());
+                        isMoreData = false;
+                    }
+
+                    @Override
+                    public void onFail(Request request, IOException exception) {
+
+                    }
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+                isMoreData = false;
+
+            }
+
+        }
+    }
+
     private void setData() {
         mAdapter.clear();
-        NetworkManager.getInstance().getNomalEstiamteList(PAGESIZE, last_marketSn, new NetworkManager.OnResultListener<MyEstimateListResult>() {
+        NetworkManager.getInstance().getNomalEstiamteList(PAGESIZE, "0", new NetworkManager.OnResultListener<MyEstimateListResult>() {
             @Override
             public void onSuccess(Request request, MyEstimateListResult result) {
+                mAdapter.clear();
                 mAdapter.addAll(result.getList());
+                mAdapter.setTotalCount(result.getTotalCount());
             }
 
             @Override

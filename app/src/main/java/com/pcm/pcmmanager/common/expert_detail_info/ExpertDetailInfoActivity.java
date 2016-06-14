@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -102,7 +103,7 @@ public class ExpertDetailInfoActivity extends AppCompatActivity implements AppBa
             }
         });
         TabLayout tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
-        View tabView1 = getLayoutInflater().inflate(R.layout.view_expert_tab, null);
+        View tabView1 = getLayoutInflater().inflate(R.layout.view_expert_career_tab, null);
         View tabView2 = getLayoutInflater().inflate(R.layout.view_expert_tab, null);
         View tabView3 = getLayoutInflater().inflate(R.layout.view_expert_tab, null);
 
@@ -143,7 +144,15 @@ public class ExpertDetailInfoActivity extends AppCompatActivity implements AppBa
                     Toast.makeText(ExpertDetailInfoActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
                     expertDetailInfo = result.getInfo();
-                    Glide.with(profile_image.getContext()).load(expertDetailInfo.getPhoto()).into(profile_image);
+                    if(TextUtils.isEmpty(expertDetailInfo.getPhoto())){
+                        if(expertDetailInfo.getSex().equals("남자")){
+                            profile_image.setImageResource(R.drawable.semooman_icon);
+                        }else if(expertDetailInfo.getSex().equals("여자")){
+                            profile_image.setImageResource(R.drawable.semoogirl_icon);
+                        }
+                    }else {
+                        Glide.with(profile_image.getContext()).load(expertDetailInfo.getPhoto()).into(profile_image);
+                    }
                     title.setText(expertDetailInfo.getName() + "회계사");
                     title.setVisibility(View.GONE);
                     profile_name.setText(expertDetailInfo.getName() + "회계사");

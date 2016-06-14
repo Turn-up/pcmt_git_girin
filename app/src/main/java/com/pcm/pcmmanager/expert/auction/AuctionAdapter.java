@@ -22,6 +22,15 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionViewHolder> {
         items.clear();
         notifyDataSetChanged();
     }
+    private int totalCount = 0;
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
 
     public void add(ExpertEstimateList expertEstimateList) {
         items.add(expertEstimateList);
@@ -29,8 +38,7 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionViewHolder> {
     }
 
     public void addAll(List<ExpertEstimateList> items) {
-        this.items.addAll(
-                items);
+        this.items.addAll(items);
         notifyDataSetChanged();
     }
 
@@ -54,5 +62,13 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionViewHolder> {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public boolean isMoreData(){
+        return totalCount == 0? false : (totalCount)>items.size() ? true :false;
+    }
+
+    public int getLastSn(int sn) {
+        return items.get(sn).getMarketSn();
     }
 }

@@ -73,9 +73,12 @@ public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
         } else if (myEsitmateList.getMarketType().equals("TAX")) {//기타
             marketType_image.setImageResource(R.drawable.tax_icon);
             marketType_title.setText(this.myEsitmateList.getMarketSubType());
-            String temp = ", 자산 내용 ";
-            for (int i = 0; i < this.myEsitmateList.getAssetType().size(); i++) {
-                temp += this.myEsitmateList.getAssetType().get(i) + " ";
+            String temp="";
+            if(!this.myEsitmateList.getMarketSubType().equals("세무조사")) {
+                temp = ", 자산 내용 ";
+                for (int i = 0; i < this.myEsitmateList.getAssetType().size(); i++) {
+                    temp += this.myEsitmateList.getAssetType().get(i) + " ";
+                }
             }
             marketType_sub.setText("자산 " + this.myEsitmateList.getMarketPrice() + temp);
         } else {//기타

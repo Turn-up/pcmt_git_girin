@@ -89,7 +89,6 @@ public class NetworkManager {
 
     public interface OnResultListener<T> {
         public void onSuccess(Request request, T result);
-
         public void onFail(Request request, IOException exception);
     }
 
@@ -735,6 +734,8 @@ public class NetworkManager {
             for (int i = 0; i < markettype2_1.size(); i++) {
                 myBuilder.add("markettype2_1", markettype2_1.get(i).toString());
             }
+        }else {
+            myBuilder.add("markettype2_1","002_002");
         }
         RequestBody body = myBuilder
                 .add("markettype",markettype)
@@ -792,6 +793,8 @@ public class NetworkManager {
             for (int i = 0; i < taxAsset.size(); i++) {
                 myBuilder.add("markettype2_1", taxAsset.get(i).toString());
             }
+        }else {
+            myBuilder.add("markettype2_1","002_002");
         }
         RequestBody body = myBuilder
                 .add("markettype", marketType)
@@ -806,7 +809,6 @@ public class NetworkManager {
                 .add("enddate", enddate)
                 .add("content", content)
                 .build();
-
 
         Request request = new Request.Builder()
                 .url(url)

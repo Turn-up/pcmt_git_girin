@@ -61,16 +61,25 @@ public class SplashActivity extends Activity {
         NetworkManager.getInstance().getRefreshToken(PropertyManager.getInstance().getAuthorizationToken(), new NetworkManager.OnResultListener<RefreshTokenResult>() {
             @Override
             public void onSuccess(Request request, RefreshTokenResult result) {
-                RefreshTokenResult refreshTokenResult = result;
-                PropertyManager.getInstance().setAuthorizationToken(refreshTokenResult.getToken());
-                if (refreshTokenResult.getRoles().equals("Users")) {
-                    MyApplication.setUserType("Users");
-                    overridePendingTransition(0, android.R.anim.fade_in);
-                    startActivity(new Intent(SplashActivity.this, NomalMainActivity.class));
+                if (result.getResult() == -1) {
+                    Toast.makeText(SplashActivity.this,result.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
                     finish();
-                } else if (refreshTokenResult.getRoles().equals("Experts")) {
-                    getExpertState();
+
+                } else {
+                    RefreshTokenResult refreshTokenResult = result;
+                    PropertyManager.getInstance().setAuthorizationToken(refreshTokenResult.getToken());
+                    if (refreshTokenResult.getRoles().equals("Users")) {
+                        MyApplication.setUserType("Users");
+                        overridePendingTransition(0, android.R.anim.fade_in);
+                        startActivity(new Intent(SplashActivity.this, NomalMainActivity.class));
+                        finish();
+                    } else if (refreshTokenResult.getRoles().equals("Experts")) {
+                        getExpertState();
+                    }
                 }
+
             }
 
             @Override

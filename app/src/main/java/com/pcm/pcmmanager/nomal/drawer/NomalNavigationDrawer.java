@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +26,9 @@ import okhttp3.Request;
  */
 public class NomalNavigationDrawer extends Fragment {
 
-    TextView profieName, profileEmail,ask, notice, event, use_way,myEstimate,logout_btn,user_out_btn;
+    TextView profieName, profileEmail, ask, notice, event, use_way, myEstimate, logout_btn, user_out_btn;
     LinearLayout logout_layout;
+    ImageButton setting_btn;
     Button logout;
 
     public interface OnMenuClickListener {
@@ -56,13 +58,20 @@ public class NomalNavigationDrawer extends Fragment {
         ask = (TextView) v.findViewById(R.id.nomal_drawer_ask);
         notice = (TextView) v.findViewById(R.id.nomal_drawer_notice);
         event = (TextView) v.findViewById(R.id.nomal_drawer_event);
-        myEstimate = (TextView)v.findViewById(R.id.nomal_drawer_my_estimate);
+        myEstimate = (TextView) v.findViewById(R.id.nomal_drawer_my_estimate);
         use_way = (TextView) v.findViewById(R.id.nomal_drawer_use_way);
         profieName = (TextView) v.findViewById(R.id.nomal_drawer_name);
         profileEmail = (TextView) v.findViewById(R.id.nomal_drawer_email);
-        user_out_btn = (TextView)v.findViewById(R.id.nomal_drawer_user_out_btn);
-        logout_btn = (TextView)v.findViewById(R.id.nomal_drawer_logout_btn);
+        user_out_btn = (TextView) v.findViewById(R.id.nomal_drawer_user_out_btn);
+        logout_btn = (TextView) v.findViewById(R.id.nomal_drawer_logout_btn);
         logout_layout = (LinearLayout) v.findViewById(R.id.nomal_drawer_logout_layout);
+        setting_btn = (ImageButton) v.findViewById(R.id.nomal_drawer_setting);
+//        setting_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(NomalNavigationDrawer.this, "준비중 입니다.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -32,12 +32,13 @@
                 android:src="@drawable/underbar_21" />
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/record_layout1"
+                android:layout_marginBottom="7dp">
 
                 <TextView
                     android:id="@+id/expert_career_record1_year_front"
@@ -87,9 +88,10 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/record_layout2"
+                android:layout_marginBottom="7dp">
 
                 <TextView
                     android:id="@+id/expert_career_record2_year_front"
@@ -139,9 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="7dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/record_layout3">
 
                 <TextView
                     android:id="@+id/expert_career_record3_year_front"

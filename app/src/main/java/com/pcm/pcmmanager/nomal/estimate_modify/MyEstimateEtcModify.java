@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,7 @@ import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertEstimateDetail;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
 import com.pcm.pcmmanager.data.MyEstimateEditModifyResult;
+import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
 import com.pcm.pcmmanager.nomal.estimate_list.MyEstimateListActivity;
@@ -42,6 +45,7 @@ public class MyEstimateEtcModify extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         address1Spinner = (Spinner) findViewById(R.id.estimate_modify_etc_address1_spinner);
         address2Spinner = (Spinner) findViewById(R.id.estimate_modify_etc_address2_spinner);
         a1Adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_text);
@@ -58,7 +62,6 @@ public class MyEstimateEtcModify extends AppCompatActivity {
         address1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 address1 = PropertyManager.getInstance().getCommonRegionLists().get(position).getCode();
                 tempAddress1 = a1Adapter.getItem(position);
                 a2Adapter.clear();
@@ -111,6 +114,8 @@ public class MyEstimateEtcModify extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 content = etcContent.getText().toString();
+                address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
+                address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
                 NetworkManager.getInstance().getNomalEstiamteModify(marketSn, ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
                         "", endDate, content, new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
                             @Override
@@ -145,11 +150,36 @@ public class MyEstimateEtcModify extends AppCompatActivity {
                 address1Spinner.setSelection(a1Adapter.getPosition(address1));
                 address2Spinner.setSelection(a2Adapter.getPosition(address2));
             }
-
             @Override
             public void onFail(Request request, IOException exception) {
 
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.expert_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_home) {
+            Intent intent = new Intent(MyEstimateEtcModify.this, ExpertMainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

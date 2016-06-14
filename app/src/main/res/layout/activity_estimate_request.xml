@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="18sp"
+                android:textColor="#ffffff"
                 android:text="견적 요청하기" />
         </FrameLayout>
     </android.support.design.widget.AppBarLayout>

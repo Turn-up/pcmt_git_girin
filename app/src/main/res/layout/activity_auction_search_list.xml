@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="18sp"
                 android:text="견적찾기"
 
                 android:textColor="#ffffff" />

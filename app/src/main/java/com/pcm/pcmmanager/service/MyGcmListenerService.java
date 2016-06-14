@@ -35,7 +35,7 @@ public class MyGcmListenerService extends GcmListenerService{
     // GCM으로 수신한 Push메시지를 처리하여 Notification Center에 출력처리한다
     private void sendNotification(String title, String message){
         Intent intent = new Intent(this, SplashActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         // Notification 관련 설정 처리

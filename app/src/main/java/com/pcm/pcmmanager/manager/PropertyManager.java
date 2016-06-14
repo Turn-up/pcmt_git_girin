@@ -17,6 +17,7 @@ public class PropertyManager {
     public static List<CommonCodeList> commonCodeList;
     public static List<CommonRegionList> commonRegionLists;
     private static Boolean expertCheck;
+    private static Boolean first_user=false;
 
     public static PropertyManager getInstance() {
         if (instance == null) {
@@ -71,6 +72,11 @@ public class PropertyManager {
         expertCheck = check;
     }
     public Boolean getExpertCheck(){return expertCheck; }
+
+    public void setFirstUser(Boolean check){
+        first_user = check;
+    }
+    public Boolean getFirstUser(){return first_user; }
 
 }
 

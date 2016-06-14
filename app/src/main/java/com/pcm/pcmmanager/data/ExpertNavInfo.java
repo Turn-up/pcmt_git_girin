@@ -6,7 +6,10 @@ import com.google.gson.annotations.SerializedName;
  * Created by LG on 2016-05-27.
  */
 public class ExpertNavInfo {
-    @SerializedName("expertsname")
+    @SerializedName("expertsn")
+    int expertSn;
+
+    @SerializedName("expertname")
     String expertName;
     @SerializedName("bidcount")
     int entryCount;
@@ -84,6 +87,13 @@ public class ExpertNavInfo {
 
     public void setEntryCount(int entryCount) {
         this.entryCount = entryCount;
+    }
+    public int getExpertSn() {
+        return expertSn;
+    }
+
+    public void setExpertSn(int expertSn) {
+        this.expertSn = expertSn;
     }
 
 }

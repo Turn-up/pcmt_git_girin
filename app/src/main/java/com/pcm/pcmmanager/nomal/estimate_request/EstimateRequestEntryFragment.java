@@ -43,7 +43,7 @@ public class EstimateRequestEntryFragment extends Fragment {
     Button entryAdd;
     EditText businessScale, employeeCount, entryContent;
     String marketSubType, address1, address2, marketType1_3, tempAddress1; //업종, 주소(시, 군),부가내용
-    String endDate = "1"; // 마감일
+    String endDate = "7"; // 마감일
     RadioButton radioButton;
     TextView day1,day2,day3,day4,day5,day6,day7;
     public EstimateRequestEntryFragment() {
@@ -103,6 +103,7 @@ public class EstimateRequestEntryFragment extends Fragment {
             }
         });
         /*입찰 기간 선택*/
+        seekBar.setProgress(6);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

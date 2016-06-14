@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
@@ -37,13 +38,14 @@ public class EstimateRequestTaxFragment extends Fragment {
 
     SeekBar seekBar;
     Spinner marketSubTypeSpinner, address1Spinner, address2Spinner;
-    int endDate; //마감일
+    int endDate = 7; //마감일
     ArrayAdapter<String> bAdapter, a1Adapter, a2Adapter; //업종, 주소
     Button taxAdd;
     CheckBox check_tax_land, check_tax_house, check_tax_stock, check_tax_deposit; //재산대상
     EditText marketType2_2, taxContent; //재산시가
-    String marketSubType, address1, address2,tempAddress1; //내용 , 주소 , 부가내용
+    String marketSubType, address1, address2, tempAddress1; //내용 , 주소 , 부가내용
     ArrayList<String> assetList;
+    LinearLayout asset_layout;
 
     public EstimateRequestTaxFragment() {
         // Required empty public constructor
@@ -65,11 +67,13 @@ public class EstimateRequestTaxFragment extends Fragment {
         bAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         a1Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         a2Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
+        asset_layout = (LinearLayout) view.findViewById(R.id.asset_type_layout);
 
         marketType2_2 = (EditText) view.findViewById(R.id.estimate_request_tax_price);
         taxContent = (EditText) view.findViewById(R.id.estimate_request_tax_content);
         marketType2_2.addTextChangedListener(new CustomTextWathcer(marketType2_2));
 
+        seekBar.setProgress(6);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -98,11 +102,16 @@ public class EstimateRequestTaxFragment extends Fragment {
         for (int i = 0; i < PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getList().size(); i++) {
             bAdapter.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getList().get(i).getValue());
         }
+
         marketSubTypeSpinner.setAdapter(bAdapter);
         marketSubTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 marketSubType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getList().get(position).getCode();
+                if (bAdapter.getItem(position).equals("세무조사"))
+                    asset_layout.setVisibility(View.GONE);
+                else
+                    asset_layout.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -119,7 +128,7 @@ public class EstimateRequestTaxFragment extends Fragment {
         address1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                address1 =  PropertyManager.getInstance().getCommonRegionLists().get(position).getCode();
+                address1 = PropertyManager.getInstance().getCommonRegionLists().get(position).getCode();
                 tempAddress1 = a1Adapter.getItem(position);
                 a2Adapter.clear();
                 for (int i = 0; i < PropertyManager.getInstance().getCommonRegionLists().get(position).getList().size(); i++) {
@@ -138,7 +147,7 @@ public class EstimateRequestTaxFragment extends Fragment {
         address2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                address2 =  PropertyManager.getInstance().getCommonRegionLists().get(a1Adapter.getPosition(tempAddress1)).getList().get(position).getCode();
+                address2 = PropertyManager.getInstance().getCommonRegionLists().get(a1Adapter.getPosition(tempAddress1)).getList().get(position).getCode();
 
 
             }
@@ -160,13 +169,13 @@ public class EstimateRequestTaxFragment extends Fragment {
                     assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(0).getCode());
                 }
                 if (check_tax_deposit.isChecked()) {
-                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(1).getCode());
+                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(3).getCode());
                 }
                 if (check_tax_house.isChecked()) {
-                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(2).getCode());
+                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(1).getCode());
                 }
                 if (check_tax_stock.isChecked()) {
-                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(3).getCode());
+                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(2).getCode());
                 }
                 NetworkManager.getInstance().getNomalEstiamteRequestList(TAX, marketSubType, address1, address2, "", "", "", "", assetList, temp
                         , String.valueOf(endDate), content, new NetworkManager.OnResultListener<EstimateRequestResult>() {

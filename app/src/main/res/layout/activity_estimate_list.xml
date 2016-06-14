@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="18sp"
+                android:textColor="#ffffff"
                 android:text="내 견적"/>
         </FrameLayout>
 

@@ -2,6 +2,7 @@ package com.pcm.pcmmanager.common.expert_detail_info;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pcm.pcmmanager.R;
@@ -16,7 +17,7 @@ public class CareerRecordListViewHolder extends RecyclerView.ViewHolder {
     TextView year_front1, year_back1, content1;
     TextView year_front2, year_back2, content2;
     TextView year_front3, year_back3, content3;
-
+    LinearLayout record_layout_one, record_layout_two, record_layout_three;
     List<ExpertDetailRecord> list;
 
     public CareerRecordListViewHolder(View itemView) {
@@ -32,6 +33,10 @@ public class CareerRecordListViewHolder extends RecyclerView.ViewHolder {
         year_front3 = (TextView) itemView.findViewById(R.id.expert_career_record3_year_front);
         year_back3 = (TextView) itemView.findViewById(R.id.expert_career_record3_year_back);
         content3 = (TextView) itemView.findViewById(R.id.expert_career_record3_content);
+
+        record_layout_one = (LinearLayout) itemView.findViewById(R.id.record_layout1);
+        record_layout_two = (LinearLayout) itemView.findViewById(R.id.record_layout2);
+        record_layout_three = (LinearLayout) itemView.findViewById(R.id.record_layout3);
     }
 
     public void setRecordList(List<ExpertDetailRecord> items) {
@@ -40,12 +45,8 @@ public class CareerRecordListViewHolder extends RecyclerView.ViewHolder {
             year_front1.setText("" + list.get(0).getStartDate());
             year_back1.setText("" + list.get(0).getEndDate());
             content1.setText(list.get(0).getRecordName());
-            year_front2.setVisibility(View.GONE);
-            year_back2.setVisibility(View.GONE);
-            content2.setVisibility(View.GONE);
-            year_front3.setVisibility(View.GONE);
-            year_back3.setVisibility(View.GONE);
-            content3.setVisibility(View.GONE);
+            record_layout_two.setVisibility(View.GONE);
+            record_layout_three.setVisibility(View.GONE);
 
         } else if (list.size() == 2) {
             year_front1.setText("" + list.get(0).getStartDate());
@@ -54,9 +55,7 @@ public class CareerRecordListViewHolder extends RecyclerView.ViewHolder {
             year_front2.setText("" + list.get(1).getStartDate());
             year_back2.setText("" + list.get(1).getEndDate());
             content2.setText(list.get(1).getRecordName());
-            year_front2.setVisibility(View.GONE);
-            year_back2.setVisibility(View.GONE);
-            content2.setVisibility(View.GONE);
+            record_layout_three.setVisibility(View.GONE);
 
         } else if (list.size() > 2) {
             year_front1.setText("" + list.get(0).getStartDate());
