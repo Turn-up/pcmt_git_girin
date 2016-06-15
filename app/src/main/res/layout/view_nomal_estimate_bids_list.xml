@@ -6,6 +6,7 @@
     android:layout_marginLeft="21dp"
     android:layout_marginRight="21dp"
     android:layout_marginTop="20dp"
+    android:id="@+id/bid_list_layout"
     android:orientation="vertical">
 
     <LinearLayout
@@ -170,7 +171,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         android:src="@drawable/underbar21_" />
 
 </LinearLayout>

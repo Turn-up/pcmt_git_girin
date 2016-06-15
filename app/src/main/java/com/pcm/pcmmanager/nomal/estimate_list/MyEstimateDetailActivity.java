@@ -48,7 +48,8 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
     RecyclerView listView;
     MyEstimateDetailAdapter mAdapter;
     CutomDialog dialog;
-    String expertSn, marketSn, reviewSn;
+    int reviewSn;
+    String expertSn, marketSn;
     String eName, ePhoto, eMoney, eMoney2, eSex, status;
 
     @Override
@@ -78,10 +79,14 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
             public void onItemClick(View view, ExpertEstimateDetailBidList mList) {
                 expertSn = String.valueOf(mList.getExpertSn());
                 if (status.equals("낙찰완료")) {
-                    if (TextUtils.isEmpty(reviewSn)) {
+                    if (reviewSn ==0) {
                         ReviewDialog reviewDialog = new ReviewDialog(MyEstimateDetailActivity.this);
                         reviewDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         reviewDialog.show();
+                    }else{
+                        Intent intent = new Intent(MyEstimateDetailActivity.this, ExpertDetailInfoActivity.class);
+                        intent.putExtra("expertSn",expertSn);
+                        startActivity(intent);
                     }
                 } else {
                     eName = mList.getExpertName();

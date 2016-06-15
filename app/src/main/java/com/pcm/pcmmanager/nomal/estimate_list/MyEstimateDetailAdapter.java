@@ -59,12 +59,17 @@ public class MyEstimateDetailAdapter extends RecyclerView.Adapter<RecyclerView.V
             MyEstimateDetailHeaderViewHolder h = (MyEstimateDetailHeaderViewHolder) holder;
             h.setHeader(mItem);
             return;
-        } else {
+        }else {
             MyEstimateDetailBidListsViewHolder h = (MyEstimateDetailBidListsViewHolder) holder;
             if(mItem.getSuccess_expertsn() != 0){
-                for(int i = 0 ; i<mItem.getBids().size() ; i++)
-                    if(mItem.getBids().get(i).getExpertSn() == mItem.getSuccess_expertsn())
-                        h.setBidsList(mItem.getBids().get(i),mItem.getMarketType());
+                if(position==1) {
+                    for (int i = 0; i < mItem.getBids().size(); i++)
+                        if (mItem.getBids().get(i).getExpertSn() == mItem.getSuccess_expertsn()) {
+                            h.setBidsList(mItem.getBids().get(i), mItem.getMarketType());
+                        }
+                }else if(position >1){
+                    h.setBidsList(mItem.getBids().get(0),"0");
+                }
             }else{
                 h.setBidsList(mItem.getBids().get(position - 1),mItem.getMarketType());
             }

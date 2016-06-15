@@ -9,7 +9,7 @@ public class ExpertNavInfo {
     @SerializedName("expertsn")
     int expertSn;
 
-    @SerializedName("expertname")
+    @SerializedName("username")
     String expertName;
     @SerializedName("bidcount")
     int entryCount;

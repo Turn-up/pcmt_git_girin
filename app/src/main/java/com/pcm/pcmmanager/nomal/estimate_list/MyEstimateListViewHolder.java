@@ -87,6 +87,7 @@ public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
             marketType_sub.setText("상세 페이지를 확인하세요");
         }
         bidCount.setText("" + this.myEsitmateList.getOldCnt());
+        bids_count_image.setVisibility(View.VISIBLE);
         if(this.myEsitmateList.getStatus().equals("낙찰완료")){
             bidCount.setText("낙찰완료");
             bids_count_image.setVisibility(View.GONE);

@@ -1,10 +1,12 @@
 package com.pcm.pcmmanager.expert;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -110,50 +112,15 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
         }
     }
 
-    //로그아웃
+    //로그아웃 및 탈퇴
     public void onLogout(View v) {
         switch (v.getId()) {
             case R.id.expert_drawer_logout_btn:
-                NetworkManager.getInstance().getLogout(new NetworkManager.OnResultListener<UserSignupResult>() {
-                    @Override
-                    public void onSuccess(Request request, UserSignupResult result) {
-                        if (result.getResult() == -1)
-                            Toast.makeText(ExpertMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                        else {
-                            PropertyManager.getInstance().setAuthorizationToken("");
-                            Intent intent = new Intent(ExpertMainActivity.this, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onFail(Request request, IOException exception) {
-
-                    }
-                });
+                LogoutCheckDialog();
                 break;
             case R.id.expert_drawer_user_out_btn:
-                NetworkManager.getInstance().getUserDelete(new NetworkManager.OnResultListener<UserDeleteResult>() {
-                    @Override
-                    public void onSuccess(Request request, UserDeleteResult result) {
-                        if (result.getResult() == -1)
-                            Toast.makeText(ExpertMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                        else {
-                            PropertyManager.getInstance().setAuthorizationToken("");
-                            Intent intent = new Intent(ExpertMainActivity.this, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onFail(Request request, IOException exception) {
-
-                    }
-                });
+                UserOut();
+                break;
         }
     }
 
@@ -180,6 +147,91 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
             });
         }
     }
+
+    private void LogoutCheckDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        // AlertDialog 셋팅
+        alertDialogBuilder
+                .setMessage("로그아웃 하시겠습니까?")
+                .setCancelable(false)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        NetworkManager.getInstance().getLogout(new NetworkManager.OnResultListener<UserSignupResult>() {
+                            @Override
+                            public void onSuccess(Request request, UserSignupResult result) {
+                                if (result.getResult() == -1)
+                                    Toast.makeText(ExpertMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                                else {
+                                    // 로그아웃한다
+                                    PropertyManager.getInstance().setAuthorizationToken("");
+                                    Intent intent = new Intent(ExpertMainActivity.this, LoginActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                            @Override
+                            public void onFail(Request request, IOException exception) {
+
+                            }
+                        });
+
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // 다이얼로그를 취소한다
+                        dialog.cancel();
+                    }
+                });
+        // 다이얼로그 보여주기
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.show();
+    }
+
+    /*회원탈퇴 다이얼로그*/
+    private void UserOut() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        // AlertDialog 셋팅
+        alertDialogBuilder
+                .setMessage("회원탈퇴 하시겠습니까?")
+                .setCancelable(false)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        NetworkManager.getInstance().getUserDelete(new NetworkManager.OnResultListener<UserDeleteResult>() {
+                            @Override
+                            public void onSuccess(Request request, UserDeleteResult result) {
+                                if (result.getResult() == -1)
+                                    Toast.makeText(ExpertMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                                else {
+                                    PropertyManager.getInstance().setAuthorizationToken("");
+                                    Intent intent = new Intent(ExpertMainActivity.this, LoginActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+
+                            @Override
+                            public void onFail(Request request, IOException exception) {
+
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int arg1) {
+                        dialog.cancel();
+                    }
+                });
+        // 다이얼로그 보여주기
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.show();
+    }
+
 
     @Override
     public void onBackPressed() {

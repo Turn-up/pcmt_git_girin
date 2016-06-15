@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +18,7 @@ public class MyEstimateDetailBidListsViewHolder extends RecyclerView.ViewHolder 
 
     ImageView expertIamge;
     TextView expertName, comment, monthMoney, modifyMoney, moneyTypeOne, moneyTypeTwo, persentORwon;
+    LinearLayout bidListLayout;
 
     ExpertEstimateDetailBidList mList;
 
@@ -40,6 +42,7 @@ public class MyEstimateDetailBidListsViewHolder extends RecyclerView.ViewHolder 
         moneyTypeOne = (TextView) itemView.findViewById(R.id.bids_list_money_tpye_one);
         moneyTypeTwo = (TextView) itemView.findViewById(R.id.bids_list_money_tpye_two);
         persentORwon = (TextView) itemView.findViewById(R.id.persentORwon);
+        bidListLayout = (LinearLayout)itemView.findViewById(R.id.bid_list_layout);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +55,9 @@ public class MyEstimateDetailBidListsViewHolder extends RecyclerView.ViewHolder 
 
     public void setBidsList(ExpertEstimateDetailBidList list, String markettype) {
         mList = list;
+        if(markettype.equals("0")){
+            bidListLayout.setVisibility(View.GONE);
+        }
         expertName.setText(mList.getExpertName());
         if (TextUtils.isEmpty(mList.getPhoto())) {
             if (mList.getSex().equals("남자")) {

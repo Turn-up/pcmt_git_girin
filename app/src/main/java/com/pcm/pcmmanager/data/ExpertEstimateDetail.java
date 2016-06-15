@@ -11,7 +11,7 @@ public class ExpertEstimateDetail {
     String _id;
     int usersn;
     String username;
-    String reviewsn;
+    int reviewsn;
     @SerializedName("markettype")
     String marketType;
     @SerializedName("marketsubtype")
@@ -221,11 +221,11 @@ public class ExpertEstimateDetail {
         this.asset_type = asset_type;
     }
 
-    public String getReviewsn() {
+    public int getReviewsn() {
         return reviewsn;
     }
 
-    public void setReviewsn(String reviewsn) {
+    public void setReviewsn(int reviewsn) {
         this.reviewsn = reviewsn;
     }
 }
