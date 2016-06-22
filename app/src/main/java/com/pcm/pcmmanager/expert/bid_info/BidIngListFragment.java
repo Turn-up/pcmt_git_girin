@@ -1,4 +1,4 @@
-package com.pcm.pcmmanager.expert.my_bid_info;
+package com.pcm.pcmmanager.expert.bid_info;
 
 
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
+import com.pcm.pcmmanager.data.ExpertBidStatus;
 import com.pcm.pcmmanager.data.ExpertBidStatusResult;
 import com.pcm.pcmmanager.expert.ExpertParentFragment;
 import com.pcm.pcmmanager.manager.NetworkManager;
@@ -23,23 +23,23 @@ import okhttp3.Request;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BidFinishFragment extends Fragment {
+public class BidIngListFragment extends Fragment {
+
     RecyclerView recyclerView;
-    BidFinishAdapter mAdapter;
+    BidIngAdapter mAdapter;
 
     public static final String PAGE_SIZE = "10";
-    public static final String STATUS = "110_003";
+    public static final String STATUS = "110_002";
 
-    public BidFinishFragment() {
+    public BidIngListFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_bid_finish, container, false);
+        View v = inflater.inflate(R.layout.fragment_bid_ing_list, container, false);
         //Fragment back 구현
         v.setFocusableInTouchMode(true);
         v.requestFocus();
@@ -56,26 +56,34 @@ public class BidFinishFragment extends Fragment {
                 }
             }
         });
-        recyclerView = (RecyclerView) v.findViewById(R.id.bid_finish_rv_list);
-        mAdapter = new BidFinishAdapter();
+
+        recyclerView = (RecyclerView) v.findViewById(R.id.bid_ing_rv_list);
+        mAdapter = new BidIngAdapter();
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter.setOnItmeClickListener(new BidIngViewHolder.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, ExpertBidStatus expertBidStatus) {
+//                Intent intent = new Intent()
+            }
+        });
         return v;
     }
+
     @Override
     public void onResume() {
         super.onResume();
         setData();
     }
-    String last_marketsn="0";
+
+    String marketSn = "0";
+
     private void setData() {
-        NetworkManager.getInstance().getExpertBidStatus(PAGE_SIZE, last_marketsn, STATUS, new NetworkManager.OnResultListener<ExpertBidStatusResult>() {
+        mAdapter.clear();
+        NetworkManager.getInstance().getExpertBidStatus(PAGE_SIZE, marketSn, STATUS, new NetworkManager.OnResultListener<ExpertBidStatusResult>() {
             @Override
             public void onSuccess(Request request, ExpertBidStatusResult result) {
-                if(result.getResult() == -1){
-                    Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
-                }else
-                    mAdapter.addAll(result.getList());
+                mAdapter.addAll(result.getList());
             }
 
             @Override

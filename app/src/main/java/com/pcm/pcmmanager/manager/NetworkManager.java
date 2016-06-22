@@ -27,6 +27,8 @@ import com.pcm.pcmmanager.data.MyEstimateEditModifyResult;
 import com.pcm.pcmmanager.data.MyEstimateListResult;
 import com.pcm.pcmmanager.data.NomalMainContentResult;
 import com.pcm.pcmmanager.data.NomalUserMainResult;
+import com.pcm.pcmmanager.data.PersonalInfoModifyResult;
+import com.pcm.pcmmanager.data.PersonalInfoSearchResult;
 import com.pcm.pcmmanager.data.NoticeListResult;
 import com.pcm.pcmmanager.data.RefreshTokenResult;
 import com.pcm.pcmmanager.data.ReviewWriteResult;
@@ -598,9 +600,89 @@ public class NetworkManager {
         return request;
     }
 
+    /*사용자 정보 조회*/
+    private static final String PCM_PERSONAL_INFO_SEARCH = PCM_SEVER + "/api/users/info";
+    public Request getPersonalInfoSearch(OnResultListener<PersonalInfoSearchResult> listener) {
+        String url = PCM_PERSONAL_INFO_SEARCH;
+        RequestBody body = new FormBody.Builder()
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<PersonalInfoSearchResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    PersonalInfoSearchResult data = gson.fromJson(text, PersonalInfoSearchResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+
+    /*사용자 정보 수정*/
+    private static final String PCM_EXPERT_PERSONAL_INFO_MODIFY = PCM_SEVER + "/api/users/info";
+    public Request getPersonalInfoModify(String name, String phone, OnResultListener<PersonalInfoModifyResult> listener) {
+        String url = PCM_EXPERT_PERSONAL_INFO_MODIFY;
+        RequestBody body = new FormBody.Builder()
+                .add("username",name)
+                .add("phone",phone)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<PersonalInfoModifyResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    PersonalInfoModifyResult data = gson.fromJson(text, PersonalInfoModifyResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
     /*일반 사용자 프로필 정보*/
     private static final String PCM_USER_MAIN_INFO = PCM_SEVER + "/api/users/mymain";
-
     public Request getUserMainInfo(OnResultListener<NomalUserMainResult> listener) {
         String url = PCM_USER_MAIN_INFO;
         RequestBody body = new FormBody.Builder()

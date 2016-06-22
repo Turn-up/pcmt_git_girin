@@ -9,9 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
+import com.pcm.pcmmanager.data.ExpertBidStatusResult;
 import com.pcm.pcmmanager.data.ExpertEstimateList;
 import com.pcm.pcmmanager.data.ExpertEstimateResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
@@ -25,8 +27,8 @@ import okhttp3.Request;
 
 public class AuctionSearchListActivity extends AppCompatActivity{
 
-    public static final String PAGE_SIZE="10";
-
+    public static final String PAGE_SIZE = "10";
+    public static final String STATUS = "110_002";
     RecyclerView recyclerView;
     AuctionAdapter mAdapter;
     String marketType, marketSubType, regionType, regionSubType;
@@ -116,10 +118,35 @@ public class AuctionSearchListActivity extends AppCompatActivity{
     public void setData(String marketType, String marketSubType, String regionType, String regionSubType) {
         NetworkManager.getInstance().getExpertEstimateSearch(PAGE_SIZE, "0", marketType, marketSubType, regionType, regionSubType, new NetworkManager.OnResultListener<ExpertEstimateResult>() {
             @Override
-            public void onSuccess(Request request, ExpertEstimateResult result) {
+            public void onSuccess(Request request, final ExpertEstimateResult estimateResult) {
                 mAdapter.clear();
-                mAdapter.addAll(result.getEstimateList());
-                mAdapter.setTotalCount(result.getTotalCount());
+                if (estimateResult.getResult() == -1) {
+                    Toast.makeText(AuctionSearchListActivity.this, estimateResult.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    //입찰된 리스트인지 비교하기 marketsn으로
+                    mAdapter.setTotalCount(estimateResult.getTotalCount());
+
+                    String marketSn = "0";
+                    NetworkManager.getInstance().getExpertBidStatus(PAGE_SIZE, marketSn, STATUS, new NetworkManager.OnResultListener<ExpertBidStatusResult>() {
+                        @Override
+                        public void onSuccess(Request request, ExpertBidStatusResult bidResult) {
+                            mAdapter.addAll(estimateResult.getEstimateList());
+                            for(int i = 0 ; i < bidResult.getList().size();i++){
+                                for(int j = 0 ; j < estimateResult.getEstimateList().size() ; j++){
+                                    if(estimateResult.getEstimateList().get(j).getMarketSn()==bidResult.getList().get(i).getMarketSn()){
+                                        mAdapter.remove(i);
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFail(Request request, IOException exception) {
+
+                        }
+                    });
+
+                }
             }
 
             @Override

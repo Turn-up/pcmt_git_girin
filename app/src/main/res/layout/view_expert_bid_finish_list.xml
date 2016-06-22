@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="24dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/bid_finish_entry_icon" />
 
         <LinearLayout
             android:layout_width="match_parent"

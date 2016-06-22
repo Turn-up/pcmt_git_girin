@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.condition_search.ConditionSearchFragment;
+import com.pcm.pcmmanager.data.ExpertBidStatusResult;
 import com.pcm.pcmmanager.data.ExpertEstimateList;
 import com.pcm.pcmmanager.data.ExpertEstimateResult;
 import com.pcm.pcmmanager.data.MainBidCountResult;
@@ -37,6 +38,7 @@ import okhttp3.Request;
 public class ExpertFragment extends Fragment {
 
     public static final String PAGE_SIZE = "10";
+    public static final String STATUS = "110_002";
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView recyclerView;
@@ -163,13 +165,34 @@ public class ExpertFragment extends Fragment {
         //견적리스트
         NetworkManager.getInstance().getExpertEstimateResult(PAGE_SIZE, "0", new NetworkManager.OnResultListener<ExpertEstimateResult>() {
             @Override
-            public void onSuccess(Request request, ExpertEstimateResult result) {
+            public void onSuccess(Request request, final ExpertEstimateResult estimateResult) {
                 mAdapter.clear();
-                if (result.getResult() == -1) {
-                    Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+                if (estimateResult.getResult() == -1) {
+                    Toast.makeText(getContext(), estimateResult.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    mAdapter.addAll(result.getEstimateList());
-                    mAdapter.setTotalCount(result.getTotalCount());
+                    //입찰된 리스트인지 비교하기 marketsn으로
+                    mAdapter.setTotalCount(estimateResult.getTotalCount());
+
+                    String marketSn = "0";
+                    NetworkManager.getInstance().getExpertBidStatus(PAGE_SIZE, marketSn, STATUS, new NetworkManager.OnResultListener<ExpertBidStatusResult>() {
+                        @Override
+                        public void onSuccess(Request request, ExpertBidStatusResult bidResult) {
+                            mAdapter.addAll(estimateResult.getEstimateList());
+                            for(int i = 0 ; i < bidResult.getList().size();i++){
+                                for(int j = 0 ; j < estimateResult.getEstimateList().size() ; j++){
+                                    if(estimateResult.getEstimateList().get(j).getMarketSn()==bidResult.getList().get(i).getMarketSn()){
+                                        mAdapter.remove(i);
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFail(Request request, IOException exception) {
+
+                        }
+                    });
+
                 }
             }
 
@@ -181,74 +204,74 @@ public class ExpertFragment extends Fragment {
         NetworkManager.getInstance().getMainBidCount(new NetworkManager.OnResultListener<MainBidCountResult>() {
             @Override
             public void onSuccess(Request request, MainBidCountResult result) {
-                String total = "" + result.getMainBidCount().getBidEndCount();
-                for (int i = total.length() - 1; i >= 0; i--) {
-                    switch (total.charAt(i)) {
+                String total = String.valueOf(result.getMainBidCount().getBidEndCount());
+                for (int i = total.length(); 0 < i; i--) {
+                    switch (total.charAt(total.length()-i)) {
                         case '0':
-                            totalCount[4 - i].setImageResource(R.drawable.count_zero_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_zero_icon);
                             break;
                         case '1':
-                            totalCount[4 - i].setImageResource(R.drawable.count_one_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_one_icon);
                             break;
                         case '2':
-                            totalCount[4 - i].setImageResource(R.drawable.count_two_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_two_icon);
                             break;
                         case '3':
-                            totalCount[4 - i].setImageResource(R.drawable.count_three_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_three_icon);
                             break;
                         case '4':
-                            totalCount[4 - i].setImageResource(R.drawable.count_four_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_four_icon);
                             break;
                         case '5':
-                            totalCount[4 - i].setImageResource(R.drawable.count_five_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_five_icon);
                             break;
                         case '6':
-                            totalCount[4 - i].setImageResource(R.drawable.count_six_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_six_icon);
                             break;
                         case '7':
-                            totalCount[4 - i].setImageResource(R.drawable.count_seven_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_seven_icon);
                             break;
                         case '8':
-                            totalCount[4 - i].setImageResource(R.drawable.count_eight_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_eight_icon);
                             break;
                         case '9':
-                            totalCount[4 - i].setImageResource(R.drawable.count_nine_icon);
+                            totalCount[5 - i].setImageResource(R.drawable.count_nine_icon);
                     }
                     break;
 
                 }
                 String bidIng = "" + result.getMainBidCount().getBidCount();
-                for (int i = bidIng.length() - 1; i >= 0; i--) {
-                    switch (bidIng.charAt(i)) {
+                for (int i = bidIng.length(); i > 0; i--) {
+                    switch (bidIng.charAt(bidIng.length()-i)) {
                         case '0':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_zero_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_zero_icon);
                             break;
                         case '1':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_one_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_one_icon);
                             break;
                         case '2':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_two_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_two_icon);
                             break;
                         case '3':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_three_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_three_icon);
                             break;
                         case '4':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_four_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_four_icon);
                             break;
                         case '5':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_five_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_five_icon);
                             break;
                         case '6':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_six_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_six_icon);
                             break;
                         case '7':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_seven_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_seven_icon);
                             break;
                         case '8':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_eight_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_eight_icon);
                             break;
                         case '9':
-                            auctionCount[4 - i].setImageResource(R.drawable.count_nine_icon);
+                            auctionCount[5 - i].setImageResource(R.drawable.count_nine_icon);
                             break;
                     }
                 }

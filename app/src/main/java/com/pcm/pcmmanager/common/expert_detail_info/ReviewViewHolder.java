@@ -28,7 +28,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
     public void setExpertDetailReview(ExpertDetailReview expertDetailReview){
         this.expertDetailReview = expertDetailReview;
         expert_detail_reivew_content.setText(this.expertDetailReview.getContent());
-        expert_detail_review_userName.setText(this.expertDetailReview.getUserName()+".");
+        expert_detail_review_userName.setText(this.expertDetailReview.getUserName()+" ");
         expert_detail_review_rngDate.setText(this.expertDetailReview.getRegDate());
         ratingBar.setIsIndicator(true);
         ratingBar.setRating((float)this.expertDetailReview.getScore());

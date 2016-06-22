@@ -3,6 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/bid_success_rv_list"
-    tools:context="com.pcm.pcmmanager.expert.my_bid_info.BidSuccessFragment">
+    tools:context="com.pcm.pcmmanager.expert.bid_info.BidSuccessFragment">
 
 </android.support.v7.widget.RecyclerView>

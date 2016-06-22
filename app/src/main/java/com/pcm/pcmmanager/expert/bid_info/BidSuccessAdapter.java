@@ -1,4 +1,4 @@
-package com.pcm.pcmmanager.expert.my_bid_info;
+package com.pcm.pcmmanager.expert.bid_info;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

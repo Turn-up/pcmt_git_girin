@@ -41,7 +41,10 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionViewHolder> {
         this.items.addAll(items);
         notifyDataSetChanged();
     }
-
+    public void remove(int location){
+        items.remove(location);
+        notifyDataSetChanged();
+    }
     AuctionViewHolder.OnItemClickListener mListener;
     public void setOnItemClickListener(AuctionViewHolder.OnItemClickListener listener) {
         mListener = listener;

@@ -19,7 +19,6 @@ public class ExpertDetailInfoReviewFragment extends Fragment implements ExpertDe
 
     RecyclerView recyclerView;
     ReviewAdapter mAdapter;
-    String last_marketsn;
     ExpertDetailReviewResult expertDetailReviewResult;
     public ExpertDetailInfoReviewFragment() {
         // Required empty public constructor
