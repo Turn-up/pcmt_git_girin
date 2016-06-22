@@ -1,9 +1,11 @@
 package com.pcm.pcmmanager.nomal.estimate_modify;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
@@ -45,6 +49,8 @@ public class MyEstimateTaxModify extends AppCompatActivity {
     String marketSubType, address1, address2, marketSn, tempAddress1; //내용 , 주소 , 부가내용
     ArrayList<String> assetList;
     LinearLayout asset_layout;
+    TextView[] day;
+    int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,16 @@ public class MyEstimateTaxModify extends AppCompatActivity {
         setData();
 
         seekBar = (SeekBar) findViewById(R.id.estimate_modify_tax_seekbar);
+        day = new TextView[7];
+        day[0] = (TextView) findViewById(R.id.seek_day1);
+        day[1] = (TextView) findViewById(R.id.seek_day2);
+        day[2] = (TextView) findViewById(R.id.seek_day3);
+        day[3] = (TextView) findViewById(R.id.seek_day4);
+        day[4] = (TextView) findViewById(R.id.seek_day5);
+        day[5] = (TextView) findViewById(R.id.seek_day6);
+        day[6] = (TextView) findViewById(R.id.seek_day7);
+        color = getResources().getColor(R.color.bid_finish);
+
         taxAdd = (Button) findViewById(R.id.btn_estimate_modify_tax_add);
         marketSubTypeSpinner = (Spinner) findViewById(R.id.estimate_modify_tax_marketType_spinner);
         address1Spinner = (Spinner) findViewById(R.id.estimate_modify_tax_regionType);
@@ -76,6 +92,11 @@ public class MyEstimateTaxModify extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 endDate = progress + 1;
+                for (int i = 0; i < 7; i++) {
+                    day[i].setTextColor(color);
+                }
+                day[progress].setTextColor(Color.BLACK);
+
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -155,9 +176,6 @@ public class MyEstimateTaxModify extends AppCompatActivity {
         taxAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String temp = marketType2_2.getText().toString();
-                String content = taxContent.getText().toString();
-                temp = temp.replaceAll(",", "");
                 if (check_tax_land.isChecked()) {
                     assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(0).getCode());
                 }
@@ -170,25 +188,34 @@ public class MyEstimateTaxModify extends AppCompatActivity {
                 if (check_tax_deposit.isChecked()) {
                     assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(3).getCode());
                 }
+                if (TextUtils.isEmpty(marketType2_2.getText().toString())) {
+                    Toast.makeText(MyEstimateTaxModify.this, "시가를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(taxContent.getText().toString())) {
+                    Toast.makeText(MyEstimateTaxModify.this, "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    String temp = marketType2_2.getText().toString();
+                    String content = taxContent.getText().toString();
+                    temp = temp.replaceAll(",", "");
 
-                address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
-                address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
-                marketSubType =PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getList().get(marketSubTypeSpinner.getSelectedItemPosition()).getCode();
-                NetworkManager.getInstance().getNomalEstiamteModify(marketSn, TAX, marketSubType, address1, address2, "", "", "", "", assetList, temp
-                        , String.valueOf(endDate), content, new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
-                            @Override
-                            public void onSuccess(Request request, MyEstimateEditModifyResult result) {
-                                Intent intent = new Intent(MyEstimateTaxModify.this, MyEstimateListActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
-                            }
+                    address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
+                    address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
+                    marketSubType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getList().get(marketSubTypeSpinner.getSelectedItemPosition()).getCode();
+                    NetworkManager.getInstance().getNomalEstiamteModify(marketSn, TAX, marketSubType, address1, address2, "", "", "", "", assetList, temp
+                            , String.valueOf(endDate), content, new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
+                                @Override
+                                public void onSuccess(Request request, MyEstimateEditModifyResult result) {
+                                    Intent intent = new Intent(MyEstimateTaxModify.this, MyEstimateListActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    finish();
+                                }
 
-                            @Override
-                            public void onFail(Request request, IOException exception) {
+                                @Override
+                                public void onFail(Request request, IOException exception) {
 
-                            }
-                        });
+                                }
+                            });
+                }
             }
         });
     }
@@ -199,7 +226,9 @@ public class MyEstimateTaxModify extends AppCompatActivity {
             public void onSuccess(Request request, ExpertEstimateDetailResult result) {
                 ExpertEstimateDetail items = result.getItem();
                 endDate = Integer.valueOf(items.getEnddate()) - 1;
-                seekBar.setProgress(Integer.valueOf(endDate));
+                seekBar.setProgress(endDate);
+                day[endDate-1].setTextColor(Color.BLACK);
+
                 taxContent.setText(items.getContent());
                 marketType2_2.setText(String.valueOf(items.getNumberAssetMoney()));
                 marketSubType = items.getMarketSubType();

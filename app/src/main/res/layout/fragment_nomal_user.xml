@@ -123,7 +123,7 @@
                 android:layout_marginLeft="51dp"
                 android:drawableLeft="@drawable/estimate_do_icon"
                 android:drawablePadding="7dp"
-                android:text="견적내기"
+                android:text="견적요청"
                 android:textColor="#515151"
                 android:textSize="14sp" />
 

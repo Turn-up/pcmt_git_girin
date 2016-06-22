@@ -11,8 +11,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="92dp">
+        android:layout_height="92dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView3"
@@ -27,11 +27,11 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_alignParentTop="true"
             android:layout_marginTop="28dp"
             android:layout_toEndOf="@+id/textView3"
             android:layout_toRightOf="@+id/textView3"
+            android:layout_weight="1"
             android:src="@drawable/estimate_tax_choice_icon" />
     </LinearLayout>
 
@@ -91,9 +91,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/asset_type_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/asset_type_layout"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         android:layout_marginTop="14dp">
@@ -206,14 +206,16 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/seek_day1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="1"
-                    android:textColor="#515151"
+                    android:textColor="#cecece"
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/seek_day2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -222,6 +224,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/seek_day3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -230,6 +233,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/seek_day4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -238,6 +242,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/seek_day5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -246,6 +251,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/seek_day6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -254,6 +260,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/seek_day7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -112,7 +112,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/imageView"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginTop="18dp"
                     android:text="경력"
                     android:textColor="#515151"

@@ -2,8 +2,10 @@ package com.pcm.pcmmanager.nomal.estimate_request;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
@@ -46,6 +50,8 @@ public class EstimateRequestTaxFragment extends Fragment {
     String marketSubType, address1, address2, tempAddress1; //내용 , 주소 , 부가내용
     ArrayList<String> assetList;
     LinearLayout asset_layout;
+    TextView[] day;
+    int color;
 
     public EstimateRequestTaxFragment() {
         // Required empty public constructor
@@ -60,6 +66,16 @@ public class EstimateRequestTaxFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_estimate_request_tax, container, false);
 
         seekBar = (SeekBar) view.findViewById(R.id.estimate_request_tax_seekbar);
+        day = new TextView[7];
+        day[0] = (TextView) view.findViewById(R.id.seek_day1);
+        day[1] = (TextView) view.findViewById(R.id.seek_day2);
+        day[2] = (TextView) view.findViewById(R.id.seek_day3);
+        day[3] = (TextView) view.findViewById(R.id.seek_day4);
+        day[4] = (TextView) view.findViewById(R.id.seek_day5);
+        day[5] = (TextView) view.findViewById(R.id.seek_day6);
+        day[6] = (TextView) view.findViewById(R.id.seek_day7);
+        color = view.getResources().getColor(R.color.bid_finish);
+
         taxAdd = (Button) view.findViewById(R.id.btn_estimate_request_tax_add);
         marketSubTypeSpinner = (Spinner) view.findViewById(R.id.estimate_request_tax_marketType_spinner);
         address1Spinner = (Spinner) view.findViewById(R.id.estimate_request_tax_regionType);
@@ -74,10 +90,16 @@ public class EstimateRequestTaxFragment extends Fragment {
         marketType2_2.addTextChangedListener(new CustomTextWathcer(marketType2_2));
 
         seekBar.setProgress(6);
+        day[6].setTextColor(Color.BLACK);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 endDate = progress + 1;
+                for (int i = 0; i < 7; i++) {
+                    day[i].setTextColor(color);
+                }
+                day[progress].setTextColor(Color.BLACK);
+
             }
 
             @Override
@@ -162,9 +184,6 @@ public class EstimateRequestTaxFragment extends Fragment {
         taxAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String temp = marketType2_2.getText().toString();
-                String content = taxContent.getText().toString();
-                temp = temp.replaceAll(",", "");
                 if (check_tax_land.isChecked()) {
                     assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(0).getCode());
                 }
@@ -177,20 +196,29 @@ public class EstimateRequestTaxFragment extends Fragment {
                 if (check_tax_stock.isChecked()) {
                     assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(2).getCode());
                 }
-                NetworkManager.getInstance().getNomalEstiamteRequestList(TAX, marketSubType, address1, address2, "", "", "", "", assetList, temp
-                        , String.valueOf(endDate), content, new NetworkManager.OnResultListener<EstimateRequestResult>() {
-                            @Override
-                            public void onSuccess(Request request, EstimateRequestResult result) {
-                                Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
-                            }
+                if (TextUtils.isEmpty(marketType2_2.getText().toString())) {
+                    Toast.makeText(getContext(), "시가를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(taxContent.getText().toString())) {
+                    Toast.makeText(getContext(), "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    String temp = marketType2_2.getText().toString();
+                    String content = taxContent.getText().toString();
+                    temp = temp.replaceAll(",", "");
+                    NetworkManager.getInstance().getNomalEstiamteRequestList(TAX, marketSubType, address1, address2, "", "", "", "", assetList, temp
+                            , String.valueOf(endDate), content, new NetworkManager.OnResultListener<EstimateRequestResult>() {
+                                @Override
+                                public void onSuccess(Request request, EstimateRequestResult result) {
+                                    Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }
 
-                            @Override
-                            public void onFail(Request request, IOException exception) {
+                                @Override
+                                public void onFail(Request request, IOException exception) {
 
-                            }
-                        });
+                                }
+                            });
+                }
             }
         });
         return view;

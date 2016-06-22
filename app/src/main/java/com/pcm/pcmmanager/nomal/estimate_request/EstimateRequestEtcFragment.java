@@ -2,8 +2,10 @@ package com.pcm.pcmmanager.nomal.estimate_request;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
@@ -37,6 +41,8 @@ public class EstimateRequestEtcFragment extends Fragment {
     Spinner address1Spinner, address2Spinner;
     String endDate = "7"; // 마감일
     Button etcAdd;
+    TextView[] day;
+    int color;
 
     public EstimateRequestEtcFragment() {
         // Required empty public constructor
@@ -53,6 +59,16 @@ public class EstimateRequestEtcFragment extends Fragment {
         a1Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         a2Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         etcAdd = (Button) view.findViewById(R.id.estimate_request_etc_btn);
+
+        day = new TextView[7];
+        day[0] = (TextView) view.findViewById(R.id.seek_day1);
+        day[1] = (TextView) view.findViewById(R.id.seek_day2);
+        day[2] = (TextView) view.findViewById(R.id.seek_day3);
+        day[3] = (TextView) view.findViewById(R.id.seek_day4);
+        day[4] = (TextView) view.findViewById(R.id.seek_day5);
+        day[5] = (TextView) view.findViewById(R.id.seek_day6);
+        day[6] = (TextView) view.findViewById(R.id.seek_day7);
+        color = view.getResources().getColor(R.color.bid_finish);
 
         a1Adapter.setDropDownViewResource(R.layout.spinner_item_text);
         for (int i = 0; i < PropertyManager.getInstance().getCommonRegionLists().size(); i++) {
@@ -93,10 +109,16 @@ public class EstimateRequestEtcFragment extends Fragment {
         });
         seekBar = (SeekBar) view.findViewById(R.id.etc_seekbar);
         seekBar.setProgress(6);
+        day[6].setTextColor(Color.BLACK);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 endDate = String.valueOf(progress + 1);
+                for (int i = 0; i < 7; i++) {
+                    day[i].setTextColor(color);
+                }
+                day[progress].setTextColor(Color.BLACK);
+
             }
 
             @Override
@@ -112,20 +134,25 @@ public class EstimateRequestEtcFragment extends Fragment {
         etcAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                content = etcContent.getText().toString();
-                NetworkManager.getInstance().getNomalEstiamteRequestList(ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
-                        "", endDate, content, new NetworkManager.OnResultListener<EstimateRequestResult>() {
-                            @Override
-                            public void onSuccess(Request request, EstimateRequestResult result) {
-                                Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
-                            }
-                            @Override
-                            public void onFail(Request request, IOException exception) {
+                if (TextUtils.isEmpty(etcContent.getText().toString())) {
+                    Toast.makeText(getContext(), "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    content = etcContent.getText().toString();
+                    NetworkManager.getInstance().getNomalEstiamteRequestList(ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
+                            "", endDate, content, new NetworkManager.OnResultListener<EstimateRequestResult>() {
+                                @Override
+                                public void onSuccess(Request request, EstimateRequestResult result) {
+                                    Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }
 
-                            }
-                        });
+                                @Override
+                                public void onFail(Request request, IOException exception) {
+
+                                }
+                            });
+                }
             }
         });
 

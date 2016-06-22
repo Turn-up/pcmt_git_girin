@@ -1,9 +1,11 @@
 package com.pcm.pcmmanager.nomal.estimate_modify;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
@@ -45,7 +48,8 @@ public class MyEstimateEntryModify extends AppCompatActivity {
     String marketSubType, address1, address2, marketType1_3, tempAddress1; //업종, 주소(시, 군),부가내용
     String endDate = "1", marketSn; // 마감일
     RadioButton radioButton;
-    TextView day1, day2, day3, day4, day5, day6, day7;
+    TextView[] day;
+    int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +65,15 @@ public class MyEstimateEntryModify extends AppCompatActivity {
 
         radioGroup = (RadioGroup) findViewById(R.id.entry_radiogroup);
         seekBar = (SeekBar) findViewById(R.id.entry_seekbar);
-        day1 = (TextView) findViewById(R.id.seek_day1);
-        day2 = (TextView) findViewById(R.id.seek_day2);
-        day3 = (TextView) findViewById(R.id.seek_day3);
-        day4 = (TextView) findViewById(R.id.seek_day4);
-        day5 = (TextView) findViewById(R.id.seek_day5);
-        day6 = (TextView) findViewById(R.id.seek_day6);
-        day7 = (TextView) findViewById(R.id.seek_day7);
+        day = new TextView[7];
+        day[0] = (TextView) findViewById(R.id.seek_day1);
+        day[1] = (TextView) findViewById(R.id.seek_day2);
+        day[2] = (TextView) findViewById(R.id.seek_day3);
+        day[3] = (TextView) findViewById(R.id.seek_day4);
+        day[4] = (TextView) findViewById(R.id.seek_day5);
+        day[5] = (TextView) findViewById(R.id.seek_day6);
+        day[6] = (TextView) findViewById(R.id.seek_day7);
+        color = getResources().getColor(R.color.bid_finish);
 
         marketSubTypeSpinner = (Spinner) findViewById(R.id.estimate_modify_entry_marketSubtype_spinner);
         address1Spinner = (Spinner) findViewById(R.id.estimate_modify_entry_regionType_spinner);
@@ -83,7 +89,7 @@ public class MyEstimateEntryModify extends AppCompatActivity {
 
         /*3자리 씩 끊기*/
         businessScale.addTextChangedListener(new CustomTextWathcer(businessScale));
-
+        employeeCount.addTextChangedListener(new CustomTextWathcer(employeeCount));
 
         /*사업자 구분*/
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -110,6 +116,10 @@ public class MyEstimateEntryModify extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 endDate = String.valueOf(progress + 1);
+                for (int i = 0; i < 7; i++) {
+                    day[i].setTextColor(color);
+                }
+                day[progress].setTextColor(Color.BLACK);
             }
 
             @Override
@@ -169,28 +179,38 @@ public class MyEstimateEntryModify extends AppCompatActivity {
         entryAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String temp = businessScale.getText().toString();
-                temp = temp.replaceAll(",", "");
-                marketSubType =PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ENTRY_POSITION).getList().get(marketSubTypeSpinner.getSelectedItemPosition()).getCode();
-                address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
-                address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
-                NetworkManager.getInstance().getNomalEstiamteModify(marketSn, EntryCode,marketSubType
-                        , address1, address2, TEMP, temp, marketType1_3,
-                        employeeCount.getText().toString(), null, TEMP, endDate, entryContent.getText().toString(),
-                        new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
-                            @Override
-                            public void onSuccess(Request request, MyEstimateEditModifyResult result) {
-                                Intent intent = new Intent(MyEstimateEntryModify.this, MyEstimateListActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
-                            }
+                if (TextUtils.isEmpty(businessScale.getText().toString())) {
+                    Toast.makeText(MyEstimateEntryModify.this, "매출을 입력하세요", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(employeeCount.getText().toString())) {
+                    Toast.makeText(MyEstimateEntryModify.this, "직원수를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(entryContent.getText().toString())) {
+                    Toast.makeText(MyEstimateEntryModify.this, "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    String bScale = businessScale.getText().toString();
+                    bScale = bScale.replaceAll(",", "");
+                    String eCount = employeeCount.getText().toString();
+                    eCount = eCount.replaceAll(",", "");
+                    marketSubType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ENTRY_POSITION).getList().get(marketSubTypeSpinner.getSelectedItemPosition()).getCode();
+                    address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
+                    address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
+                    NetworkManager.getInstance().getNomalEstiamteModify(marketSn, EntryCode, marketSubType
+                            , address1, address2, TEMP, bScale, marketType1_3,
+                            eCount, null, TEMP, endDate, entryContent.getText().toString(),
+                            new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
+                                @Override
+                                public void onSuccess(Request request, MyEstimateEditModifyResult result) {
+                                    Intent intent = new Intent(MyEstimateEntryModify.this, MyEstimateListActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    finish();
+                                }
 
-                            @Override
-                            public void onFail(Request request, IOException exception) {
+                                @Override
+                                public void onFail(Request request, IOException exception) {
 
-                            }
-                        });
+                                }
+                            });
+                }
             }
         });
     }
@@ -221,6 +241,7 @@ public class MyEstimateEntryModify extends AppCompatActivity {
                 }
 
                 seekBar.setProgress(Integer.valueOf(endDate)-1);
+                day[Integer.valueOf(endDate)-1].setTextColor(Color.BLACK);
                 address1Spinner.setSelection(a1Adapter.getPosition(address1));
                 address2Spinner.setSelection(a2Adapter.getPosition(address2));
                 marketSubTypeSpinner.setSelection(marketSubAdapter.getPosition(marketSubType));

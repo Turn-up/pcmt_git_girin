@@ -1,6 +1,8 @@
 package com.pcm.pcmmanager.expert.bid_info;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,9 +11,11 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.pcm.pcmmanager.R;
+import com.pcm.pcmmanager.data.ExpertBidStatus;
 import com.pcm.pcmmanager.data.ExpertBidStatusResult;
 import com.pcm.pcmmanager.expert.ExpertParentFragment;
 import com.pcm.pcmmanager.manager.NetworkManager;
@@ -47,8 +51,22 @@ public class BidSuccessFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter.setOnItemClickListener(new BidSucessViewHolder.OnItemClickListener() {
             @Override
-            public void OnItemClick(View view) {
-                Toast.makeText(getContext(), ""+view.getId(), Toast.LENGTH_SHORT).show();
+            public void OnItemClick(View view, final ExpertBidStatus expertBidStatus) {
+                LinearLayout linearLayout  = (LinearLayout)view.findViewById(R.id.bid_success_item_onclick);
+                ImageButton callBtn = (ImageButton)view.findViewById(R.id.bid_success_call);
+                if (linearLayout.getVisibility() == View.GONE) {
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else if (linearLayout.getVisibility() == View.VISIBLE) {
+                    linearLayout.setVisibility(View.GONE);
+                }
+                callBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel: "+ expertBidStatus.getPhone()));
+                        startActivity(intent);
+                    }
+                });
             }
         });
         //Fragment back 구현

@@ -67,36 +67,41 @@ public class LoginFragment extends Fragment {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(email.getText().toString())||TextUtils.isEmpty(password.getText().toString()))
+                if (TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(password.getText().toString())) {
                     Toast.makeText(getContext(), "아이디 또는 패스워드를 확인하세요", Toast.LENGTH_SHORT).show();
-                NetworkManager.getInstance().getLogin(email.getText().toString(), password.getText().toString(), new NetworkManager.OnResultListener<LoginResult>() {
-                    @Override
-                    public void onSuccess(Request request, LoginResult result) {
-                        loginResult = result;
-                        if(result.getResult() == -1){
-                            Toast.makeText(getContext(), "아이디 또는 패스워드를 확인하세요", Toast.LENGTH_SHORT).show();
-                        }else{
-                            PropertyManager.getInstance().setAuthorizationToken(loginResult.getToken());
-                            if(loginResult.getRoles().equals("Users")) {
-                                MyApplication.setUserType(loginResult.getRoles());
-                                Intent intent = new Intent(getContext(), NomalMainActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
-                            }else if(loginResult.getRoles().equals("Experts")){
-                                MyApplication.setUserType(loginResult.getRoles());
-                                getExpertState();
-                                Intent intent = new Intent(getContext(), ExpertMainActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
-                            }else{
-                                Toast.makeText(getContext(), "죄송합니다, 잠시후 다시 시도해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    String edit_email = email.getText().toString();
+                    edit_email = edit_email.trim();
+                    NetworkManager.getInstance().getLogin(edit_email, password.getText().toString(), new NetworkManager.OnResultListener<LoginResult>() {
+                        @Override
+                        public void onSuccess(Request request, LoginResult result) {
+                            loginResult = result;
+                            if (result.getResult() == -1) {
+                                Toast.makeText(getContext(), "아이디 또는 패스워드를 확인하세요", Toast.LENGTH_SHORT).show();
+                            } else {
+                                PropertyManager.getInstance().setAuthorizationToken(loginResult.getToken());
+                                if (loginResult.getRoles().equals("Users")) {
+                                    MyApplication.setUserType(loginResult.getRoles());
+                                    Intent intent = new Intent(getContext(), NomalMainActivity.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                } else if (loginResult.getRoles().equals("Experts")) {
+                                    MyApplication.setUserType(loginResult.getRoles());
+                                    getExpertState();
+                                    Intent intent = new Intent(getContext(), ExpertMainActivity.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                } else {
+                                    Toast.makeText(getContext(), "죄송합니다, 잠시후 다시 시도해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
-                    }
-                    @Override
-                    public void onFail(Request request, IOException exception) {
-                    }
-                });
+
+                        @Override
+                        public void onFail(Request request, IOException exception) {
+                        }
+                    });
+                }
             }
         });
         return v;

@@ -4,6 +4,7 @@ package com.pcm.pcmmanager.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -34,7 +35,7 @@ import okhttp3.Request;
 public class SignupNomalFragment extends Fragment {
     EditText name, email, password, passwordCheck, phone;
     RadioGroup businessRadioGroup, taxationRadioGroup;
-    RadioButton radioButton;
+    RadioButton radioButton,taxationNoRadioButton;
     String marketType1_3, marketType1_4;
     UserSignupResult userSignupResult;
     ImageView passwordCheckIcon, passwordRecheckIcon;
@@ -59,8 +60,12 @@ public class SignupNomalFragment extends Fragment {
         btn = (ImageButton) v.findViewById(R.id.signup_nomal_btn);
         passwordCheckIcon = (ImageView) v.findViewById(R.id.user_password_icon);
         passwordRecheckIcon = (ImageView) v.findViewById(R.id.user_password_check_icon);
-        marketType1_3 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_BUSINESS_TYPE_POSITION).getList().get(0).getCode();
-        marketType1_4 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAXATION_TYPE_POSITION).getList().get(0).getCode();
+        marketType1_3 = "";
+        marketType1_4 = "";
+
+        TelephonyManager telManager = (TelephonyManager) getContext().getSystemService(getContext().TELEPHONY_SERVICE);
+        String phoneNum = telManager.getLine1Number();
+        phone.setText(phoneNum);
 
         password.addTextChangedListener(new TextWatcher() {
             @Override
@@ -127,7 +132,9 @@ public class SignupNomalFragment extends Fragment {
         businessRadioGroup = (RadioGroup) v.findViewById(R.id.business_radiogroup);
         taxationRadioGroup = (RadioGroup) v.findViewById(R.id.taxation_radiogroup);
         radioButton = (RadioButton) v.findViewById(R.id.btn_entry_artifical_radio);
-
+        if(!radioButton.isChecked()){
+            radioButton.setBackgroundResource(R.drawable.article_default_icon);
+        }
         /*사업자 구분*/
         businessRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -138,8 +145,8 @@ public class SignupNomalFragment extends Fragment {
                         radioButton.setBackgroundResource(R.drawable.radio_background_arti_person);
                         break;
                     case R.id.btn_entry_artifical_radio:
+                        radioButton.setBackgroundResource(R.drawable.business_arti_select);
                         marketType1_3 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_BUSINESS_TYPE_POSITION).getList().get(1).getCode();
-
                         break;
                     case R.id.btn_entry_ease_radio:
                         marketType1_3 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_BUSINESS_TYPE_POSITION).getList().get(2).getCode();
@@ -148,13 +155,18 @@ public class SignupNomalFragment extends Fragment {
                 }
             }
         });
+        taxationNoRadioButton = (RadioButton)v.findViewById(R.id.taxation_no);
 
+        if(!taxationNoRadioButton.isChecked()){
+            taxationNoRadioButton.setBackgroundResource(R.drawable.taxation_no_default);
+        }
         /*과세여부*/
         taxationRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.taxation_no:
+                        taxationNoRadioButton.setBackgroundResource(R.drawable.radio_signup_taxation_no);
                         marketType1_4 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAXATION_TYPE_POSITION).getList().get(0).getCode();
                         break;
                     case R.id.taxation_yes:
@@ -172,9 +184,9 @@ public class SignupNomalFragment extends Fragment {
                     @Override
                     public void onSuccess(Request request, UserSignupResult result) {
                         userSignupResult = result;
-                        if(result.getResult() == -1) {
+                        if (result.getResult() == -1) {
                             Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             PropertyManager.getInstance().setAuthorizationToken(userSignupResult.getToken());
                             MyApplication.setUserType("Users");
                             Intent intent = new Intent(getContext(), NomalMainActivity.class);

@@ -4,6 +4,7 @@ package com.pcm.pcmmanager.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -49,10 +50,13 @@ public class SignupExpertFragment extends Fragment {
         email = (EditText) v.findViewById(R.id.signup_expert_email);
         password = (EditText) v.findViewById(R.id.signup_expert_password);
         passwordCheck = (EditText) v.findViewById(R.id.signup_expert_password_check);
-        phone = (EditText) v.findViewById(R.id.signup_expert_phone);
-        btn = (ImageButton) v.findViewById(R.id.signup_expert_btn);
+       btn = (ImageButton) v.findViewById(R.id.signup_expert_btn);
         passwordCheckIcon = (ImageView) v.findViewById(R.id.user_password_icon);
         passwordRecheckIcon = (ImageView) v.findViewById(R.id.user_password_check_icon);
+
+        TelephonyManager telManager = (TelephonyManager)getContext().getSystemService(getContext().TELEPHONY_SERVICE);
+        String phoneNum = telManager.getLine1Number();
+        phone.setText(phoneNum);
 
         password.addTextChangedListener(new TextWatcher() {
             @Override

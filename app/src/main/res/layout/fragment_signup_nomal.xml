@@ -130,8 +130,7 @@
                 android:layout_width="71dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_background_person"
-                android:button="@null"
-                android:checked="true" />
+                android:button="@null" />
             <!--                android:button="@drawable/btn_entry_personal_radio"-->
 
             <RadioButton
@@ -181,8 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"
                 android:background="@drawable/radio_signup_taxation_no"
-                android:button="@null"
-                android:checked="true" />
+                android:button="@null" />
             <!--                android:button="@drawable/btn_entry_personal_radio"-->
 
             <RadioButton

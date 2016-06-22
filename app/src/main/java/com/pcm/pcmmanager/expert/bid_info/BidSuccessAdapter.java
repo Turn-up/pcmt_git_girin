@@ -18,7 +18,6 @@ public class BidSuccessAdapter extends RecyclerView.Adapter<BidSucessViewHolder>
 
     List<ExpertBidStatus> items = new ArrayList<>();
 
-
     public void clear() {
         items.clear();
         notifyDataSetChanged();

@@ -16,9 +16,9 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container,new LoginFragment())
+                    .add(R.id.container, new LoginFragment())
                     .commit();
         }
     }
