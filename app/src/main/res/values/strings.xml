@@ -41,4 +41,5 @@
     <string name="title_activity_point_list">PointListActivity</string>
     <string name="title_activity_use_way">UseWayActivity</string>
     <string name="title_activity_my_deatila_info">MyDeatilaInfoActivity</string>
+    <string name="title_activity_qna_list">QnaListActivity</string>
 </resources>

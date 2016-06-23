@@ -1,12 +1,13 @@
 package com.pcm.pcmmanager.common.condition_search;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.makeramen.RoundedImageView;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ConditionSearchList;
 
@@ -17,9 +18,10 @@ import com.pcm.pcmmanager.data.ConditionSearchList;
 public class ConditionSearchResultViewHolder extends RecyclerView.ViewHolder {
 
     ConditionSearchList conditionSearchList;
-
-    ImageView profileImage;
+    RoundedImageView profileImage;
     TextView profileName, profileComment, profileOffice, profileCareer;
+    private Context context;
+
 
     public interface OnItemClickListener{
         public void OnItemClick(View view,ConditionSearchList conditionSearchList);
@@ -29,7 +31,7 @@ public class ConditionSearchResultViewHolder extends RecyclerView.ViewHolder {
     public void setOnItemClickListener(OnItemClickListener listener){mListener =listener;}
     public ConditionSearchResultViewHolder(View itemView) {
         super(itemView);
-        profileImage = (ImageView)itemView.findViewById(R.id.expert_condition_search_image);
+        profileImage = (RoundedImageView)itemView.findViewById(R.id.expert_condition_search_image);
         profileName = (TextView)itemView.findViewById(R.id.expert_condition_search_name);
         profileComment = (TextView)itemView.findViewById(R.id.expert_condition_search_comment);
         profileOffice = (TextView)itemView.findViewById(R.id.expert_condition_search_office);
@@ -54,7 +56,9 @@ public class ConditionSearchResultViewHolder extends RecyclerView.ViewHolder {
                 profileImage.setImageResource(R.drawable.semoogirl_icon);
             }
         }else {
-            Glide.with(profileImage.getContext()).load(item.getPhotoUrl()).into(profileImage);
+            Glide.with(profileImage.getContext())
+                    .load(item.getPhotoUrl())
+                    .into(profileImage);
         }
         profileName.setText(conditionSearchList.getExpertName());
         profileCareer.setText(conditionSearchList.getAge()+"세, 경력"+conditionSearchList.getCareer()+"년");

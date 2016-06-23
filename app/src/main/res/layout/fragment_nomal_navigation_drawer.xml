@@ -82,7 +82,9 @@
 
             <android.support.v7.widget.SwitchCompat
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:id="@+id/noaml_drawer_switch" />
         </LinearLayout>
 
         <ImageView

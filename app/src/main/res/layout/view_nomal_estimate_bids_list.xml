@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="124dp"
-    android:layout_marginBottom="20dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="21dp"
     android:layout_marginRight="21dp"
     android:layout_marginTop="20dp"
@@ -14,12 +14,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.makeramen.RoundedImageView
             android:id="@+id/bids_list_expert_image"
             android:layout_width="66dp"
             android:layout_height="89dp"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="centerCrop" />
+            android:src="@drawable/semooman_icon"
+            android:scaleType="centerCrop"
+            app:border_width="1dip"
+            app:corner_radius="5dip"
+            app:border_color="#ffffff"/>
 
         <ImageView
             android:id="@+id/imageView20"
@@ -171,7 +174,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/underbar21_" />
 
 </LinearLayout>

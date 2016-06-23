@@ -21,6 +21,7 @@ import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.nomal.estimate_request.EstimateRequestActivity;
 import com.pcm.pcmmanager.nomal.main.AccountInfoViewPagerAdpater;
 import com.pcm.pcmmanager.nomal.main.NoticeViewPagerAdapter;
+import com.pcm.pcmmanager.qna.QnaListActivity;
 
 import java.io.IOException;
 
@@ -31,19 +32,17 @@ import okhttp3.Request;
  */
 public class NomalUserFragment extends Fragment implements View.OnClickListener {
 
-    Button btn_estimate_do, btn_condition_search;
+    Button btn_estimate_do, btn_condition_search,btn_nomal_qna;
     DotIndicator infoIndicator, noticeIndicator;
     ViewPager accountInfoPager, noticeInfoPager;
     AccountInfoViewPagerAdpater mAIPagerAdapter;
     NoticeViewPagerAdapter mNoticePagerAdapter;
-
 
     ImageView totalCount[], auctionCount[];
 
     public NomalUserFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,6 +124,9 @@ public class NomalUserFragment extends Fragment implements View.OnClickListener 
         btn_condition_search = (Button) view.findViewById(R.id.btn_condition_search);
         btn_condition_search.setOnClickListener(this);
 
+        btn_nomal_qna = (Button)view.findViewById(R.id.btn_nomal_qna);
+        btn_nomal_qna.setOnClickListener(this);
+
         return view;
     }
 
@@ -138,6 +140,9 @@ public class NomalUserFragment extends Fragment implements View.OnClickListener 
             getParentFragment().getChildFragmentManager().beginTransaction()
                     .replace(R.id.nomal_parent_container, new ConditionSearchFragment())
                     .commit();
+        } else if( v== btn_nomal_qna){
+            Intent intent = new Intent(getContext(), QnaListActivity.class);
+            startActivity(intent);
         }
     }
 

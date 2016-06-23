@@ -78,7 +78,6 @@ public class ConditionSearchResultActivity extends AppCompatActivity {
                     isLast = false;
             }
         });
-
     }
 
     @Override

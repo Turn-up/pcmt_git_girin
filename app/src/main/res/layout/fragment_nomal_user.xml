@@ -120,29 +120,46 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="51dp"
                 android:drawableLeft="@drawable/estimate_do_icon"
                 android:drawablePadding="7dp"
                 android:text="견적요청"
                 android:textColor="#515151"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_marginLeft="13dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Button
                 android:id="@+id/btn_condition_search"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
                 android:layout_gravity="right"
-                android:layout_marginRight="51dp"
+                android:layout_marginLeft="13dp"
                 android:drawableLeft="@drawable/expert_search_icon"
                 android:drawablePadding="7dp"
-                android:text="조건검색"
+                android:text="전문가찾기"
                 android:textColor="#515151"
-                android:textSize="14sp" />
-
+                android:textSize="14sp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/btn_estimate_do"
+                android:layout_toEndOf="@+id/btn_estimate_do" />
+            <Button
+                android:id="@+id/btn_nomal_qna"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="13dp"
+                android:drawableLeft="@drawable/expert_search_icon"
+                android:drawablePadding="7dp"
+                android:text="질문하기"
+                android:textColor="#515151"
+                android:textSize="14sp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/btn_condition_search"
+                android:layout_toEndOf="@+id/btn_condition_search" />
 
         </RelativeLayout>
 

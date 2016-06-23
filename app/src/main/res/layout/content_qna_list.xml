@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.pcm.pcmmanager.qna.QnaListActivity"
+    tools:showIn="@layout/activity_qna_list">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edittext_search_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="키워드를 입력해 주세요" />
+        <Button
+            android:id="@+id/btn_qna_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bluepaper_icon"
+            style="@android:style/Widget.Holo.Button.Borderless"
+            android:layout_gravity="end|right"/>
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/qna_rv_list"/>
+
+    <Button
+        android:id="@+id/btn_qna_do"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.Button.Borderless"
+        android:background="@drawable/ask_call_btn"/>
+</LinearLayout>
