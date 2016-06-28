@@ -42,7 +42,6 @@ public class ConditionSearchResultActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mLayoutManager = new LinearLayoutManager(this);
-
         recyclerView = (RecyclerView) findViewById(R.id.expert_condition_search_rv_list);
         mAdapter = new ConditionSearchResultAdapter();
         recyclerView.setAdapter(mAdapter);

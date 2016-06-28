@@ -6,37 +6,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.pcm.pcmmanager.qna.QnaListActivity"
+    tools:context=".qna.list.QnaListActivity"
     tools:showIn="@layout/activity_qna_list">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="18dp">
 
         <EditText
-            android:id="@+id/edittext_search_text"
+            android:id="@+id/edittext_qna_search_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="키워드를 입력해 주세요" />
-        <Button
+            android:background="@drawable/qna_keyword_box"
+            android:hint="키워드를 입력해 주세요"
+            android:paddingLeft="19dp"
+            android:textColor="#7485e2"
+            android:textSize="12sp" />
+
+        <ImageButton
             android:id="@+id/btn_qna_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bluepaper_icon"
             style="@android:style/Widget.Holo.Button.Borderless"
-            android:layout_gravity="end|right"/>
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="end|right|center_vertical"
+            android:layout_marginRight="21dp"
+            android:background="@drawable/keyword_icon" />
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/qna_rv_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/qna_rv_list"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/btn_qna_do"
+        style="@android:style/Widget.Holo.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Button.Borderless"
-        android:background="@drawable/ask_call_btn"/>
+        android:background="@drawable/qna_ask_button"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"/>
 </LinearLayout>

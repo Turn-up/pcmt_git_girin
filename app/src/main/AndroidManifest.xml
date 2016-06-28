@@ -181,9 +181,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".qna.QnaListActivity"
+            android:name=".qna.list.QnaListActivity"
             android:label="@string/title_activity_qna_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".qna.detail.QnaDetailActivity"
+            android:label="@string/title_activity_qna_detail"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

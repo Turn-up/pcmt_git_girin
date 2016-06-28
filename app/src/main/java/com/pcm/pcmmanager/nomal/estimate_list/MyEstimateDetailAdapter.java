@@ -42,7 +42,7 @@ public class MyEstimateDetailAdapter extends RecyclerView.Adapter<RecyclerView.V
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_HEADER: {
-                View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_detail_header, null);
+                View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_detail_header, parent,false);
                 return new MyEstimateDetailHeaderViewHolder(view1);
             }
             case VIEW_TYPE_BID_LIST: {
@@ -52,7 +52,6 @@ public class MyEstimateDetailAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
         throw new IllegalArgumentException("invalid position");
     }
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position == 0) {

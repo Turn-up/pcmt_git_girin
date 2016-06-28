@@ -21,7 +21,7 @@ import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.nomal.estimate_request.EstimateRequestActivity;
 import com.pcm.pcmmanager.nomal.main.AccountInfoViewPagerAdpater;
 import com.pcm.pcmmanager.nomal.main.NoticeViewPagerAdapter;
-import com.pcm.pcmmanager.qna.QnaListActivity;
+import com.pcm.pcmmanager.qna.list.QnaListActivity;
 
 import java.io.IOException;
 

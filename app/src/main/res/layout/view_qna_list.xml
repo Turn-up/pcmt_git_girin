@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="28dp"
+    android:layout_marginRight="28dp"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +13,9 @@
         android:id="@+id/qna_list_title"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#3f3f3f"
+        android:textSize="17sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,7 +24,9 @@
         android:id="@+id/qna_list_regdate"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textSize="13sp"
+        android:textColor="#717171" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +35,10 @@
         android:id="@+id/qna_list_writer"
         android:layout_below="@+id/qna_list_title"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:textColor="#7485e2" />
 
     <TextView
         android:layout_width="match_parent"
@@ -40,16 +49,23 @@
         android:layout_marginRight="80dp"
         android:layout_below="@+id/qna_list_writer"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:textColor="#717171"
+        android:textSize="13sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="5"
         android:id="@+id/qna_list_review_count"
         android:layout_above="@+id/imageView2"
         android:layout_alignRight="@+id/qna_list_regdate"
-        android:layout_alignEnd="@+id/qna_list_regdate" />
+        android:layout_alignEnd="@+id/qna_list_regdate"
+        android:textColor="#717171"
+        android:drawableLeft="@drawable/review_count_icon"
+        android:drawablePadding="6dp"
+        android:textSize="11sp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -57,5 +73,7 @@
         android:src="@drawable/underbar_20"
         android:id="@+id/imageView2"
         android:layout_below="@+id/qna_list_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="21dp" />
 </RelativeLayout>

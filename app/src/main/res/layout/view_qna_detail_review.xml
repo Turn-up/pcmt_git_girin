@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="11dp"
+    android:background="@drawable/qna_detail_feedback_card_9"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="19dp"
+        android:orientation="horizontal">
+
+        <com.makeramen.RoundedImageView
+            android:id="@+id/qna_detail_expert_image"
+            android:layout_width="66dp"
+            android:layout_height="89dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/expert_drawer_semoo_man"
+            app:border_color="#ffffff"
+            app:border_width="1dip"
+            app:corner_radius="5dip" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:src="@drawable/expert_search_result_bar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+            <TextView
+                android:id="@+id/qna_detail_expert_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="김이박"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#515151"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/qna_detail_expert_name"
+                android:layout_marginLeft="5dp"
+                android:layout_toEndOf="@+id/qna_detail_expert_name"
+                android:layout_toRightOf="@+id/qna_detail_expert_name"
+                android:text="회계사"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#515151"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/qna_detail_expert_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/qna_detail_expert_name"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="2dp"
+                android:text="coment"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#666666"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/qna_detail_expert_office"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:drawableLeft="@drawable/expert_search_result_office_icon"
+                android:drawablePadding="7dp"
+                android:text="Small Text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#666666"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/qna_detail_expert_career"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:drawableLeft="@drawable/expert_search_result_person_icon"
+                android:drawablePadding="7dp"
+                android:text="Small Text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#666666"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="2015.05.03"
+                android:textColor="#717171"
+                android:textSize="13sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textView14"
+                android:layout_alignRight="@+id/textView14"
+                android:layout_alignTop="@+id/qna_detail_expert_content"
+                android:button="@drawable/like_selector"
+                android:checked="false"
+                android:paddingLeft="5dp"
+                android:text="0"
+                android:textColor="#717171"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/qna_detail_expert_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#626263"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:text="New Text" />
+</LinearLayout>

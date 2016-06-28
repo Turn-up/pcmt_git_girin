@@ -30,6 +30,8 @@ import com.pcm.pcmmanager.data.NomalUserMainResult;
 import com.pcm.pcmmanager.data.PersonalInfoModifyResult;
 import com.pcm.pcmmanager.data.PersonalInfoSearchResult;
 import com.pcm.pcmmanager.data.NoticeListResult;
+import com.pcm.pcmmanager.data.QnaDetailResult;
+import com.pcm.pcmmanager.data.QnaListResult;
 import com.pcm.pcmmanager.data.RefreshTokenResult;
 import com.pcm.pcmmanager.data.ReviewWriteResult;
 import com.pcm.pcmmanager.data.UserDeleteResult;
@@ -91,6 +93,7 @@ public class NetworkManager {
 
     public interface OnResultListener<T> {
         public void onSuccess(Request request, T result);
+
         public void onFail(Request request, IOException exception);
     }
 
@@ -133,6 +136,7 @@ public class NetworkManager {
 
     /*전문가 메인 견적 리스트*/
     private static final String PCM_EXPERT_ESTIMATE_LIST_URL = PCM_SEVER + "/api/markets/list";
+
     public Request getExpertEstimateResult(String pagesize, String last_marketsn, OnResultListener<ExpertEstimateResult> listener) {
         String url = PCM_EXPERT_ESTIMATE_LIST_URL;
         RequestBody body = new FormBody.Builder()
@@ -141,7 +145,7 @@ public class NetworkManager {
                 .build();
         Request request = new Request.Builder()
                 .header("version", "1.0") //안드로이드 버젼
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .url(url)
                 .post(body)
                 .build();
@@ -174,13 +178,14 @@ public class NetworkManager {
 
     /*전문가 메인 견적 리스트 상세 조회*/
     private static final String PCM_EXPERT_ESTIMATE_DETAIL_URL = PCM_SEVER + "/api/markets/info/%s";
+
     public Request getExpertEstimateDetailResult(String marketSn, OnResultListener<ExpertEstimateDetailResult> listener) {
         String url = String.format(PCM_EXPERT_ESTIMATE_DETAIL_URL, marketSn);
         RequestBody body = new FormBody.Builder()
                 .build();
         Request request = new Request.Builder()
                 .header("version", "1.0") //안드로이드 버젼
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .url(url)
                 .post(body)
                 .build();
@@ -213,10 +218,9 @@ public class NetworkManager {
 
     /*전문가 견적 찾기*/
     private static final String PCM_EXPERT_ESTIAMTE_SEARCH = PCM_SEVER + "/api/markets/search/list";
+
     public Request getExpertEstimateSearch(String pageSize, String lastMarketSn, String marketType, String marketSubType, String regionType, String regionSubType, OnResultListener<ExpertEstimateResult> listener) {
         String url = PCM_EXPERT_ESTIAMTE_SEARCH;
-
-
         RequestBody body = new FormBody.Builder()
                 .add("pagesize", pageSize)
                 .add("last_marketsn", lastMarketSn)
@@ -229,7 +233,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .header("version", "1.0") //안드로이드 버젼 전송
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .post(body)
                 .build();
 
@@ -261,6 +265,7 @@ public class NetworkManager {
 
     /*전문가 검색 리스트*/
     private static final String PCM_EXPERT_SEARCH_LIST_URL = PCM_SEVER + "/experts/search";
+
     public Request getExpertConditionSearch(String pageSize, String lastExpertSn, String marketType, String marketSubType, String regionType, String regionSubType, OnResultListener<ConditionSearchListResult> listener) {
         String url = String.format(PCM_EXPERT_SEARCH_LIST_URL);
         RequestBody body = new FormBody.Builder()
@@ -346,6 +351,7 @@ public class NetworkManager {
 
     /*전문가 검색 상세 -리뷰*/
     private static final String PCM_EXPERT_DETAIL_REVIEW_URL = PCM_SEVER + "/experts/info/%s/review";
+
     public Request getExpertDetailReviewResult(String pagesize, String last_marketsn, String expertsn, OnResultListener<ExpertDetailReviewResult> listener) {
         String url = String.format(PCM_EXPERT_DETAIL_REVIEW_URL, expertsn);
         RequestBody body = new FormBody.Builder()
@@ -440,7 +446,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -526,7 +532,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -602,6 +608,7 @@ public class NetworkManager {
 
     /*사용자 정보 조회*/
     private static final String PCM_PERSONAL_INFO_SEARCH = PCM_SEVER + "/api/users/info";
+
     public Request getPersonalInfoSearch(OnResultListener<PersonalInfoSearchResult> listener) {
         String url = PCM_PERSONAL_INFO_SEARCH;
         RequestBody body = new FormBody.Builder()
@@ -610,7 +617,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -642,17 +649,18 @@ public class NetworkManager {
 
     /*사용자 정보 수정*/
     private static final String PCM_EXPERT_PERSONAL_INFO_MODIFY = PCM_SEVER + "/api/users/info";
+
     public Request getPersonalInfoModify(String name, String phone, OnResultListener<PersonalInfoModifyResult> listener) {
         String url = PCM_EXPERT_PERSONAL_INFO_MODIFY;
         RequestBody body = new FormBody.Builder()
-                .add("username",name)
-                .add("phone",phone)
+                .add("username", name)
+                .add("phone", phone)
                 .build();
 
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -681,8 +689,10 @@ public class NetworkManager {
         });
         return request;
     }
+
     /*일반 사용자 프로필 정보*/
     private static final String PCM_USER_MAIN_INFO = PCM_SEVER + "/api/users/mymain";
+
     public Request getUserMainInfo(OnResultListener<NomalUserMainResult> listener) {
         String url = PCM_USER_MAIN_INFO;
         RequestBody body = new FormBody.Builder()
@@ -691,7 +701,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -723,6 +733,7 @@ public class NetworkManager {
 
     /*일반 사용자 메인 공지 & Tip*/
     private static final String PCM_NOMAL_MAIN_CONTENT_LIST = PCM_SEVER + "/maincontent";
+
     public Request getNomalMainContentList(OnResultListener<NomalMainContentResult> listener) {
         String url = PCM_NOMAL_MAIN_CONTENT_LIST;
 
@@ -775,7 +786,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -804,39 +815,41 @@ public class NetworkManager {
         });
         return request;
     }
+
     /*24. 일반 사용자 견적 수정*/
     private static final String PCM_NOMAL_ESTIMATE_MODIFY = PCM_SEVER + "/api/markets/info/%s/update";
-    public Request getNomalEstiamteModify(String marketsn,String markettype, String marketsubtype, String regiontype,
+
+    public Request getNomalEstiamteModify(String marketsn, String markettype, String marketsubtype, String regiontype,
                                           String regionsubtype, String markettype1_1, String markettype1_2,
                                           String markettype1_3, String markettype1_4, List<String> markettype2_1,
-                                          String markettype2_2, String enddate, String content,OnResultListener<MyEstimateEditModifyResult> listener) {
-        String url = String.format(PCM_NOMAL_ESTIMATE_MODIFY,marketsn);
+                                          String markettype2_2, String enddate, String content, OnResultListener<MyEstimateEditModifyResult> listener) {
+        String url = String.format(PCM_NOMAL_ESTIMATE_MODIFY, marketsn);
         FormBody.Builder myBuilder = new FormBody.Builder();
         if (markettype2_1 != null) {
             for (int i = 0; i < markettype2_1.size(); i++) {
                 myBuilder.add("markettype2_1", markettype2_1.get(i).toString());
             }
-        }else {
-            myBuilder.add("markettype2_1","002_002");
+        } else {
+            myBuilder.add("markettype2_1", "002_002");
         }
         RequestBody body = myBuilder
-                .add("markettype",markettype)
-                .add("marketsubtype",marketsubtype)
-                .add("regiontype",regiontype)
-                .add("regionsubtype",regionsubtype)
-                .add("markettype1_1",markettype1_1)
-                .add("markettype1_2",markettype1_2)
-                .add("markettype1_3",markettype1_3)
-                .add("markettype1_4",markettype1_4)
-                .add("markettype2_2",markettype2_2)
-                .add("enddate",enddate)
-                .add("content",content)
+                .add("markettype", markettype)
+                .add("marketsubtype", marketsubtype)
+                .add("regiontype", regiontype)
+                .add("regionsubtype", regionsubtype)
+                .add("markettype1_1", markettype1_1)
+                .add("markettype1_2", markettype1_2)
+                .add("markettype1_3", markettype1_3)
+                .add("markettype1_4", markettype1_4)
+                .add("markettype2_2", markettype2_2)
+                .add("enddate", enddate)
+                .add("content", content)
                 .build();
 
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -865,8 +878,10 @@ public class NetworkManager {
         });
         return request;
     }
+
     /*일반 사용자 견적 요청하기*/
     private static final String PCM_NOMAL_ESTIMATE_REQUEST_LIST = PCM_SEVER + "/api/markets/insert";
+
     public Request getNomalEstiamteRequestList(String marketType, String marketSubType, String regionType, String regionSubType, String markettpye1_1, String markettype1_2,
                                                String markettype1_3, String employeeCount, List<String> taxAsset, String taxAssetScale, String enddate, String content, OnResultListener<EstimateRequestResult> listener) {
         String url = PCM_NOMAL_ESTIMATE_REQUEST_LIST;
@@ -875,8 +890,8 @@ public class NetworkManager {
             for (int i = 0; i < taxAsset.size(); i++) {
                 myBuilder.add("markettype2_1", taxAsset.get(i).toString());
             }
-        }else {
-            myBuilder.add("markettype2_1","002_002");
+        } else {
+            myBuilder.add("markettype2_1", "002_002");
         }
         RequestBody body = myBuilder
                 .add("markettype", marketType)
@@ -895,7 +910,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -927,6 +942,7 @@ public class NetworkManager {
 
     /*낙찰 완료*/
     private static final String PCM_ESTIMATE_CONFIRM = PCM_SEVER + "/api/markets/info/%s/success";
+
     public Request getEstimateConfirm(String marketSn, String expertSn, OnResultListener<EstimateConfirmResult> listener) {
         String url = String.format(PCM_ESTIMATE_CONFIRM, marketSn);
 
@@ -937,7 +953,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -969,6 +985,7 @@ public class NetworkManager {
 
     /*공통 코드 리스트*/
     private static final String PCM_COMMON_CODE_LIST = PCM_SEVER + "/codelist";
+
     public Request getCommonCodeList(OnResultListener<CommonCodeListResult> listener) {
         String url = PCM_COMMON_CODE_LIST;
 
@@ -1009,6 +1026,7 @@ public class NetworkManager {
 
     /*전문가 이용가능 여부*/
     private static final String PCM_EXPERT_CONFIRM_CHECK = PCM_SEVER + "/api/experts/check";
+
     public Request getExpertConfirmCheck(OnResultListener<ExpertConfirmCheckResult> listener) {
         String url = PCM_EXPERT_CONFIRM_CHECK;
 
@@ -1018,7 +1036,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -1050,19 +1068,20 @@ public class NetworkManager {
 
     /*5.유저가입*/
     private static final String PCM_SIGN_UP = PCM_SEVER + "/users/insert";
+
     public Request getSignUp(String username, String email, String phone, String password, String pushkey,
-                             String usertype1,String usertype2,String role,OnResultListener<UserSignupResult> listener) {
+                             String usertype1, String usertype2, String role, OnResultListener<UserSignupResult> listener) {
         String url = PCM_SIGN_UP;
 
         RequestBody body = new FormBody.Builder()
-                .add("username",username)
-                .add("email",email)
-                .add("phone",phone)
-                .add("password",password)
-                .add("pushkey",pushkey)
-                .add("usertype1",usertype1)
-                .add("usertype2",usertype2)
-                .add("roles",role)
+                .add("username", username)
+                .add("email", email)
+                .add("phone", phone)
+                .add("password", password)
+                .add("pushkey", pushkey)
+                .add("usertype1", usertype1)
+                .add("usertype2", usertype2)
+                .add("roles", role)
                 .build();
 
         Request request = new Request.Builder()
@@ -1096,8 +1115,10 @@ public class NetworkManager {
         });
         return request;
     }
+
     /*5.로그아웃*/
     private static final String PCM_LOGOUT = PCM_SEVER + "/api/users/logout";
+
     public Request getLogout(OnResultListener<UserSignupResult> listener) {
         String url = PCM_LOGOUT;
 
@@ -1107,7 +1128,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -1136,9 +1157,11 @@ public class NetworkManager {
         });
         return request;
     }
+
     /*15. 새로운 토큰 발급*/
     private static final String PCM_REFRESH_TOKEN = PCM_SEVER + "/api/users/refreshtoken";
-    public Request getRefreshToken(String authorizationToken,OnResultListener<RefreshTokenResult> listener) {
+
+    public Request getRefreshToken(String authorizationToken, OnResultListener<RefreshTokenResult> listener) {
         String url = PCM_REFRESH_TOKEN;
 
         RequestBody body = new FormBody.Builder()
@@ -1148,7 +1171,7 @@ public class NetworkManager {
                 .url(url)
                 .post(body)
                 .header("version", "1.0") //안드로이드 버젼 전송
-                .header("authorization",authorizationToken)
+                .header("authorization", authorizationToken)
                 .build();
 
         final NetworkResult<RefreshTokenResult> result = new NetworkResult<>();
@@ -1179,13 +1202,14 @@ public class NetworkManager {
 
     /*4. 유저 로그인*/
     private static final String PCM_LOGIN = PCM_SEVER + "/users/loginProcess";
-    public Request getLogin(String email,String password,OnResultListener<LoginResult> listener) {
+
+    public Request getLogin(String email, String password, OnResultListener<LoginResult> listener) {
         String url = PCM_LOGIN;
 
         RequestBody body = new FormBody.Builder()
-                .add("email",email)
-                .add("password",password)
-                .add("pushkey",PropertyManager.getInstance().getRegistrationToken())
+                .add("email", email)
+                .add("password", password)
+                .add("pushkey", PropertyManager.getInstance().getRegistrationToken())
                 .build();
 
         Request request = new Request.Builder()
@@ -1222,6 +1246,7 @@ public class NetworkManager {
 
     /*유저 탈퇴- > 아직*/
     private static final String PCM_USER_LOGOUT = PCM_SEVER + "/api/users/logout";
+
     public Request getUserLogout(OnResultListener<LogoutResult> listener) {
         String url = PCM_USER_LOGOUT;
 
@@ -1231,7 +1256,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -1260,8 +1285,10 @@ public class NetworkManager {
         });
         return request;
     }
+
     /*91. 전문가 사용가능*/
     private static final String PCM_EXPERT_CHECK = PCM_SEVER + "/api/experts/check";
+
     public Request getExpertCheck(OnResultListener<ExpertCheckResult> listener) {
         String url = PCM_EXPERT_CHECK;
 
@@ -1271,7 +1298,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -1303,18 +1330,19 @@ public class NetworkManager {
 
     /*88. 리뷰작성*/
     private static final String PCM_REVIEW_WRITE = PCM_SEVER + "/api/markets/info/%s/%s/insert";
-    public Request getReviewWrite(String marketSn, String expertSn, String score, String content,OnResultListener<ReviewWriteResult> listener) {
-        String url = String.format(PCM_REVIEW_WRITE,marketSn,expertSn);
+
+    public Request getReviewWrite(String marketSn, String expertSn, String score, String content, OnResultListener<ReviewWriteResult> listener) {
+        String url = String.format(PCM_REVIEW_WRITE, marketSn, expertSn);
 
         RequestBody body = new FormBody.Builder()
-                .add("score",score)
-                .add("content",content)
+                .add("score", score)
+                .add("content", content)
                 .build();
 
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -1346,18 +1374,19 @@ public class NetworkManager {
 
     /*95. 마일리지 조회*/
     private static final String PCM_MILEAGELOG = PCM_SEVER + "/api/experts/mileagelog";
+
     public Request getMileageList(String pagesize, String last_mileagelogsn, OnResultListener<PointListResult> listener) {
         String url = PCM_MILEAGELOG;
 
         RequestBody body = new FormBody.Builder()
-                .add("pagesize",pagesize)
-                .add("last_mileagelogsn",last_mileagelogsn)
+                .add("pagesize", pagesize)
+                .add("last_mileagelogsn", last_mileagelogsn)
                 .build();
 
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -1389,6 +1418,7 @@ public class NetworkManager {
 
     /*95. 유저 탈퇴*/
     private static final String PCM_USER_DELETE = PCM_SEVER + "/api/users/delete";
+
     public Request getUserDelete(OnResultListener<UserDeleteResult> listener) {
         String url = PCM_USER_DELETE;
 
@@ -1398,7 +1428,7 @@ public class NetworkManager {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .header("authorization",PropertyManager.getInstance().getAuthorizationToken())
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
@@ -1417,6 +1447,92 @@ public class NetworkManager {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
                     UserDeleteResult data = gson.fromJson(text, UserDeleteResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+
+    /*8. QnaList*/
+    private static final String PCM_QNA_LIST = PCM_SEVER + "/api/qnas/list";
+
+    public Request getQnaList(String pagesize, String last_qnasn, OnResultListener<QnaListResult> listener) {
+        String url = PCM_QNA_LIST;
+
+        RequestBody body = new FormBody.Builder()
+                .add("pagesize", pagesize)
+                .add("last_qnasn", last_qnasn)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<QnaListResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    QnaListResult data = gson.fromJson(text, QnaListResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+
+    /*9. QNA 개별 정보*/
+    private static final String PCM_QNA_DETAIL = PCM_SEVER + "/api/qnas/info/%s";
+
+    public Request getQnaDetail(String qnasn, OnResultListener<QnaDetailResult> listener) {
+        String url = String.format(PCM_QNA_DETAIL, qnasn);
+
+        RequestBody body = new FormBody.Builder()
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<QnaDetailResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    QnaDetailResult data = gson.fromJson(text, QnaDetailResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {

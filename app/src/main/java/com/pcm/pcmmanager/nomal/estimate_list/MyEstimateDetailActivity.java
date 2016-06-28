@@ -221,7 +221,6 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
 
         //최종 낙찰완료하면 나오는 이미지 팝업
         class ThankYouImage extends Dialog {
-
             public ThankYouImage(Context context) {
                 super(context);
                 requestWindowFeature(Window.FEATURE_NO_TITLE);
