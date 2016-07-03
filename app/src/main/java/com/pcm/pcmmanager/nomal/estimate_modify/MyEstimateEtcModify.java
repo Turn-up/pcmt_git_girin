@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.ExpertEstimateDetail;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
-import com.pcm.pcmmanager.data.MyEstimateEditModifyResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
@@ -140,9 +140,9 @@ public class MyEstimateEtcModify extends AppCompatActivity {
                     address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
                     address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
                     NetworkManager.getInstance().getNomalEstiamteModify(marketSn, ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
-                            "", endDate, content, new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
+                            "", endDate, content, new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
-                                public void onSuccess(Request request, MyEstimateEditModifyResult result) {
+                                public void onSuccess(Request request, CommonResult result) {
                                     Intent intent = new Intent(MyEstimateEtcModify.this, MyEstimateListActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);

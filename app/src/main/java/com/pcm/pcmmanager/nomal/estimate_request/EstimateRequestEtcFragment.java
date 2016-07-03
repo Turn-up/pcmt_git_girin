@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
-import com.pcm.pcmmanager.data.EstimateRequestResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
 import com.pcm.pcmmanager.nomal.estimate_list.MyEstimateListActivity;
@@ -139,9 +139,9 @@ public class EstimateRequestEtcFragment extends Fragment {
                 } else {
                     content = etcContent.getText().toString();
                     NetworkManager.getInstance().getNomalEstiamteRequestList(ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
-                            "", endDate, content, new NetworkManager.OnResultListener<EstimateRequestResult>() {
+                            null, endDate, content, new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
-                                public void onSuccess(Request request, EstimateRequestResult result) {
+                                public void onSuccess(Request request, CommonResult result) {
                                     Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
                                     startActivity(intent);
                                     getActivity().finish();

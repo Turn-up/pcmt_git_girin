@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -23,7 +24,7 @@ import android.widget.Toast;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.CustomTextWathcer;
-import com.pcm.pcmmanager.data.EstimateRequestResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
 import com.pcm.pcmmanager.nomal.estimate_list.MyEstimateListActivity;
@@ -46,10 +47,11 @@ public class EstimateRequestTaxFragment extends Fragment {
     ArrayAdapter<String> bAdapter, a1Adapter, a2Adapter; //업종, 주소
     Button taxAdd;
     CheckBox check_tax_land, check_tax_house, check_tax_stock, check_tax_deposit; //재산대상
-    EditText marketType2_2, taxContent; //재산시가
+    EditText edittext_land, edittext_house, edittext_stock, edittext_deposit, edittext_asset, taxContent; //재산시가
     String marketSubType, address1, address2, tempAddress1; //내용 , 주소 , 부가내용
-    ArrayList<String> assetList;
-    LinearLayout asset_layout;
+    ArrayList<String> assetType, assetMoney;
+    LinearLayout asset_rand_layout, asset_house_layout, asset_stock_layout, asset_deposit_layout, asset_layout, asset_type_layout;
+
     TextView[] day;
     int color;
 
@@ -83,11 +85,27 @@ public class EstimateRequestTaxFragment extends Fragment {
         bAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         a1Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         a2Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
-        asset_layout = (LinearLayout) view.findViewById(R.id.asset_type_layout);
 
-        marketType2_2 = (EditText) view.findViewById(R.id.estimate_request_tax_price);
+        asset_rand_layout = (LinearLayout) view.findViewById(R.id.estimate_request_tax_asset_land_layout);
+        asset_house_layout = (LinearLayout) view.findViewById(R.id.estimate_request_tax_asset_house_layout);
+        asset_stock_layout = (LinearLayout) view.findViewById(R.id.estimate_request_tax_asset_stock_layout);
+        asset_deposit_layout = (LinearLayout) view.findViewById(R.id.estimate_request_tax_asset_deposit_layout);
+        asset_layout = (LinearLayout) view.findViewById(R.id.estimate_request_tax_asset_layout);
+        asset_type_layout = (LinearLayout) view.findViewById(R.id.asset_type_layout);
+
+        edittext_house = (EditText) view.findViewById(R.id.estimate_request_tax_asset_house);
+        edittext_land = (EditText) view.findViewById(R.id.estimate_request_tax_asset_land);
+        edittext_deposit = (EditText) view.findViewById(R.id.estimate_request_tax_asset_deposit);
+        edittext_stock = (EditText) view.findViewById(R.id.estimate_request_tax_asset_stock);
+        edittext_asset = (EditText) view.findViewById(R.id.estimate_request_tax_asset);
+
         taxContent = (EditText) view.findViewById(R.id.estimate_request_tax_content);
-        marketType2_2.addTextChangedListener(new CustomTextWathcer(marketType2_2));
+
+        edittext_land.addTextChangedListener(new CustomTextWathcer(edittext_land));
+        edittext_house.addTextChangedListener(new CustomTextWathcer(edittext_house));
+        edittext_deposit.addTextChangedListener(new CustomTextWathcer(edittext_deposit));
+        edittext_stock.addTextChangedListener(new CustomTextWathcer(edittext_stock));
+        edittext_asset.addTextChangedListener(new CustomTextWathcer(edittext_asset));
 
         seekBar.setProgress(6);
         day[6].setTextColor(Color.BLACK);
@@ -112,12 +130,52 @@ public class EstimateRequestTaxFragment extends Fragment {
             }
         });
 
-        assetList = new ArrayList<String>();
+        assetType = new ArrayList<String>();
+        assetMoney = new ArrayList<String>();
         check_tax_land = (CheckBox) view.findViewById(R.id.check_estimate_request_tax_asset_land);
         check_tax_house = (CheckBox) view.findViewById(R.id.check_estimate_request_tax_asset_house);
         check_tax_stock = (CheckBox) view.findViewById(R.id.check_estimate_request_tax_asset_stock);
         check_tax_deposit = (CheckBox) view.findViewById(R.id.check_estimate_request_tax_asset_deposit);
-
+        check_tax_land.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    asset_rand_layout.setVisibility(View.VISIBLE);
+                } else {
+                    asset_rand_layout.setVisibility(View.GONE);
+                }
+            }
+        });
+        check_tax_house.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    asset_house_layout.setVisibility(View.VISIBLE);
+                } else {
+                    asset_house_layout.setVisibility(View.GONE);
+                }
+            }
+        });
+        check_tax_stock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    asset_stock_layout.setVisibility(View.VISIBLE);
+                } else {
+                    asset_stock_layout.setVisibility(View.GONE);
+                }
+            }
+        });
+        check_tax_deposit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    asset_deposit_layout.setVisibility(View.VISIBLE);
+                } else {
+                    asset_deposit_layout.setVisibility(View.GONE);
+                }
+            }
+        });
         taxAdd = (Button) view.findViewById(R.id.btn_estimate_request_tax_add);
 
         bAdapter.setDropDownViewResource(R.layout.spinner_item_text);
@@ -130,10 +188,13 @@ public class EstimateRequestTaxFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 marketSubType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getList().get(position).getCode();
-                if (bAdapter.getItem(position).equals("세무조사"))
-                    asset_layout.setVisibility(View.GONE);
-                else
+                if (bAdapter.getItem(position).equals("세무조사")) {
+                    asset_type_layout.setVisibility(view.GONE);
                     asset_layout.setVisibility(View.VISIBLE);
+                } else {
+                    asset_layout.setVisibility(View.GONE);
+                    asset_type_layout.setVisibility(view.VISIBLE);
+                }
             }
 
             @Override
@@ -170,8 +231,6 @@ public class EstimateRequestTaxFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 address2 = PropertyManager.getInstance().getCommonRegionLists().get(a1Adapter.getPosition(tempAddress1)).getList().get(position).getCode();
-
-
             }
 
             @Override
@@ -184,33 +243,59 @@ public class EstimateRequestTaxFragment extends Fragment {
         taxAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String temp = null;
+                assetType.clear();
+                assetMoney.clear();
                 if (check_tax_land.isChecked()) {
-                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(0).getCode());
+                    assetType.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(0).getCode());
+                    if (!TextUtils.isEmpty(edittext_land.getText().toString())) {
+                        temp = edittext_land.getText().toString();
+                        temp = temp.replaceAll(",", "");
+                        assetMoney.add(temp);
+                    }
                 }
                 if (check_tax_deposit.isChecked()) {
-                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(3).getCode());
+                    assetType.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(3).getCode());
+                    if (!TextUtils.isEmpty(edittext_deposit.getText().toString())) {
+                        temp = edittext_deposit.getText().toString();
+                        temp = temp.replaceAll(",", "");
+                        assetMoney.add(temp);
+                    }
                 }
                 if (check_tax_house.isChecked()) {
-                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(1).getCode());
+                    assetType.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(1).getCode());
+                    if (!TextUtils.isEmpty(edittext_house.getText().toString())) {
+                        temp = edittext_house.getText().toString();
+                        temp = temp.replaceAll(",", "");
+                        assetMoney.add(temp);
+                    }
                 }
                 if (check_tax_stock.isChecked()) {
-                    assetList.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(2).getCode());
+                    assetType.add(PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ASSET_TYPE_POSITION).getList().get(2).getCode());
+                    if (!TextUtils.isEmpty(edittext_stock.getText().toString())) {
+                        temp = edittext_stock.getText().toString();
+                        temp = temp.replaceAll(",", "");
+                        assetMoney.add(temp);
+                    }
                 }
-                if (TextUtils.isEmpty(marketType2_2.getText().toString())) {
+                if (assetMoney.size() != assetType.size()) {
                     Toast.makeText(getContext(), "시가를 입력하세요", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(taxContent.getText().toString())) {
                     Toast.makeText(getContext(), "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    String temp = marketType2_2.getText().toString();
                     String content = taxContent.getText().toString();
-                    temp = temp.replaceAll(",", "");
-                    NetworkManager.getInstance().getNomalEstiamteRequestList(TAX, marketSubType, address1, address2, "", "", "", "", assetList, temp
-                            , String.valueOf(endDate), content, new NetworkManager.OnResultListener<EstimateRequestResult>() {
+                    NetworkManager.getInstance().getNomalEstiamteRequestList(TAX, marketSubType, address1, address2, "", "", "", "", assetType, assetMoney
+                            , String.valueOf(endDate), content, new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
-                                public void onSuccess(Request request, EstimateRequestResult result) {
-                                    Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
-                                    startActivity(intent);
-                                    getActivity().finish();
+                                public void onSuccess(Request request, CommonResult result) {
+                                    if(result.getResult() == -1){
+                                        Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                    }
                                 }
 
                                 @Override

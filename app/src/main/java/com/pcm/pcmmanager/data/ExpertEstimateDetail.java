@@ -2,6 +2,7 @@ package com.pcm.pcmmanager.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,23 @@ public class ExpertEstimateDetail {
     @SerializedName("regionsubtype")
     String address2;
     String markettype1_3;
+    @SerializedName("markettype2_2")
+    List<Long>  assetMoney;
+    List<ExpertEstimateDetailBidList> bids;
+    String content;
+    String success_bid_id; //낙찰일련번호
+    String status;
+    @SerializedName("regdate")
+    String regDate;
+    @SerializedName("enddate")
+    String enddate;
+    @SerializedName("markettype1_2")
+    long businessScale;
+    int success_expertsn;
+    @SerializedName("markettype1_4")
+    int employeeCount;
+    @SerializedName("markettype2_1")
+    List<String> assetType;
 
     public String getMarkettpye1_3() {
         return markettype1_3;
@@ -30,14 +48,6 @@ public class ExpertEstimateDetail {
         this.markettype1_3 = markettpye1_3;
     }
 
-    @SerializedName("markettype1_2")
-    long businessScale;
-    int success_expertsn;
-    @SerializedName("markettype1_4")
-    int employeeCount;
-    @SerializedName("markettype2_1")
-    List<String> asset_type;
-
     public int getSuccess_expertsn() {
         return success_expertsn;
     }
@@ -45,18 +55,6 @@ public class ExpertEstimateDetail {
     public void setSuccess_expertsn(int success_expertsn) {
         this.success_expertsn = success_expertsn;
     }
-
-    @SerializedName("markettype2_2")
-    long assetMoney;
-    List<ExpertEstimateDetailBidList> bids;
-    String content;
-    String success_bid_id; //낙찰일련번호
-    String status;
-    @SerializedName("regdate")
-    String regDate;
-    @SerializedName("enddate")
-    String enddate;
-
     public int getUsersn() {
         return usersn;
     }
@@ -134,22 +132,25 @@ public class ExpertEstimateDetail {
     }
 
     public long getNumberAssetMoney() {
-        return assetMoney;
+        return assetMoney.get(0);
     }
 
-    public String getAssetMoney() {
-        String bs;
-        if (assetMoney < 1000000) {
-            bs = assetMoney / 1000 + "만원";
-        } else if (1000000 <= assetMoney && assetMoney < 100000000) {
-            bs = assetMoney / 100000 + "만원";
-        } else {
-            bs = assetMoney / 10000000 + "억";
+    public List<String> getAssetMoney() {
+        List<String> bs = new ArrayList<String>();
+        for (int i = 0; i < assetMoney.size(); i++) {
+            if (assetMoney.get(i) < 1000000) {
+                bs.add(assetMoney.get(i) / 1000 + "만원");
+            } else if (1000000 <= assetMoney.get(i) && assetMoney.get(i) < 100000000) {
+                bs.add(assetMoney.get(i) / 100000 + "만원");
+            } else {
+                bs.add(assetMoney.get(i) / 100000000 + "." + (assetMoney.get(i) % 100000000) / 10000000 + "억원");
+            }
         }
+
         return bs;
     }
 
-    public void setAssetMoney(long assetMoney) {
+    public void setAssetMoney(List<Long> assetMoney) {
         this.assetMoney = assetMoney;
     }
 
@@ -213,12 +214,12 @@ public class ExpertEstimateDetail {
         this._id = _id;
     }
 
-    public List<String> getAsset_type() {
-        return asset_type;
+    public List<String> getAssetType() {
+        return assetType;
     }
 
-    public void setAsset_type(List<String> asset_type) {
-        this.asset_type = asset_type;
+    public void setAssetType(List<String> assetType) {
+        this.assetType = assetType;
     }
 
     public int getReviewsn() {

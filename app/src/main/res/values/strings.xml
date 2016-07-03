@@ -43,4 +43,6 @@
     <string name="title_activity_my_deatila_info">MyDeatilaInfoActivity</string>
     <string name="title_activity_qna_list">QnaListActivity</string>
     <string name="title_activity_qna_detail">QnaDetailActivity</string>
+    <string name="title_activity_qna_ask">QnaAskActivity</string>
+    <string name="title_activity_my_qna_list">MyQnaListActivity</string>
 </resources>

@@ -23,9 +23,9 @@ import android.widget.Toast;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.CustomTextWathcer;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.ExpertEstimateDetail;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
-import com.pcm.pcmmanager.data.MyEstimateEditModifyResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
@@ -196,9 +196,9 @@ public class MyEstimateEntryModify extends AppCompatActivity {
                     NetworkManager.getInstance().getNomalEstiamteModify(marketSn, EntryCode, marketSubType
                             , address1, address2, TEMP, bScale, marketType1_3,
                             eCount, null, TEMP, endDate, entryContent.getText().toString(),
-                            new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
+                            new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
-                                public void onSuccess(Request request, MyEstimateEditModifyResult result) {
+                                public void onSuccess(Request request, CommonResult result) {
                                     Intent intent = new Intent(MyEstimateEntryModify.this, MyEstimateListActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);

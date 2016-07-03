@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.CustomTextWathcer;
-import com.pcm.pcmmanager.data.BidDoResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.ExpertEstimateDetail;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
@@ -28,7 +28,8 @@ import okhttp3.Request;
 public class BidDoActivity extends AppCompatActivity {
     ImageButton bid_do;
     ImageButton bid_do_up, bid_do_down;
-    TextView moneyTitle1, moneyTitle2, marketTypeView, marketSubView, endDateView, bidCountView, addressView, contentView;
+    TextView moneyTitle1, moneyTitle2, marketTypeView, endDateView, bidCountView, addressView, contentView;
+    TextView[] marketSubView;
     EditText moneyEdit1, moneyEdit2;
     FrameLayout bid_do_frame;
     LinearLayout layout;
@@ -53,7 +54,11 @@ public class BidDoActivity extends AppCompatActivity {
         moneyEdit2 = (EditText) findViewById(R.id.estimate_put_money_editText_2);
 
         marketTypeView = (TextView) findViewById(R.id.expert_estimate_market_type_title);
-        marketSubView = (TextView) findViewById(R.id.expert_estimate_market_type_sub);
+        marketSubView = new TextView[4];
+        marketSubView[0] = (TextView) findViewById(R.id.expert_estimate_market_type_sub1);
+        marketSubView[1] = (TextView) findViewById(R.id.expert_estimate_market_type_sub2);
+        marketSubView[2] = (TextView) findViewById(R.id.expert_estimate_market_type_sub3);
+        marketSubView[3] = (TextView) findViewById(R.id.expert_estimate_market_type_sub4);
         endDateView = (TextView) findViewById(R.id.expert_estimate_end_date);
         bidCountView = (TextView) findViewById(R.id.expert_estimate_bid_count);
         addressView = (TextView) findViewById(R.id.expert_estiamte_address);
@@ -88,9 +93,9 @@ public class BidDoActivity extends AppCompatActivity {
                         }else
                             editMoney = "0";
                         //네트워크 호출 후에 메인으로가서 팝업
-                        NetworkManager.getInstance().getBidDo(monthMoney, editMoney, marketSn, new NetworkManager.OnResultListener<BidDoResult>() {
+                        NetworkManager.getInstance().getBidDo(monthMoney, editMoney, marketSn, new NetworkManager.OnResultListener<CommonResult>() {
                             @Override
-                            public void onSuccess(Request request, BidDoResult result) {
+                            public void onSuccess(Request request, CommonResult result) {
                                 if (result.getResult() == -1) {
                                     Toast.makeText(BidDoActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                                 } else {
@@ -123,24 +128,24 @@ public class BidDoActivity extends AppCompatActivity {
                         marketTypeView.setText(item.getMarketSubType());
                         moneyTitle1.setText("월 기장료");
                         moneyTitle2.setText("조정료");
-                        marketSubView.setText("매출" + item.getBusinessScale() + ", 종업원 " + item.getEmployeeCount() + "명");
-
+                        marketSubView[0].setText("매출 " + item.getBusinessScale()+ ", 종업원 "
+                                + item.getEmployeeCount()+"명");
                     } else if (item.getMarketType().equals("TAX")) {
                         marketTypeView.setText(item.getMarketSubType());
                         moneyTitle1.setText("제시금액");
                         moneyTitle2.setText("과세금액");
                         moneyEdit2.setBackgroundResource(R.drawable.expert_bid_do_persent_box);
-                        String temp = "";
                         if (!item.getMarketSubType().equals("세무조사")) {
-                            temp = ", 자산내용 ";
-                            for (int i = 0; i < item.getAsset_type().size(); i++) {
-                                temp += item.getAsset_type().get(i);
+                            marketSubView[0].setText("시가 "+ item.getAssetMoney().get(0));
+                        }else{
+                            for(int i = 0; i<item.getAssetMoney().size();i++){
+                                marketSubView[i].setVisibility(View.VISIBLE);
+                                marketSubView[i].setText("자산 " + item.getAssetType().get(i) +", " +item.getAssetMoney().get(i));
                             }
                         }
-                        marketSubView.setText("자산 " + item.getAssetMoney() + temp);
                     } else if (item.getMarketType().equals("기타")) {
                         marketTypeView.setText("기타");
-                        marketSubView.setText("상세 내용을 확인해주세요");
+                        marketSubView[0].setText("상세 내용을 확인해주세요");
                         moneyTitle1.setText("제시금액");
                         moneyTitle2.setVisibility(View.GONE);
                         moneyEdit2.setText("");

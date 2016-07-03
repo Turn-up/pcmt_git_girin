@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
-import com.pcm.pcmmanager.data.NomalUserMainResult;
+import com.pcm.pcmmanager.data.UserProfileResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ import okhttp3.Request;
  */
 public class NomalNavigationDrawer extends Fragment {
 
-    TextView profieName, profileEmail, ask, notice, event, use_way, myEstimate, logout_btn, user_out_btn;
+    TextView profieName, profileEmail, ask, notice, event, use_way, myEstimate, logout_btn, user_out_btn,myQna;
     LinearLayout logout_layout;
     ImageButton setting_btn;
     Button logout;
@@ -66,6 +66,7 @@ public class NomalNavigationDrawer extends Fragment {
         logout_btn = (TextView) v.findViewById(R.id.nomal_drawer_logout_btn);
         logout_layout = (LinearLayout) v.findViewById(R.id.nomal_drawer_logout_layout);
         setting_btn = (ImageButton) v.findViewById(R.id.nomal_drawer_setting);
+        myQna = (TextView)v.findViewById(R.id.nomal_drawer_my_qna);
 //        setting_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -86,14 +87,14 @@ public class NomalNavigationDrawer extends Fragment {
     }
 
     public void setUserData() {
-        NetworkManager.getInstance().getUserMainInfo(new NetworkManager.OnResultListener<NomalUserMainResult>() {
+        NetworkManager.getInstance().getUserProfile(new NetworkManager.OnResultListener<UserProfileResult>() {
             @Override
-            public void onSuccess(Request request, NomalUserMainResult result) {
+            public void onSuccess(Request request, UserProfileResult result) {
                 if (result.getResult() == -1) {
                     Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    profieName.setText(result.getNomalUserMain().getUsername());
-                    profileEmail.setText(result.getNomalUserMain().getEmail());
+                    profieName.setText(result.getUserProfile().getUsername());
+                    profileEmail.setText(result.getUserProfile().getEmail());
                 }
             }
 

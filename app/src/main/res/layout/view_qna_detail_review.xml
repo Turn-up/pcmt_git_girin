@@ -6,7 +6,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="11dp"
-    android:background="@drawable/qna_detail_feedback_card_9"
+    android:background="@drawable/qna_detail_contents_card"
     android:orientation="vertical">
 
     <LinearLayout
@@ -32,8 +32,8 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:src="@drawable/expert_search_result_bar" />
 
         <RelativeLayout
@@ -82,11 +82,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:drawableLeft="@drawable/expert_search_result_office_icon"
-                android:drawablePadding="7dp"
+                android:drawablePadding="2dp"
                 android:text="Small Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#666666"
-                android:textSize="13sp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/qna_detail_expert_career"
@@ -95,9 +95,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="10dp"
                 android:drawableLeft="@drawable/expert_search_result_person_icon"
-                android:drawablePadding="7dp"
+                android:drawablePadding="2dp"
                 android:text="Small Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#666666"
@@ -115,7 +115,7 @@
                 android:textSize="13sp" />
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/qna_detail_review_like_checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/textView14"
@@ -131,13 +131,43 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:text="답변"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/qna_detail_review_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:gravity="right"
+            android:text="삭제"
+            android:visibility="gone"
+            android:textColor="#fc0000"
+            android:textSize="13dp" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/qna_detail_expert_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:textColor="#626263"
+        android:layout_marginBottom="19dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
-        android:text="New Text" />
+        android:layout_marginTop="3dp"
+        android:text="New Text"
+        android:textColor="#626263"
+        android:textSize="13sp" />
 </LinearLayout>

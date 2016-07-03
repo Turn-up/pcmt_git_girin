@@ -28,11 +28,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity;
-import com.pcm.pcmmanager.data.EstimateConfirmResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.ExpertEstimateDetail;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailBidList;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
-import com.pcm.pcmmanager.data.ReviewWriteResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.nomal.NomalMainActivity;
 
@@ -194,11 +193,11 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v == btn_do_confirm_ok) {
-                    NetworkManager.getInstance().getEstimateConfirm(marketSn, String.valueOf(expertSn), new NetworkManager.OnResultListener<EstimateConfirmResult>() {
+                    NetworkManager.getInstance().getEstimateConfirm(marketSn, String.valueOf(expertSn), new NetworkManager.OnResultListener<CommonResult>() {
                         @Override
-                        public void onSuccess(Request request, EstimateConfirmResult result) {
+                        public void onSuccess(Request request, CommonResult result) {
                             if(result.getResult() == -1){
-                                Toast.makeText(getContext(), result.getMassage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
                             }else {
                                 ThankYouImage thankYouImage = new ThankYouImage(MyEstimateDetailActivity.this);
                                 thankYouImage.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -264,9 +263,9 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
                     if (TextUtils.isEmpty(review_write.getText().toString())) {
                         Toast.makeText(getContext(), "리뷰를 작성해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
                     } else {
-                        NetworkManager.getInstance().getReviewWrite(marketSn, expertSn, String.valueOf(rating.getRating()), review_write.getText().toString(), new NetworkManager.OnResultListener<ReviewWriteResult>() {
+                        NetworkManager.getInstance().getReviewWrite(marketSn, expertSn, String.valueOf(rating.getRating()), review_write.getText().toString(), new NetworkManager.OnResultListener<CommonResult>() {
                             @Override
-                            public void onSuccess(Request request, ReviewWriteResult result) {
+                            public void onSuccess(Request request, CommonResult result) {
                                 if(result.getResult() == -1){
                                     Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
                                 }else {

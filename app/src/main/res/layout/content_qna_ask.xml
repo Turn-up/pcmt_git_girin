@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.pcm.pcmmanager.qna.ask.QnaAskActivity"
+    tools:showIn="@layout/activity_qna_ask">
+
+    <EditText
+        android:id="@+id/qna_ask_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="46dp"
+        android:background="@drawable/qna_keyword_box"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:paddingLeft="16dp"
+        android:hint="제목을 입력하세요"
+        android:textColor="#a4a4a6"
+        android:textSize="11sp" />
+
+    <EditText
+        android:id="@+id/qna_ask_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="1"
+        android:background="@drawable/qna_ask_content_box"
+        android:gravity="top"
+        android:paddingLeft="16dp"
+        android:paddingTop="13dp"
+        android:hint="내용을 입력해 주세요"
+        android:textColor="#a4a4a6"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/qna_ask_lock_icon"
+            android:drawablePadding="11dp"
+            android:text="비밀글"
+            android:textColor="#626263"
+            android:textSize="11sp" />
+
+        <CheckBox
+            android:id="@+id/qna_ask_check_box"
+            android:button="@drawable/secret_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="36dp" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/qna_ask_do_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="23dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/estimate_add_btn"
+        android:layout_marginBottom="10dp" />
+</LinearLayout>

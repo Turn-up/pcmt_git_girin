@@ -34,7 +34,6 @@ public class SplashActivity extends Activity {
                 PropertyManager.getInstance().commonCodeList = result.getCodelist();
                 PropertyManager.getInstance().commonRegionLists = result.getRegionlist();
             }
-
             @Override
             public void onFail(Request request, IOException exception) {
 
@@ -56,7 +55,6 @@ public class SplashActivity extends Activity {
         };
         handler.sendEmptyMessageDelayed(0, 1000);
     }
-
     public void setRefreshToken() {
         NetworkManager.getInstance().getRefreshToken(PropertyManager.getInstance().getAuthorizationToken(), new NetworkManager.OnResultListener<RefreshTokenResult>() {
             @Override
@@ -66,7 +64,6 @@ public class SplashActivity extends Activity {
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
-
                 } else {
                     RefreshTokenResult refreshTokenResult = result;
                     PropertyManager.getInstance().setAuthorizationToken(refreshTokenResult.getToken());
@@ -79,16 +76,13 @@ public class SplashActivity extends Activity {
                         getExpertState();
                     }
                 }
-
             }
-
             @Override
             public void onFail(Request request, IOException exception) {
                 Toast.makeText(SplashActivity.this, "죄송합니다. 서비스 점검중 입니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     public void getExpertState() {
         NetworkManager.getInstance().getExpertCheck(new NetworkManager.OnResultListener<ExpertCheckResult>() {
             @Override
@@ -98,9 +92,7 @@ public class SplashActivity extends Activity {
                 overridePendingTransition(0, android.R.anim.fade_in);
                 startActivity(new Intent(SplashActivity.this, ExpertMainActivity.class));
                 finish();
-
             }
-
             @Override
             public void onFail(Request request, IOException exception) {
 

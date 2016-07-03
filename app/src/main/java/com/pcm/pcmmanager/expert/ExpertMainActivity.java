@@ -19,8 +19,8 @@ import com.pcm.pcmmanager.common.ask.AskActivity;
 import com.pcm.pcmmanager.common.notice.event.NoticeEventActivity;
 import com.pcm.pcmmanager.common.notice.text.NoticeListActivity;
 import com.pcm.pcmmanager.common.use_way.UseWayActivity;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.PointListResult;
-import com.pcm.pcmmanager.data.UserDeleteResult;
 import com.pcm.pcmmanager.data.UserSignupResult;
 import com.pcm.pcmmanager.expert.drawer.ExpertNavigationDrawerFramgent;
 import com.pcm.pcmmanager.expert.bid_info.BidFinishFragment;
@@ -200,9 +200,9 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        NetworkManager.getInstance().getUserDelete(new NetworkManager.OnResultListener<UserDeleteResult>() {
+                        NetworkManager.getInstance().getUserDelete(new NetworkManager.OnResultListener<CommonResult>() {
                             @Override
-                            public void onSuccess(Request request, UserDeleteResult result) {
+                            public void onSuccess(Request request, CommonResult result) {
                                 if (result.getResult() == -1)
                                     Toast.makeText(ExpertMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                                 else {

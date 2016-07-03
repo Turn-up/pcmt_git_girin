@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.CustomTextWathcer;
-import com.pcm.pcmmanager.data.EstimateRequestResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
 import com.pcm.pcmmanager.nomal.estimate_list.MyEstimateListActivity;
@@ -201,10 +201,10 @@ public class EstimateRequestEntryFragment extends Fragment {
                     bScale = bScale.replaceAll(",", "");
                     String eCount = employeeCount.getText().toString();
                     eCount = eCount.replaceAll(",", "");
-                    NetworkManager.getInstance().getNomalEstiamteRequestList(EntryCode, marketSubType, address1, address2, TEMP, bScale, marketType1_3, eCount, null, TEMP
-                            , endDate, entryContent.getText().toString(), new NetworkManager.OnResultListener<EstimateRequestResult>() {
+                    NetworkManager.getInstance().getNomalEstiamteRequestList(EntryCode, marketSubType, address1, address2, TEMP, bScale, marketType1_3, eCount, null, null
+                            , endDate, entryContent.getText().toString(), new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
-                                public void onSuccess(Request request, EstimateRequestResult result) {
+                                public void onSuccess(Request request, CommonResult result) {
                                     Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
                                     startActivity(intent);
                                     getActivity().finish();

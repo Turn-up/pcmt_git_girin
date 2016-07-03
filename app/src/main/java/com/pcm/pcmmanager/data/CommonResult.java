@@ -1,9 +1,9 @@
 package com.pcm.pcmmanager.data;
 
 /**
- * Created by LG on 2016-06-10.
+ * Created by LG on 2016-07-01.
  */
-public class ReviewWriteResult {
+public class CommonResult {
     int result;
     String message;
 

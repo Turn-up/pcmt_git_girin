@@ -5,7 +5,7 @@ package com.pcm.pcmmanager.data;
  */
 public class QnaDetailReviewList {
     String _id;
-    String expertsn;
+    int expertsn;
     String expertname;
     String sex;
     String photo;
@@ -27,11 +27,11 @@ public class QnaDetailReviewList {
         this._id = _id;
     }
 
-    public String getExpertsn() {
+    public int getExpertsn() {
         return expertsn;
     }
 
-    public void setExpertsn(String expertsn) {
+    public void setExpertsn(int expertsn) {
         this.expertsn = expertsn;
     }
 

@@ -1,8 +1,8 @@
 package com.pcm.pcmmanager.qna.list;
 
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pcm.pcmmanager.R;
@@ -14,6 +14,7 @@ import com.pcm.pcmmanager.data.QnaList;
 public class QnaViewHolder extends RecyclerView.ViewHolder {
 
     TextView title, regdate, writer, content,reviewCount;
+    ImageView lock_icon;
     QnaList qnaList;
 
     public interface OnItemClickListener {
@@ -31,6 +32,7 @@ public class QnaViewHolder extends RecyclerView.ViewHolder {
         writer = (TextView)itemView.findViewById(R.id.qna_list_writer);
         content = (TextView)itemView.findViewById(R.id.qna_list_content);
         reviewCount = (TextView)itemView.findViewById(R.id.qna_list_review_count);
+        lock_icon = (ImageView)itemView.findViewById(R.id.lock_icon);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,13 +49,14 @@ public class QnaViewHolder extends RecyclerView.ViewHolder {
         title.setText(qnaList.getTitle());
         //비밀글 여부
         if(qnaList.getSecretyn()){
-            Drawable secretIcon= itemView.getContext().getResources().getDrawable(R.drawable.lock_icon);
-            title.setCompoundDrawables(null,null,secretIcon,null);
-            title.setCompoundDrawablePadding(5);
+            lock_icon.setVisibility(View.VISIBLE);
+            content.setText("비밀글 입니다.");
+        }else{
+            lock_icon.setVisibility(View.INVISIBLE);
+            content.setText(qnaList.getContent());
         }
         regdate.setText(qnaList.getRegdate());
         writer.setText(qnaList.getUsername());
-        content.setText(qnaList.getContent());
-        reviewCount.setText(qnaList.getCommentcount());
+        reviewCount.setText(""+qnaList.getCommentcount());
     }
 }

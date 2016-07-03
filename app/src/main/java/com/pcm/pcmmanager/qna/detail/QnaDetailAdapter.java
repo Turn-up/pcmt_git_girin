@@ -1,6 +1,7 @@
 package com.pcm.pcmmanager.qna.detail;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +18,24 @@ public class QnaDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public static final int VIEW_TYPE_CONTENT = 2;
     public static final int VIEW_TYPE_REVIEW = 3;
     QnaDetail item;
+    String qnasn, myList;
 
     QnaDetailReviewViewHolder.OnItemClickListener mListener;
+
     public void setOnItemClickLitener(QnaDetailReviewViewHolder.OnItemClickListener listener) {
         mListener = listener;
     }
 
-    public void setQnaDetailData(QnaDetail qnaDetail) {
+    public void setQnaDetailData(QnaDetail qnaDetail, String qnasn) {
         item = qnaDetail;
+        this.qnasn = qnasn;
+        notifyDataSetChanged();
+    }
+
+    public void setQnaDetailData(QnaDetail qnaDetail, String qnasn, String myList) {
+        item = qnaDetail;
+        this.qnasn = qnasn;
+        this.myList = myList;
         notifyDataSetChanged();
     }
 
@@ -67,13 +78,14 @@ public class QnaDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return;
         } else if (position == 1) {
             QnaDetailContentViewHolder h = (QnaDetailContentViewHolder) holder;
-            h.setContentData(item);
+            if (TextUtils.isEmpty(myList))
+                h.setContentData(item);
+            else
+                h.setContentData(item, qnasn, myList);
             return;
         } else {
             QnaDetailReviewViewHolder h = (QnaDetailReviewViewHolder) holder;
-            for (int i = 0; i < item.getQnaDetailReviewList().size(); i++) {
-                h.setReviewData(item.getQnaDetailReviewList().get(i));
-            }
+            h.setReviewData(item.getQnaDetailReviewList().get(item.getQnaDetailReviewList().size() - position + 1), qnasn);
             h.setOnItemClickListener(mListener);
             return;
         }

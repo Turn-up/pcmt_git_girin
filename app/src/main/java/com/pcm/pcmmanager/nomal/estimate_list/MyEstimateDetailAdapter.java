@@ -42,12 +42,12 @@ public class MyEstimateDetailAdapter extends RecyclerView.Adapter<RecyclerView.V
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_HEADER: {
-                View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_detail_header, parent,false);
-                return new MyEstimateDetailHeaderViewHolder(view1);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_detail_header, parent,false);
+                return new MyEstimateDetailHeaderViewHolder(view);
             }
             case VIEW_TYPE_BID_LIST: {
-                View view2 = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_bids_list, parent,false);
-                return new MyEstimateDetailBidListsViewHolder(view2);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_nomal_estimate_bids_list, parent,false);
+                return new MyEstimateDetailBidListsViewHolder(view);
             }
         }
         throw new IllegalArgumentException("invalid position");

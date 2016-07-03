@@ -17,13 +17,14 @@ import com.pcm.pcmmanager.common.ask.AskActivity;
 import com.pcm.pcmmanager.common.notice.event.NoticeEventActivity;
 import com.pcm.pcmmanager.common.notice.text.NoticeListActivity;
 import com.pcm.pcmmanager.common.use_way.UseWayActivity;
-import com.pcm.pcmmanager.data.UserDeleteResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.UserSignupResult;
 import com.pcm.pcmmanager.login.LoginActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
 import com.pcm.pcmmanager.nomal.drawer.NomalNavigationDrawer;
 import com.pcm.pcmmanager.nomal.estimate_list.MyEstimateListActivity;
+import com.pcm.pcmmanager.nomal.qna_list.MyQnaListActivity;
 
 import java.io.IOException;
 
@@ -87,6 +88,10 @@ public class NomalMainActivity extends AppCompatActivity implements NomalNavigat
                 break;
             case R.id.nomal_drawer_use_way:
                 intent = new Intent(this, UseWayActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nomal_drawer_my_qna:
+                intent = new Intent(this, MyQnaListActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -159,9 +164,9 @@ public class NomalMainActivity extends AppCompatActivity implements NomalNavigat
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        NetworkManager.getInstance().getUserDelete(new NetworkManager.OnResultListener<UserDeleteResult>() {
+                        NetworkManager.getInstance().getUserDelete(new NetworkManager.OnResultListener<CommonResult>() {
                             @Override
-                            public void onSuccess(Request request, UserDeleteResult result) {
+                            public void onSuccess(Request request, CommonResult result) {
                                 if (result.getResult() == -1)
                                     Toast.makeText(NomalMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                                 else {

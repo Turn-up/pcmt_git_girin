@@ -26,9 +26,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="29dp"
+            android:layout_weight="1"
             android:text="님"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#ffffff"
@@ -38,11 +38,11 @@
             android:id="@+id/nomal_drawer_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="22dp"
             android:background="@android:color/transparent"
-            android:visibility="invisible"
-            android:src="@drawable/setting_icon" />
+            android:src="@drawable/setting_icon"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <TextView
@@ -81,10 +81,10 @@
                 android:textSize="16sp" />
 
             <android.support.v7.widget.SwitchCompat
+                android:id="@+id/noaml_drawer_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:id="@+id/noaml_drawer_switch" />
+                android:checked="false" />
         </LinearLayout>
 
         <ImageView
@@ -148,6 +148,22 @@
             android:gravity="center_vertical"
             android:onClick="onNavClick"
             android:text="내 견적"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
+        <TextView
+            android:id="@+id/nomal_drawer_my_qna"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:onClick="onNavClick"
+            android:text="내 질문"
             android:textColor="#515151"
             android:textSize="16sp" />
 

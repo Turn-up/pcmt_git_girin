@@ -7,11 +7,9 @@ import android.os.Message;
 
 import com.google.gson.Gson;
 import com.pcm.pcmmanager.MyApplication;
-import com.pcm.pcmmanager.data.BidDoResult;
 import com.pcm.pcmmanager.data.CommonCodeListResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.ConditionSearchListResult;
-import com.pcm.pcmmanager.data.EstimateConfirmResult;
-import com.pcm.pcmmanager.data.EstimateRequestResult;
 import com.pcm.pcmmanager.data.ExpertBidStatusResult;
 import com.pcm.pcmmanager.data.ExpertCheckResult;
 import com.pcm.pcmmanager.data.ExpertConfirmCheckResult;
@@ -21,22 +19,19 @@ import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
 import com.pcm.pcmmanager.data.ExpertEstimateResult;
 import com.pcm.pcmmanager.data.ExpertNavInfoResult;
 import com.pcm.pcmmanager.data.LoginResult;
-import com.pcm.pcmmanager.data.LogoutResult;
 import com.pcm.pcmmanager.data.MainBidCountResult;
-import com.pcm.pcmmanager.data.MyEstimateEditModifyResult;
 import com.pcm.pcmmanager.data.MyEstimateListResult;
 import com.pcm.pcmmanager.data.NomalMainContentResult;
-import com.pcm.pcmmanager.data.NomalUserMainResult;
-import com.pcm.pcmmanager.data.PersonalInfoModifyResult;
-import com.pcm.pcmmanager.data.PersonalInfoSearchResult;
+import com.pcm.pcmmanager.data.UserProfileResult;
 import com.pcm.pcmmanager.data.NoticeListResult;
+import com.pcm.pcmmanager.data.PersonalInfoSearchResult;
+import com.pcm.pcmmanager.data.PointListResult;
 import com.pcm.pcmmanager.data.QnaDetailResult;
 import com.pcm.pcmmanager.data.QnaListResult;
+import com.pcm.pcmmanager.data.QnaMyListResult;
+import com.pcm.pcmmanager.data.QnaReviewResult;
 import com.pcm.pcmmanager.data.RefreshTokenResult;
-import com.pcm.pcmmanager.data.ReviewWriteResult;
-import com.pcm.pcmmanager.data.UserDeleteResult;
 import com.pcm.pcmmanager.data.UserSignupResult;
-import com.pcm.pcmmanager.data.PointListResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -394,7 +389,7 @@ public class NetworkManager {
     /*전문가 매물 입찰하기*/
     private static final String PCM_EXPERT_BID_DO_URL = PCM_SEVER + "/api/markets/info/%s/insert";
 
-    public Request getBidDo(String price, String price2, String marketSn, OnResultListener<BidDoResult> listener) {
+    public Request getBidDo(String price, String price2, String marketSn, OnResultListener<CommonResult> listener) {
         String url = String.format(PCM_EXPERT_BID_DO_URL, marketSn);
         RequestBody body = new FormBody.Builder()
                 .add("price1", price)
@@ -408,7 +403,7 @@ public class NetworkManager {
                 .post(body)
                 .build();
 
-        final NetworkResult<BidDoResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -422,7 +417,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    BidDoResult data = gson.fromJson(text, BidDoResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -650,7 +645,7 @@ public class NetworkManager {
     /*사용자 정보 수정*/
     private static final String PCM_EXPERT_PERSONAL_INFO_MODIFY = PCM_SEVER + "/api/users/info";
 
-    public Request getPersonalInfoModify(String name, String phone, OnResultListener<PersonalInfoModifyResult> listener) {
+    public Request getPersonalInfoModify(String name, String phone, OnResultListener<CommonResult> listener) {
         String url = PCM_EXPERT_PERSONAL_INFO_MODIFY;
         RequestBody body = new FormBody.Builder()
                 .add("username", name)
@@ -664,7 +659,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<PersonalInfoModifyResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -678,7 +673,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    PersonalInfoModifyResult data = gson.fromJson(text, PersonalInfoModifyResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -691,9 +686,9 @@ public class NetworkManager {
     }
 
     /*일반 사용자 프로필 정보*/
-    private static final String PCM_USER_MAIN_INFO = PCM_SEVER + "/api/users/mymain";
+    private static final String PCM_USER_MAIN_INFO = PCM_SEVER + "/api/users/myprofile";
 
-    public Request getUserMainInfo(OnResultListener<NomalUserMainResult> listener) {
+    public Request getUserProfile(OnResultListener<UserProfileResult> listener) {
         String url = PCM_USER_MAIN_INFO;
         RequestBody body = new FormBody.Builder()
                 .build();
@@ -705,7 +700,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<NomalUserMainResult> result = new NetworkResult<>();
+        final NetworkResult<UserProfileResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -719,7 +714,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    NomalUserMainResult data = gson.fromJson(text, NomalUserMainResult.class);
+                    UserProfileResult data = gson.fromJson(text, UserProfileResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -822,7 +817,7 @@ public class NetworkManager {
     public Request getNomalEstiamteModify(String marketsn, String markettype, String marketsubtype, String regiontype,
                                           String regionsubtype, String markettype1_1, String markettype1_2,
                                           String markettype1_3, String markettype1_4, List<String> markettype2_1,
-                                          String markettype2_2, String enddate, String content, OnResultListener<MyEstimateEditModifyResult> listener) {
+                                          String markettype2_2, String enddate, String content, OnResultListener<CommonResult> listener) {
         String url = String.format(PCM_NOMAL_ESTIMATE_MODIFY, marketsn);
         FormBody.Builder myBuilder = new FormBody.Builder();
         if (markettype2_1 != null) {
@@ -853,7 +848,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<MyEstimateEditModifyResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -867,7 +862,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    MyEstimateEditModifyResult data = gson.fromJson(text, MyEstimateEditModifyResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -879,19 +874,21 @@ public class NetworkManager {
         return request;
     }
 
-    /*일반 사용자 견적 요청하기*/
+    /*23. 견적 작성*/
     private static final String PCM_NOMAL_ESTIMATE_REQUEST_LIST = PCM_SEVER + "/api/markets/insert";
 
     public Request getNomalEstiamteRequestList(String marketType, String marketSubType, String regionType, String regionSubType, String markettpye1_1, String markettype1_2,
-                                               String markettype1_3, String employeeCount, List<String> taxAsset, String taxAssetScale, String enddate, String content, OnResultListener<EstimateRequestResult> listener) {
+                                               String markettype1_3, String employeeCount, List<String> taxAsset, List<String> taxAssetScale, String enddate, String content, OnResultListener<CommonResult> listener) {
         String url = PCM_NOMAL_ESTIMATE_REQUEST_LIST;
         FormBody.Builder myBuilder = new FormBody.Builder();
         if (taxAsset != null) {
             for (int i = 0; i < taxAsset.size(); i++) {
                 myBuilder.add("markettype2_1", taxAsset.get(i).toString());
+                myBuilder.add("markettype2_2",taxAssetScale.get(i).toString());
             }
         } else {
             myBuilder.add("markettype2_1", "002_002");
+            myBuilder.add("markettype2_2","0");
         }
         RequestBody body = myBuilder
                 .add("markettype", marketType)
@@ -902,7 +899,6 @@ public class NetworkManager {
                 .add("markettype1_2", markettype1_2)
                 .add("markettype1_3", markettype1_3)
                 .add("markettype1_4", employeeCount)
-                .add("markettype2_2", taxAssetScale)
                 .add("enddate", enddate)
                 .add("content", content)
                 .build();
@@ -914,7 +910,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<EstimateRequestResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -928,7 +924,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    EstimateRequestResult data = gson.fromJson(text, EstimateRequestResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -943,7 +939,7 @@ public class NetworkManager {
     /*낙찰 완료*/
     private static final String PCM_ESTIMATE_CONFIRM = PCM_SEVER + "/api/markets/info/%s/success";
 
-    public Request getEstimateConfirm(String marketSn, String expertSn, OnResultListener<EstimateConfirmResult> listener) {
+    public Request getEstimateConfirm(String marketSn, String expertSn, OnResultListener<CommonResult> listener) {
         String url = String.format(PCM_ESTIMATE_CONFIRM, marketSn);
 
         RequestBody body = new FormBody.Builder()
@@ -957,7 +953,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<EstimateConfirmResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -971,7 +967,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    EstimateConfirmResult data = gson.fromJson(text, EstimateConfirmResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -1247,7 +1243,7 @@ public class NetworkManager {
     /*유저 탈퇴- > 아직*/
     private static final String PCM_USER_LOGOUT = PCM_SEVER + "/api/users/logout";
 
-    public Request getUserLogout(OnResultListener<LogoutResult> listener) {
+    public Request getUserLogout(OnResultListener<CommonResult> listener) {
         String url = PCM_USER_LOGOUT;
 
         RequestBody body = new FormBody.Builder()
@@ -1260,7 +1256,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<LogoutResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -1274,7 +1270,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    LogoutResult data = gson.fromJson(text, LogoutResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -1331,7 +1327,7 @@ public class NetworkManager {
     /*88. 리뷰작성*/
     private static final String PCM_REVIEW_WRITE = PCM_SEVER + "/api/markets/info/%s/%s/insert";
 
-    public Request getReviewWrite(String marketSn, String expertSn, String score, String content, OnResultListener<ReviewWriteResult> listener) {
+    public Request getReviewWrite(String marketSn, String expertSn, String score, String content, OnResultListener<CommonResult> listener) {
         String url = String.format(PCM_REVIEW_WRITE, marketSn, expertSn);
 
         RequestBody body = new FormBody.Builder()
@@ -1346,7 +1342,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<ReviewWriteResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -1360,7 +1356,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    ReviewWriteResult data = gson.fromJson(text, ReviewWriteResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -1419,7 +1415,7 @@ public class NetworkManager {
     /*95. 유저 탈퇴*/
     private static final String PCM_USER_DELETE = PCM_SEVER + "/api/users/delete";
 
-    public Request getUserDelete(OnResultListener<UserDeleteResult> listener) {
+    public Request getUserDelete(OnResultListener<CommonResult> listener) {
         String url = PCM_USER_DELETE;
 
         RequestBody body = new FormBody.Builder()
@@ -1432,7 +1428,7 @@ public class NetworkManager {
                 .header("version", "1.0") //안드로이드 버젼 전송
                 .build();
 
-        final NetworkResult<UserDeleteResult> result = new NetworkResult<>();
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -1446,7 +1442,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
-                    UserDeleteResult data = gson.fromJson(text, UserDeleteResult.class);
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -1533,6 +1529,305 @@ public class NetworkManager {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
                     QnaDetailResult data = gson.fromJson(text, QnaDetailResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+
+    /*34. QNA 답글 추가*/
+    private static final String PCM_QNA_REVIEW_ADD = PCM_SEVER + "/api/qnas/info/%s/reply/insert";
+
+    public Request getQnaReviewAdd(String qnasn, String content, OnResultListener<QnaReviewResult> listener) {
+        String url = String.format(PCM_QNA_REVIEW_ADD, qnasn);
+
+        RequestBody body = new FormBody.Builder()
+                .add("content", content)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<QnaReviewResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    QnaReviewResult data = gson.fromJson(text, QnaReviewResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+    /*36. QNA 답글 삭제*/
+    private static final String PCM_QNA_REVIEW_DELETE = PCM_SEVER + "/api/qnas/info/%s/reply/delete";
+
+    public Request getQnaReviewDelete(String qnasn, String _id, OnResultListener<CommonResult> listener) {
+        String url = String.format(PCM_QNA_REVIEW_DELETE, qnasn);
+
+        RequestBody body = new FormBody.Builder()
+                .add("_id",_id)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+
+    /*31. QNA 개별 추가*/
+    private static final String PCM_QNA_ASK = PCM_SEVER + "/api/qnas/insert";
+
+    public Request getQnaAsk(String title, String content, Boolean secretyn, OnResultListener<CommonResult> listener) {
+        String url = PCM_QNA_ASK;
+
+        RequestBody body = new FormBody.Builder()
+                .add("title", title)
+                .add("content", content)
+                .add("secretyn", String.valueOf(secretyn))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+    /*20. 나의 QNA 리스트 조회*/
+    private static final String PCM_MY_QNA_LIST = PCM_SEVER + "/api/users/qnaslist";
+
+    public Request getMyQnaList(String pagesize, String last_qnasn, OnResultListener<QnaMyListResult> listener) {
+        String url = PCM_MY_QNA_LIST;
+
+        RequestBody body = new FormBody.Builder()
+                .add("pagesize", pagesize)
+                .add("last_qnasn", last_qnasn)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<QnaMyListResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    QnaMyListResult data = gson.fromJson(text, QnaMyListResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+    /*32. QNA 개별 수정*/
+    private static final String PCM_QNA_EDIT = PCM_SEVER + "/api/qnas/info/%s/update";
+
+    public Request getQnaEdit(String qnasn, String title, String content, Boolean secretyn, OnResultListener<CommonResult> listener) {
+        String url = String.format(PCM_QNA_EDIT, qnasn);
+
+        RequestBody body = new FormBody.Builder()
+                .add("title", title)
+                .add("content", content)
+                .add("secretyn", String.valueOf(secretyn))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+    /*33. QNA 개별 삭제*/
+    private static final String PCM_QNA_DELETE = PCM_SEVER + "/api/qnas/info/%s/delete";
+    public Request getQnaDelte(String qnasn, OnResultListener<CommonResult> listener) {
+        String url = String.format(PCM_QNA_DELETE, qnasn);
+
+        RequestBody body = new FormBody.Builder()
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+    /*98. QNA 댓글 좋아요*/
+    private static final String PCM_QNA_REVIEW_LIKE = PCM_SEVER + "/api/qnas/info/%s/like";
+
+    public Request getQnaReviewLike(String _id, String qnasn, OnResultListener<CommonResult> listener) {
+        String url = String.format(PCM_QNA_REVIEW_LIKE, qnasn);
+
+        RequestBody body = new FormBody.Builder()
+                .add("_id", _id)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<CommonResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    CommonResult data = gson.fromJson(text, CommonResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {

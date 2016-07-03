@@ -187,7 +187,15 @@
         <activity
             android:name=".qna.detail.QnaDetailActivity"
             android:label="@string/title_activity_qna_detail"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".qna.ask.QnaAskActivity"
+            android:label="@string/title_activity_qna_ask"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".nomal.qna_list.MyQnaListActivity"
+            android:label="@string/title_activity_my_qna_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -23,9 +23,9 @@ import android.widget.Toast;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.CustomTextWathcer;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.ExpertEstimateDetail;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
-import com.pcm.pcmmanager.data.MyEstimateEditModifyResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
@@ -201,9 +201,9 @@ public class MyEstimateTaxModify extends AppCompatActivity {
                     address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
                     marketSubType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getList().get(marketSubTypeSpinner.getSelectedItemPosition()).getCode();
                     NetworkManager.getInstance().getNomalEstiamteModify(marketSn, TAX, marketSubType, address1, address2, "", "", "", "", assetList, temp
-                            , String.valueOf(endDate), content, new NetworkManager.OnResultListener<MyEstimateEditModifyResult>() {
+                            , String.valueOf(endDate), content, new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
-                                public void onSuccess(Request request, MyEstimateEditModifyResult result) {
+                                public void onSuccess(Request request, CommonResult result) {
                                     Intent intent = new Intent(MyEstimateTaxModify.this, MyEstimateListActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
@@ -238,14 +238,14 @@ public class MyEstimateTaxModify extends AppCompatActivity {
                 address2Spinner.setSelection(a2Adapter.getPosition(address2));
 
                 marketSubTypeSpinner.setSelection(bAdapter.getPosition(marketSubType));
-                for (int i = 0; i < items.getAsset_type().size(); i++) {
-                    if (items.getAsset_type().get(i).equals("토지")) {
+                for (int i = 0; i < items.getAssetType().size(); i++) {
+                    if (items.getAssetType().get(i).equals("토지")) {
                         check_tax_land.setChecked(true);
-                    } else if (items.getAsset_type().get(i).equals("예금")) {
+                    } else if (items.getAssetType().get(i).equals("예금")) {
                         check_tax_deposit.setChecked(true);
-                    } else if (items.getAsset_type().get(i).equals("주식")) {
+                    } else if (items.getAssetType().get(i).equals("주식")) {
                         check_tax_stock.setChecked(true);
-                    } else if (items.getAsset_type().get(i).equals("주택")) {
+                    } else if (items.getAssetType().get(i).equals("주택")) {
                         check_tax_house.setChecked(true);
                     }
                 }

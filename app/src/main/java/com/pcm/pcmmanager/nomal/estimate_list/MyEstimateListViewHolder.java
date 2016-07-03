@@ -14,9 +14,9 @@ import com.pcm.pcmmanager.data.MyEsitmateList;
 public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
 
     MyEsitmateList myEsitmateList;
-    ImageView marketType_image,bids_count_image;
-    TextView marketType_title, marketType_sub, endDate, bidCount;
-
+    ImageView marketType_image, bids_count_image;
+    TextView marketType_title, endDate, bidCount;
+    TextView[] marketType_sub;
 
     public interface OnItemClickListener {
         public void OnItemClick(View view, MyEsitmateList myEsitmateList);
@@ -30,12 +30,18 @@ public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
 
     public MyEstimateListViewHolder(final View itemView) {
         super(itemView);
-        bids_count_image = (ImageView)itemView.findViewById(R.id.bid_count_image);
-        marketType_image = (ImageView) itemView.findViewById(R.id.market_type_image);
-        marketType_title = (TextView) itemView.findViewById(R.id.market_type_title);
-        marketType_sub = (TextView) itemView.findViewById(R.id.market_type_sub);
-        endDate = (TextView) itemView.findViewById(R.id.end_date);
-        bidCount = (TextView) itemView.findViewById(R.id.bid_count);
+        bids_count_image = (ImageView) itemView.findViewById(R.id.nomal_estimate_bid_count_image);
+        marketType_image = (ImageView) itemView.findViewById(R.id.nomal_estimate_market_type_image);
+        marketType_title = (TextView) itemView.findViewById(R.id.nomal_estimate_market_type);
+
+        marketType_sub = new TextView[4];
+        marketType_sub[0] = (TextView) itemView.findViewById(R.id.nomal_estimate_market_type_sub1);
+        marketType_sub[1] = (TextView) itemView.findViewById(R.id.nomal_estimate_market_type_sub2);
+        marketType_sub[2] = (TextView) itemView.findViewById(R.id.nomal_estimate_market_type_sub3);
+        marketType_sub[3] = (TextView) itemView.findViewById(R.id.nomal_estimate_market_type_sub4);
+
+        endDate = (TextView) itemView.findViewById(R.id.nomal_estimate_end_date);
+        bidCount = (TextView) itemView.findViewById(R.id.nomal_estimate_bid_count);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +62,9 @@ public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
         if (enddate > 0) {
             endDate.setText("D-" + enddate);
         } else if (enddate == 0) {
-            enddate = 24 - (this.myEsitmateList.getRegDate() % (24 * 60 * 60 * 1000))/(1 * 60 * 60 * 1000);
+            enddate = 24 - (this.myEsitmateList.getRegDate() % (24 * 60 * 60 * 1000)) / (1 * 60 * 60 * 1000);
             endDate.setText(enddate + "시간");
-            if(enddate<=1){
+            if (enddate <= 1) {
                 endDate.setText("마감 임박");
             }
         } else if (enddate < 0) {
@@ -69,29 +75,29 @@ public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
         if (myEsitmateList.getMarketType().equals("기장")) {//기장
             marketType_image.setImageResource(R.drawable.entry_icon);
             marketType_title.setText(this.myEsitmateList.getMarketSubType());
-            marketType_sub.setText("매출 " + this.myEsitmateList.getBusinessScale() + ", 종업원 " + this.myEsitmateList.getEmployeeCount() + "명");
+            marketType_sub[0].setText("매출 " + this.myEsitmateList.getBusinessScale() + ", 종업원 " + this.myEsitmateList.getEmployeeCount() + "명");
         } else if (myEsitmateList.getMarketType().equals("TAX")) {//기타
             marketType_image.setImageResource(R.drawable.tax_icon);
             marketType_title.setText(this.myEsitmateList.getMarketSubType());
-            String temp="";
-            if(!this.myEsitmateList.getMarketSubType().equals("세무조사")) {
-                temp = ", 자산 내용 ";
+            if (this.myEsitmateList.getMarketSubType().equals("세무조사")) {
+                marketType_sub[0].setText("시가 " + this.myEsitmateList.getMarketPrice().get(0));
+            } else {
                 for (int i = 0; i < this.myEsitmateList.getAssetType().size(); i++) {
-                    temp += this.myEsitmateList.getAssetType().get(i) + " ";
+                    marketType_sub[i].setVisibility(View.VISIBLE);
+                    marketType_sub[i].setText("자산 " + this.myEsitmateList.getAssetType().get(i) + ", " + this.myEsitmateList.getMarketPrice().get(i));
                 }
             }
-            marketType_sub.setText("자산 " + this.myEsitmateList.getMarketPrice() + temp);
         } else {//기타
             marketType_image.setImageResource(R.drawable.etc_icon);
             marketType_title.setText("기타");
-            marketType_sub.setText("상세 페이지를 확인하세요");
+            marketType_sub[0].setText("상세 페이지를 확인하세요");
         }
         bidCount.setText("" + this.myEsitmateList.getOldCnt());
         bids_count_image.setVisibility(View.VISIBLE);
-        if(this.myEsitmateList.getStatus().equals("낙찰완료")){
+        if (this.myEsitmateList.getStatus().equals("낙찰완료")) {
             bidCount.setText("낙찰완료");
             bids_count_image.setVisibility(View.GONE);
-        } else if(this.myEsitmateList.getStatus().equals("입찰전")){
+        } else if (this.myEsitmateList.getStatus().equals("입찰전")) {
             bidCount.setText("견적 확인중");
             bids_count_image.setVisibility(View.GONE);
         }

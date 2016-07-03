@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
@@ -27,6 +26,7 @@ import com.pcm.pcmmanager.expert.auction.AuctionViewHolder;
 import com.pcm.pcmmanager.expert.bid_do.BidDoActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
+import com.pcm.pcmmanager.qna.list.QnaListActivity;
 
 import java.io.IOException;
 
@@ -44,8 +44,7 @@ public class ExpertFragment extends Fragment {
     RecyclerView recyclerView;
     AuctionAdapter mAdapter;
 
-    Button btn_expert_condition_search, btn_expert_estimate_view;
-    TextView bidCount, bidEndCount;
+    Button btn_expert_condition_search, btn_expert_estimate_view,btn_expert_qna_search;
     Boolean isLast;
     LinearLayoutManager mLayoutManager;
 
@@ -114,6 +113,15 @@ public class ExpertFragment extends Fragment {
                 getFragmentManager().beginTransaction()
                         .replace(R.id.expert_parent_container, new ConditionSearchFragment())
                         .commit();
+            }
+        });
+        //Q&A 검색 버튼
+        btn_expert_qna_search = (Button)view.findViewById(R.id.btn_expert_qna_search);
+        btn_expert_qna_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), QnaListActivity.class);
+                startActivity(intent);
             }
         });
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -76,4 +76,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:layout_marginBottom="21dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lock_icon"
+        android:src="@drawable/lock_icon"
+        android:visibility="visible"
+        android:layout_alignBottom="@+id/qna_list_regdate"
+        android:layout_toRightOf="@+id/qna_list_title"
+        android:layout_toEndOf="@+id/qna_list_title"
+        android:layout_marginLeft="10dp" />
 </RelativeLayout>

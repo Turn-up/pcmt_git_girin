@@ -21,6 +21,7 @@ import com.pcm.pcmmanager.data.QnaListResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.nomal.NomalMainActivity;
+import com.pcm.pcmmanager.qna.ask.QnaAskActivity;
 import com.pcm.pcmmanager.qna.detail.QnaDetailActivity;
 
 import java.io.IOException;
@@ -28,7 +29,6 @@ import java.io.IOException;
 import okhttp3.Request;
 
 public class QnaListActivity extends AppCompatActivity {
-
     ImageButton qnaSearch;
     EditText qnaKeyword;
     Button qnaDo;
@@ -59,9 +59,20 @@ public class QnaListActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new QnaViewHolder.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, QnaList qnaList) {
-                Intent intent = new Intent(QnaListActivity.this, QnaDetailActivity.class);
-                intent.putExtra("qnaSn",qnaList.getQnasn());
-                startActivity(intent);
+                if(qnaList.getSecretyn()){
+                    if (MyApplication.getUserType().equals("Users")) {
+                        Toast.makeText(QnaListActivity.this, "비밀글 입니다.", Toast.LENGTH_SHORT).show();
+                    } else if (MyApplication.getUserType().equals("Experts")) {
+                        Intent intent = new Intent(QnaListActivity.this, QnaDetailActivity.class);
+                        intent.putExtra("qnaSn", "" + qnaList.getQnasn());
+                        startActivity(intent);
+                    }
+                }else{
+                    Intent intent = new Intent(QnaListActivity.this, QnaDetailActivity.class);
+                    intent.putExtra("qnaSn", "" + qnaList.getQnasn());
+                    startActivity(intent);
+
+                }
             }
         });
 
@@ -75,7 +86,6 @@ public class QnaListActivity extends AppCompatActivity {
                     getMoreData();
                 }
             }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int totalCount = mAdapter.getItemCount();
@@ -86,12 +96,25 @@ public class QnaListActivity extends AppCompatActivity {
                     isLast = false;
             }
         });
-        setData();
+        qnaDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QnaListActivity.this, QnaAskActivity.class);
+                startActivity(intent);
+            }
+        });
         //recycler view 구현
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setData();
+    }
+
     private boolean isMoreData = false;
+
     private void getMoreData() {
         if (!isMoreData && mAdapter.isMoreData()) {
             isMoreData = true;

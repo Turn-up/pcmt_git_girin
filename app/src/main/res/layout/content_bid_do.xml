@@ -31,16 +31,49 @@
                 android:textColor="#515151"
                 android:textSize="17sp" />
 
-            <TextView
-                android:id="@+id/expert_estimate_market_type_sub"
+            <LinearLayout
+                android:id="@+id/linearLayout5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/expert_estimate_market_type_title"
                 android:layout_marginTop="10dp"
-                android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#838383"
-                android:textSize="13sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/expert_estimate_market_type_sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Small Text"
+                    android:textColor="#838383"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/expert_estimate_market_type_sub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Small Text"
+                    android:textColor="#838383"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/expert_estimate_market_type_sub3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Small Text"
+                    android:textColor="#838383"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/expert_estimate_market_type_sub4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Small Text"
+                    android:textColor="#838383"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/expert_estimate_end_date"
@@ -54,23 +87,15 @@
                 android:textColor="#838383"
                 android:textSize="13sp" />
 
-            <ImageView
-                android:id="@+id/expert_estimate_bid_count_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/expert_estimate_bid_count"
-                android:layout_alignEnd="@+id/expert_estimate_end_date"
-                android:layout_alignRight="@+id/expert_estimate_end_date"
-                android:src="@drawable/bidcount_icon" />
-
             <TextView
                 android:id="@+id/expert_estimate_bid_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/expert_estimate_market_type_sub"
-                android:layout_marginRight="7dp"
-                android:layout_toLeftOf="@+id/expert_estimate_bid_count_image"
-                android:layout_toStartOf="@+id/expert_estimate_bid_count_image"
+                android:layout_alignBottom="@+id/linearLayout5"
+                android:layout_alignEnd="@+id/expert_estimate_end_date"
+                android:layout_alignRight="@+id/expert_estimate_end_date"
+                android:drawablePadding="7dp"
+                android:drawableRight="@drawable/bidcount_icon"
                 android:text="Small Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#ff8f00"
@@ -83,45 +108,23 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/underbar28" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/expert_estiamte_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/expert_estiamte_address"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#838383"
-                android:textSize="13sp" />
-
-            <!--<TextView-->
-            <!--android:id="@+id/detail_header_sub"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginRight="5dp"-->
-            <!--android:text="Small Text"-->
-            <!--android:textAppearance="?android:attr/textAppearanceSmall" />-->
-            <!---->
-            <!--<TextView-->
-            <!--android:id="@+id/textView16"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="만원"-->
-            <!--android:textAppearance="?android:attr/textAppearanceSmall" />-->
-        </LinearLayout>
+            android:layout_marginTop="15dp"
+            android:text="Small Text"
+            android:textColor="#838383"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/expert_estimate_content"
             android:layout_width="304dp"
-            android:layout_height="210dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:padding="5dp"
             android:background="@drawable/expert_bid_do_info_text_box"
+            android:padding="5dp"
             android:text="content"
             android:textColor="#838383"
             android:textSize="12sp" />
@@ -140,8 +143,8 @@
             android:id="@+id/expert_estimate_bid_do_input_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btn_expert_estimate_bid_do_up_image"
@@ -190,24 +193,24 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="18dp"
                             android:layout_marginRight="18dp"
+                            android:layout_weight="1"
                             android:textColor="#515151"
-                            android:textSize="15dp"
-                            android:layout_weight="1" />
+                            android:textSize="15dp" />
 
                         <EditText
                             android:id="@+id/estimate_put_money_editText_1"
                             android:layout_width="227dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:gravity="right"
                             android:layout_marginRight="18dp"
-                            android:paddingTop="3dp"
                             android:background="@drawable/expert_bid_do_input_won"
-
-                            android:textColor="#515151"
-                            android:textSize="16sp"
+                            android:gravity="right"
                             android:inputType="number"
-                            android:paddingRight="23dp" />
+
+                            android:paddingRight="23dp"
+                            android:paddingTop="3dp"
+                            android:textColor="#515151"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -224,29 +227,30 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="18dp"
                             android:layout_marginRight="18dp"
-                            android:textColor="#515151"
-                            android:textSize="15dp"
+                            android:layout_weight="1"
                             android:text="dd"
-                            android:layout_weight="1" />
+                            android:textColor="#515151"
+                            android:textSize="15dp" />
 
                         <EditText
                             android:id="@+id/estimate_put_money_editText_2"
                             android:layout_width="227dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="18dp"
-                            android:textColor="#515151"
-                            android:textSize="16sp"
-                            android:paddingTop="3dp"
                             android:background="@drawable/expert_bid_do_input_won"
                             android:gravity="right"
                             android:inputType="number"
-                            android:paddingRight="23dp" />
+                            android:paddingRight="23dp"
+                            android:paddingTop="3dp"
+                            android:textColor="#515151"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
             </FrameLayout>
+
             <ImageButton
                 android:id="@+id/btn_expert_estimate_bid_do"
                 android:layout_width="wrap_content"
@@ -256,8 +260,6 @@
                 android:src="@drawable/expert_bid_do_btn"
                 android:text="입찰하기" />
         </LinearLayout>
-
-
 
 
     </RelativeLayout>

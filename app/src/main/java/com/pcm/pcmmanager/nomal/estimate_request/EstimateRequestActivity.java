@@ -83,5 +83,4 @@ public class EstimateRequestActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

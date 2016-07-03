@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
-import com.pcm.pcmmanager.data.PersonalInfoModifyResult;
+import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.PersonalInfoSearch;
 import com.pcm.pcmmanager.data.PersonalInfoSearchResult;
 import com.pcm.pcmmanager.manager.NetworkManager;
@@ -96,9 +96,9 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        NetworkManager.getInstance().getPersonalInfoModify(name.getText().toString(), phone.getText().toString(),new NetworkManager.OnResultListener<PersonalInfoModifyResult>() {
+                        NetworkManager.getInstance().getPersonalInfoModify(name.getText().toString(), phone.getText().toString(),new NetworkManager.OnResultListener<CommonResult>() {
                             @Override
-                            public void onSuccess(Request request, PersonalInfoModifyResult result) {
+                            public void onSuccess(Request request, CommonResult result) {
                                 if(result.getResult() == -1){
                                     Toast.makeText(ExpertInfoEditActivity.this, "개인정보 수정중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
                                 }else{

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity;
 import com.pcm.pcmmanager.data.QnaDetailResult;
 import com.pcm.pcmmanager.data.QnaDetailReviewList;
+import com.pcm.pcmmanager.data.QnaReviewResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.nomal.NomalMainActivity;
@@ -36,6 +38,7 @@ public class QnaDetailActivity extends AppCompatActivity {
     Boolean isLast;
     EditText reviewText;
     ImageButton reviewButton;
+    String qnaSn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,43 +49,65 @@ public class QnaDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        mLayoutManager = new LinearLayoutManager(this);
         reviewText = (EditText) findViewById(R.id.qna_detail_input_text);
         reviewButton = (ImageButton) findViewById(R.id.qna_detail_image_btn);
-
+        if(MyApplication.getUserType().equals("Users")){
+            reviewText.setVisibility(View.GONE);
+            reviewButton.setVisibility(View.GONE);
+        }else{
+            reviewButton.setVisibility(View.VISIBLE);
+            reviewText.setVisibility(View.VISIBLE);
+        }
         rv_list = (RecyclerView)findViewById(R.id.qna_detail_rv_list);
         mAdapter = new QnaDetailAdapter();
-        mAdapter.setOnItemClickLitener(new QnaDetailReviewViewHolder.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, QnaDetailReviewList mList) {
-                Intent intent = new Intent(QnaDetailActivity.this, ExpertDetailInfoActivity.class);
-                intent.putExtra("expertSn",mList.getExpertsn());
-                startActivity(intent);
-            }
-        });
+
         rv_list.setAdapter(mAdapter);
         rv_list.setLayoutManager(mLayoutManager);
         isLast = false;
+
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ReviewConfirmDialog();
-                //mAdapter refresh
+                if(!TextUtils.isEmpty(reviewText.getText().toString())){
+                    ReviewConfirmDialog();
+                }else{
+                    Toast.makeText(QnaDetailActivity.this, "댓글을 입력하세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+        mAdapter.setOnItemClickLitener(new QnaDetailReviewViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, QnaDetailReviewList mList) {
+
+                Intent intent = new Intent(QnaDetailActivity.this, ExpertDetailInfoActivity.class);
+                intent.putExtra("expertSn",String.valueOf(mList.getExpertsn()));
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         setData();
     }
+
     private void setData() {
-        String qnaSn = getIntent().getStringExtra("qnaSn");
+        qnaSn = getIntent().getStringExtra("qnaSn");
         NetworkManager.getInstance().getQnaDetail(qnaSn, new NetworkManager.OnResultListener<QnaDetailResult>() {
             @Override
             public void onSuccess(Request request, QnaDetailResult result) {
                 if(result.getResult() == -1){
                     Toast.makeText(QnaDetailActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 }else{
-                    mAdapter.setQnaDetailData(result.getQnaDetail());
+                    if(!TextUtils.isEmpty(getIntent().getStringExtra("myList"))){
+                        mAdapter.setQnaDetailData(result.getQnaDetail(),qnaSn,getIntent().getStringExtra("myList"));
+                    }else{
+                        mAdapter.setQnaDetailData(result.getQnaDetail(),qnaSn);
+                    }
                 }
             }
-
             @Override
             public void onFail(Request request, IOException exception) {
 
@@ -98,25 +123,24 @@ public class QnaDetailActivity extends AppCompatActivity {
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-//                        NetworkManager.getInstance().getLogout(new NetworkManager.OnResultListener<UserSignupResult>() {
-//                            @Override
-//                            public void onSuccess(Request request, UserSignupResult result) {
-//                                if (result.getResult() == -1)
-//                                    Toast.makeText(NomalMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-//                                else {
-//                                    // 로그아웃한다
-//                                    PropertyManager.getInstance().setAuthorizationToken("");
-//                                    Intent intent = new Intent(NomalMainActivity.this, LoginActivity.class);
-//                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                    startActivity(intent);
-//                                    finish();
-//                                }
-//                            }
-//                            @Override
-//                            public void onFail(Request request, IOException exception) {
-//
-//                            }
-//                        });
+                        qnaSn = getIntent().getStringExtra("qnaSn");
+                        NetworkManager.getInstance().getQnaReviewAdd(qnaSn,reviewText.getText().toString(),new NetworkManager.OnResultListener<QnaReviewResult>() {
+                            @Override
+                            public void onSuccess(Request request, QnaReviewResult result) {
+                                if (result.getResult() == -1)
+                                    Toast.makeText(QnaDetailActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                                else {
+                                    Toast.makeText(QnaDetailActivity.this, "댓글 작성 완료", Toast.LENGTH_SHORT).show();
+                                    reviewText.setText("");
+                                    setData();
+
+                                }
+                            }
+                            @Override
+                            public void onFail(Request request, IOException exception) {
+
+                            }
+                        });
 
                     }
                 })

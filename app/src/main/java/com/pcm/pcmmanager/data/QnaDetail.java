@@ -2,6 +2,8 @@ package com.pcm.pcmmanager.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,6 +60,14 @@ public class QnaDetail {
     }
 
     public String getRegdate() {
+        SimpleDateFormat original_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat new_format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date original_date = original_format.parse(regdate);
+            regdate = new_format.format(original_date);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return regdate;
     }
 

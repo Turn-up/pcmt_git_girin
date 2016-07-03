@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="28dp"
+    android:layout_marginRight="28dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/my_qna_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Title"
+        android:textColor="#3f3f3f"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/my_qna_list_regdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="2015.05.06"
+        android:textColor="#717171"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/my_qna_list_writer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/my_qna_list_title"
+        android:layout_marginTop="10dp"
+        android:text="name"
+        android:textColor="#7485e2"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/my_qna_list_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/my_qna_list_writer"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="12dp"
+        android:singleLine="true"
+        android:text="content"
+        android:textColor="#717171"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/my_qna_list_review_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView2"
+        android:layout_alignEnd="@+id/my_qna_list_regdate"
+        android:layout_alignRight="@+id/my_qna_list_regdate"
+        android:drawableLeft="@drawable/review_count_icon"
+        android:drawablePadding="6dp"
+        android:text="5"
+        android:textColor="#717171"
+        android:textSize="11sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_qna_list_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:layout_marginTop="21dp"
+        android:src="@drawable/underbar_20" />
+
+    <ImageView
+        android:id="@+id/lock_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/my_qna_list_regdate"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/my_qna_list_title"
+        android:layout_toRightOf="@+id/my_qna_list_title"
+        android:src="@drawable/lock_icon"
+        android:visibility="visible" />
+    
+</RelativeLayout>

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class MyEsitmateList {
     @SerializedName("markettype2_1")
     List<String> assetType;
     @SerializedName("markettype2_2")
-    private long marketPrice;
+    List<Long> marketPrice;
     private int bidscount = 0;
     @SerializedName("enddate")
     private String endDate;
@@ -153,19 +154,20 @@ public class MyEsitmateList {
         this.employeeCount = employeeCount;
     }
 
-    public String getMarketPrice() {
-        String bs;
-        if (marketPrice < 1000000) {
-            bs = marketPrice / 1000 + "만원";
-        } else if (1000000 <= marketPrice && marketPrice < 100000000) {
-            bs = marketPrice / 10000 + "만원";
-        } else {
-            bs = marketPrice / 100000000 + "." + (marketPrice % 100000000) / 10000000 + "억원";
+    public List<String> getMarketPrice() {
+        List<String> bs = new ArrayList<String>();
+        for(int i=0; i<marketPrice.size(); i++) {
+            if (marketPrice.get(i) < 1000000) {
+                bs.add(marketPrice.get(i) / 1000 + "만원");
+            } else if (1000000 <= marketPrice.get(i) && marketPrice.get(i) < 100000000) {
+                bs.add(marketPrice.get(i) / 10000 + "만원");
+            } else {
+                bs.add(marketPrice.get(i) / 100000000 + "." + (marketPrice.get(i) % 100000000) / 10000000 + "억원");
+            }
         }
         return bs;
     }
-
-    public void setMarketPrice(long marketPrice) {
+    public void setMarketPrice(List<Long> marketPrice) {
         this.marketPrice = marketPrice;
     }
 

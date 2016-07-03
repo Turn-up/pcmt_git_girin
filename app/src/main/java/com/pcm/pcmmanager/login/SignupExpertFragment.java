@@ -50,14 +50,13 @@ public class SignupExpertFragment extends Fragment {
         email = (EditText) v.findViewById(R.id.signup_expert_email);
         password = (EditText) v.findViewById(R.id.signup_expert_password);
         passwordCheck = (EditText) v.findViewById(R.id.signup_expert_password_check);
-       btn = (ImageButton) v.findViewById(R.id.signup_expert_btn);
+        btn = (ImageButton) v.findViewById(R.id.signup_expert_btn);
         passwordCheckIcon = (ImageView) v.findViewById(R.id.user_password_icon);
         passwordRecheckIcon = (ImageView) v.findViewById(R.id.user_password_check_icon);
-
-        TelephonyManager telManager = (TelephonyManager)getContext().getSystemService(getContext().TELEPHONY_SERVICE);
+        phone = (EditText) v.findViewById(R.id.signup_expert_phone);
+        TelephonyManager telManager = (TelephonyManager) getContext().getSystemService(getContext().TELEPHONY_SERVICE);
         String phoneNum = telManager.getLine1Number();
         phone.setText(phoneNum);
-
         password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -128,9 +127,9 @@ public class SignupExpertFragment extends Fragment {
                 PropertyManager.getInstance().getRegistrationToken(), "", "", ROLE_EXPERT_USER, new NetworkManager.OnResultListener<UserSignupResult>() {
                     @Override
                     public void onSuccess(Request request, UserSignupResult result) {
-                        if(result.getResult() == -1){
+                        if (result.getResult() == -1) {
                             Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             userSignupResult = result;
                             PropertyManager.getInstance().setAuthorizationToken(userSignupResult.getToken());
                             PropertyManager.getInstance().setExpertCheck(false);
