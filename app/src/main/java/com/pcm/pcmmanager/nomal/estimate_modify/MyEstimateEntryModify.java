@@ -44,7 +44,7 @@ public class MyEstimateEntryModify extends AppCompatActivity {
     Spinner marketSubTypeSpinner, address1Spinner, address2Spinner;
     ArrayAdapter<String> marketSubAdapter, a1Adapter, a2Adapter;
     Button entryAdd;
-    EditText businessScale, employeeCount, entryContent;
+    EditText businessScale, employeeCount, entryContent, phone;
     String marketSubType, address1, address2, marketType1_3, tempAddress1; //업종, 주소(시, 군),부가내용
     String endDate = "1", marketSn; // 마감일
     RadioButton radioButton;
@@ -86,7 +86,7 @@ public class MyEstimateEntryModify extends AppCompatActivity {
         businessScale = (EditText) findViewById(R.id.estimate_modify_entry_businessScale);
         employeeCount = (EditText) findViewById(R.id.estimate_modify_entry_employleeCount);
         radioButton = (RadioButton) findViewById(R.id.btn_entry_artifical_radio);
-
+        phone = (EditText) findViewById(R.id.estimate_modify_entry_phone);
         /*3자리 씩 끊기*/
         businessScale.addTextChangedListener(new CustomTextWathcer(businessScale));
         employeeCount.addTextChangedListener(new CustomTextWathcer(employeeCount));
@@ -185,6 +185,8 @@ public class MyEstimateEntryModify extends AppCompatActivity {
                     Toast.makeText(MyEstimateEntryModify.this, "직원수를 입력하세요", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(entryContent.getText().toString())) {
                     Toast.makeText(MyEstimateEntryModify.this, "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(phone.getText().toString())){
+                    Toast.makeText(MyEstimateEntryModify.this, "연락처를 입력하세요", Toast.LENGTH_SHORT).show();
                 } else {
                     String bScale = businessScale.getText().toString();
                     bScale = bScale.replaceAll(",", "");
@@ -193,9 +195,9 @@ public class MyEstimateEntryModify extends AppCompatActivity {
                     marketSubType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ENTRY_POSITION).getList().get(marketSubTypeSpinner.getSelectedItemPosition()).getCode();
                     address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
                     address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
-                    NetworkManager.getInstance().getNomalEstiamteModify(marketSn, EntryCode, marketSubType
+                    NetworkManager.getInstance().getNomalEstiamteModify(phone.getText().toString(),marketSn, EntryCode, marketSubType
                             , address1, address2, TEMP, bScale, marketType1_3,
-                            eCount, null, TEMP, endDate, entryContent.getText().toString(),
+                            eCount, null, null, endDate, entryContent.getText().toString(),
                             new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
                                 public void onSuccess(Request request, CommonResult result) {
@@ -228,6 +230,7 @@ public class MyEstimateEntryModify extends AppCompatActivity {
                 address1 = items.getAddress1();
                 address2 = items.getAddress2();
                 marketType1_3 = items.getMarkettpye1_3();
+                phone.setText(items.getPhone());
 
                     /*사업자 구분 초기값*/
                 if (marketType1_3.equals("개인")) {
@@ -240,8 +243,8 @@ public class MyEstimateEntryModify extends AppCompatActivity {
                     radioButton.setBackgroundResource(R.drawable.radio_background_arti_ease);
                 }
 
-                seekBar.setProgress(Integer.valueOf(endDate)-1);
-                day[Integer.valueOf(endDate)-1].setTextColor(Color.BLACK);
+                seekBar.setProgress(Integer.valueOf(endDate) - 1);
+                day[Integer.valueOf(endDate) - 1].setTextColor(Color.BLACK);
                 address1Spinner.setSelection(a1Adapter.getPosition(address1));
                 address2Spinner.setSelection(a2Adapter.getPosition(address2));
                 marketSubTypeSpinner.setSelection(marketSubAdapter.getPosition(marketSubType));
@@ -253,6 +256,7 @@ public class MyEstimateEntryModify extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

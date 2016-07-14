@@ -76,16 +76,14 @@ public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
             marketType_image.setImageResource(R.drawable.entry_icon);
             marketType_title.setText(this.myEsitmateList.getMarketSubType());
             marketType_sub[0].setText("매출 " + this.myEsitmateList.getBusinessScale() + ", 종업원 " + this.myEsitmateList.getEmployeeCount() + "명");
+            for (int i = 1; i < 4; i++)
+                marketType_sub[i].setVisibility(View.GONE);
         } else if (myEsitmateList.getMarketType().equals("TAX")) {//기타
             marketType_image.setImageResource(R.drawable.tax_icon);
             marketType_title.setText(this.myEsitmateList.getMarketSubType());
-            if (this.myEsitmateList.getMarketSubType().equals("세무조사")) {
-                marketType_sub[0].setText("시가 " + this.myEsitmateList.getMarketPrice().get(0));
-            } else {
-                for (int i = 0; i < this.myEsitmateList.getAssetType().size(); i++) {
-                    marketType_sub[i].setVisibility(View.VISIBLE);
-                    marketType_sub[i].setText("자산 " + this.myEsitmateList.getAssetType().get(i) + ", " + this.myEsitmateList.getMarketPrice().get(i));
-                }
+            for (int i = 0; i < this.myEsitmateList.getAssetType().size(); i++) {
+                marketType_sub[i].setVisibility(View.VISIBLE);
+                marketType_sub[i].setText("자산 " + this.myEsitmateList.getAssetType().get(i) + ", " + this.myEsitmateList.getMarketPrice().get(i));
             }
         } else {//기타
             marketType_image.setImageResource(R.drawable.etc_icon);

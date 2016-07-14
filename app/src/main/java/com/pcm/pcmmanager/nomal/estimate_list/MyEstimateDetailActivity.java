@@ -47,7 +47,7 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
     RecyclerView listView;
     MyEstimateDetailAdapter mAdapter;
     CutomDialog dialog;
-    int reviewSn;
+    boolean reviewYn;
     String expertSn, marketSn;
     String eName, ePhoto, eMoney, eMoney2, eSex, status;
 
@@ -73,30 +73,7 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
 
         dialog = new CutomDialog(this);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        mAdapter.setOnItemClickLitener(new MyEstimateDetailBidListsViewHolder.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, ExpertEstimateDetailBidList mList) {
-                expertSn = String.valueOf(mList.getExpertSn());
-                if (status.equals("낙찰완료")) {
-                    if (reviewSn ==0) {
-                        ReviewDialog reviewDialog = new ReviewDialog(MyEstimateDetailActivity.this);
-                        reviewDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        reviewDialog.show();
-                    }else{
-                        Intent intent = new Intent(MyEstimateDetailActivity.this, ExpertDetailInfoActivity.class);
-                        intent.putExtra("expertSn",expertSn);
-                        startActivity(intent);
-                    }
-                } else {
-                    eName = mList.getExpertName();
-                    ePhoto = mList.getPhoto();
-                    eMoney = String.valueOf(mList.getPrice());
-                    eMoney2 = String.valueOf(mList.getPrice2());
-                    eSex = mList.getSex();
-                    dialog.show();
-                }
-            }
-        });
+
     }
 
     private void setData() {
@@ -108,7 +85,31 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
                     Toast.makeText(MyEstimateDetailActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
                     mAdapter.setDetailItem(items);
-                    reviewSn = items.getReviewsn();
+                    reviewYn = items.getReviewyn();
+                    mAdapter.setOnItemClickLitener(new MyEstimateDetailBidListsViewHolder.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, ExpertEstimateDetailBidList mList) {
+                            expertSn = String.valueOf(mList.getExpertSn());
+                            if (status.equals("낙찰완료")) {
+                                if (!reviewYn) {
+                                    ReviewDialog reviewDialog = new ReviewDialog(MyEstimateDetailActivity.this);
+                                    reviewDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                    reviewDialog.show();
+                                }else{
+                                    Intent intent = new Intent(MyEstimateDetailActivity.this, ExpertDetailInfoActivity.class);
+                                    intent.putExtra("expertSn",expertSn);
+                                    startActivity(intent);
+                                }
+                            } else {
+                                eName = mList.getExpertName();
+                                ePhoto = mList.getPhoto();
+                                eMoney = String.valueOf(mList.getPrice());
+                                eMoney2 = String.valueOf(mList.getPrice2());
+                                eSex = mList.getSex();
+                                dialog.show();
+                            }
+                        }
+                    });
                 }
             }
 
@@ -255,7 +256,7 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
             review_write = (EditText) findViewById(R.id.expert_review_content);
             review_add_btn = (ImageButton) findViewById(R.id.expert_review_do_btn);
             review_cancel_btn = (ImageButton) findViewById(R.id.expert_review_cancel_btn);
-            rating.setRating(3.0f);
+            rating.setRating(5.0f);
 
             review_add_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -271,6 +272,9 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
                                 }else {
                                     dismiss();
                                     Toast.makeText(getContext(), "리뷰를 작성해주셔서 감사합니다.", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MyEstimateDetailActivity.this, MyEstimateListActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(intent);
                                 }
                             }
 

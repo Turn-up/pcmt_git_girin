@@ -1,15 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.pcm.pcmmanager.nomal.info.NomalUserInfoEditActivity"
     tools:showIn="@layout/activity_nomal_user_info_edit">
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/nomal_personal_info_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/personal_info_name_unselect"
+        android:paddingLeft="27dp"
+        android:textColor="#777777"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/nomal_personal_info_email"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/email_icon"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="1dp"
+        android:text="이메일"
+        android:textColor="#777777"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/nomal_personal_info_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/personal_info_phone_unselect"
+        android:paddingLeft="27dp"
+        android:textColor="#777777"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="알림 설정"
+            android:textColor="#777777"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/nomal_personal_info_push_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="사업자 분류" />
+
+        <RadioGroup
+            android:id="@+id/business_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_entry_personal_radio"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_background_person"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/btn_entry_artifical_radio"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_background_arti_person"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/btn_entry_ease_radio"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_background_ease"
+                android:button="@null" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:text="과세 여부" />
+
+        <RadioGroup
+            android:id="@+id/taxation_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/taxation_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:background="@drawable/radio_signup_taxation_no"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/taxation_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_signup_taxation_yes"
+                android:button="@null" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/nomal_personal_info_password"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/logout_button_round"
+        android:text="로그아웃"
+        android:textColor="#777777"
+        android:textSize="13dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="*회계매니저를 더 이상 이용하지 않으시려면"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/nomal_personal_info_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="회원탈퇴하기>>"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/underbar28" />
+
+</LinearLayout>

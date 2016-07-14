@@ -24,7 +24,7 @@
             android:id="@+id/estimate_request_etc_address1_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
+            android:layout_marginLeft="33dp"
             android:layout_weight="1"
             android:background="@drawable/box_midle_dropdown"
             android:spinnerMode="dropdown" />
@@ -37,6 +37,36 @@
             android:layout_weight="1"
             android:background="@drawable/box_midle_dropdown"
             android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="14dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="연락처"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/estimate_request_etc_phone"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_marginLeft="21dp"
+            android:background="@drawable/text_default_rounded_corner"
+            android:gravity="right|center_vertical"
+            android:inputType="number"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:textColor="#c6c6c6"
+            android:textSize="16dp" />
+
     </LinearLayout>
 
     <ImageView

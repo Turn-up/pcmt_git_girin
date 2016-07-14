@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="34dp"
-                android:text="입찰 진행중"
+                android:text="거래 진행중"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/abc_primary_text_material_dark" />
 
@@ -142,7 +142,7 @@
                 android:layout_toRightOf="@+id/btn_estimate_do"
                 android:drawableLeft="@drawable/expert_search_icon"
                 android:drawablePadding="7dp"
-                android:text="전문가찾기"
+                android:text="전문가 검색"
                 android:textColor="#515151"
                 android:textSize="14sp" />
 

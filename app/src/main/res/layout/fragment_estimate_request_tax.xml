@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|top"
-                android:layout_marginLeft="21dp"
+                android:layout_marginLeft="33dp"
                 android:layout_weight="1"
                 android:background="@drawable/box_long_dropdown" />
         </LinearLayout>
@@ -49,7 +49,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|top"
-                android:layout_marginLeft="21dp"
+                android:layout_marginLeft="33dp"
                 android:layout_weight="1"
                 android:background="@drawable/box_midle_dropdown" />
 
@@ -61,6 +61,36 @@
                 android:layout_marginLeft="12dp"
                 android:layout_weight="1"
                 android:background="@drawable/box_midle_dropdown" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="연락처"
+                android:textColor="#515151"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/estimate_request_tax_phone"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:layout_marginLeft="21dp"
+                android:background="@drawable/text_default_rounded_corner"
+                android:gravity="right|center_vertical"
+                android:inputType="number"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="#c6c6c6"
+                android:textSize="16dp" />
 
         </LinearLayout>
 
@@ -111,12 +141,12 @@
 
         <LinearLayout
             android:id="@+id/estimate_request_tax_asset_land_layout"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
-            android:layout_marginTop="14dp">
+            android:layout_marginTop="14dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/extimate_request_tax_asset_type1"
@@ -142,12 +172,12 @@
 
         <LinearLayout
             android:id="@+id/estimate_request_tax_asset_house_layout"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
-            android:layout_marginTop="14dp">
+            android:layout_marginTop="14dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -172,12 +202,12 @@
 
         <LinearLayout
             android:id="@+id/estimate_request_tax_asset_stock_layout"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
-            android:layout_marginTop="14dp">
+            android:layout_marginTop="14dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -199,14 +229,15 @@
                 android:singleLine="true" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/estimate_request_tax_asset_deposit_layout"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
-            android:layout_marginTop="14dp">
+            android:layout_marginTop="14dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -216,35 +247,6 @@
 
             <EditText
                 android:id="@+id/estimate_request_tax_asset_deposit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="21dp"
-                android:layout_weight="1"
-                android:background="@drawable/box_long"
-                android:gravity="center_vertical|right"
-                android:hint="원"
-                android:inputType="number"
-                android:paddingRight="5dp"
-                android:singleLine="true" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/estimate_request_tax_asset_layout"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginTop="14dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="시가"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/estimate_request_tax_asset"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"
@@ -404,6 +406,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/estimate_add_btn"
             android:textSize="16sp" />
     </LinearLayout>

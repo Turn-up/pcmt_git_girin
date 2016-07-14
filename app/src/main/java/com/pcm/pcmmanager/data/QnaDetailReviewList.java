@@ -1,5 +1,8 @@
 package com.pcm.pcmmanager.data;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by LG on 2016-06-28.
  */
@@ -124,6 +127,14 @@ public class QnaDetailReviewList {
     }
 
     public String getRegdate() {
+        SimpleDateFormat original_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat new_format = new SimpleDateFormat("yyyy.MM.dd");
+        try {
+            Date original_date = original_format.parse(regdate);
+            regdate = new_format.format(original_date);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return regdate;
     }
 

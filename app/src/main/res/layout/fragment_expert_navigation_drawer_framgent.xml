@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="291dp"
     android:layout_height="618dp"
@@ -49,14 +49,14 @@
             android:src="@drawable/expert_drawer_semoo_man"
             app:border_color="#00ffffff"
             app:border_width="1dp"
-            app:corner_radius="5dp"/>
+            app:corner_radius="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,18 +78,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
+                    android:layout_marginTop="1dp"
                     android:layout_weight="1"
                     android:text="전문가"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#ffffff"
-                    android:textSize="13sp"
-                    android:layout_marginTop="1dp" />
+                    android:textSize="13sp" />
 
                 <ImageButton
                     android:id="@+id/expert_drawer_personal_info_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
+                    android:onClick="onNavClick"
                     android:src="@drawable/setting_icon" />
             </LinearLayout>
             <!--notosansregular-->
@@ -255,33 +256,6 @@
         android:layout_marginTop="25dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/expert_drawer_alarm"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:onClick="onNavClick"
-                android:text="알림 설정"
-                android:textColor="#515151"
-                android:textSize="16sp" />
-
-            <android.support.v7.widget.SwitchCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/underbar_10" />
-
         <TextView
             android:id="@+id/expert_drawer_ask"
             android:layout_width="match_parent"
@@ -357,51 +331,5 @@
             android:textColor="#515151"
             android:textSize="16sp" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/underbar_10" />
-
-        <Button
-            android:id="@+id/expert_drawer_logout"
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:gravity="center_vertical"
-            android:text="회원탈퇴 및 로그아웃"
-            android:textColor="#515151"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:id="@+id/expert_drawer_logout_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/expert_drawer_logout_background"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/expert_drawer_user_out_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="21dp"
-                android:onClick="onLogout"
-                android:text="회원탈퇴"
-                android:textColor="#959595"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/expert_drawer_logout_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="7dp"
-                android:onClick="onLogout"
-                android:text="로그아웃"
-                android:textColor="#959595"
-                android:textSize="13sp" />
-        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

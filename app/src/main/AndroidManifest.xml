@@ -49,6 +49,7 @@
             android:name=".nomal.estimate_request.EstimateRequestActivity"
             android:label="@string/title_activity_estimate_request"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".nomal.estimate_list.MyEstimateListActivity"
@@ -154,17 +155,20 @@
             android:name=".nomal.estimate_modify.MyEstimateEntryModify"
             android:label="@string/title_activity_my_estimate_entry_modify"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".nomal.estimate_modify.MyEstimateTaxModify"
             android:label="@string/title_activity_my_estimate_tax_modify"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".nomal.estimate_modify.MyEstimateEtcModify"
             android:label="@string/title_activity_my_estimate_etc_modify"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".common.notice.event.NoticeEventActivity"
             android:label="@string/title_activity_notice_event"

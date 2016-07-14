@@ -104,7 +104,7 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/qna_detail_review_regdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -118,8 +118,8 @@
                 android:id="@+id/qna_detail_review_like_checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/textView14"
-                android:layout_alignRight="@+id/textView14"
+                android:layout_alignEnd="@+id/qna_detail_review_regdate"
+                android:layout_alignRight="@+id/qna_detail_review_regdate"
                 android:layout_alignTop="@+id/qna_detail_expert_content"
                 android:button="@drawable/like_selector"
                 android:checked="false"

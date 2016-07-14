@@ -2,6 +2,7 @@ package com.pcm.pcmmanager.nomal.estimate_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pcm.pcmmanager.R;
@@ -14,6 +15,7 @@ public class MyEstimateDetailHeaderViewHolder extends RecyclerView.ViewHolder {
 
     TextView marketType_title, endDate, content, address, bidCount;
     TextView marketType_sub[];
+    ImageView bidCountIcon;
     ExpertEstimateDetail mItem;
 
     public MyEstimateDetailHeaderViewHolder(View itemView) {
@@ -28,11 +30,28 @@ public class MyEstimateDetailHeaderViewHolder extends RecyclerView.ViewHolder {
         address = (TextView) itemView.findViewById(R.id.detail_header_address);
         content = (TextView) itemView.findViewById(R.id.detail_header_content);
         address = (TextView) itemView.findViewById(R.id.detail_header_address);
-        bidCount = (TextView) itemView.findViewById(R.id.deail_bid_count);
+        bidCount = (TextView) itemView.findViewById(R.id.deail_bid_count_text);
+        bidCountIcon = (ImageView) itemView.findViewById(R.id.detail_bid_count_image);
     }
 
     public void setHeader(ExpertEstimateDetail item) {
         mItem = item;
+        item.getStatus();
+
+        long enddate = Long.valueOf(mItem.getEnddate()) - (mItem.getRegDate() / (24 * 60 * 60 * 1000));
+
+        if (enddate > 0) {
+            endDate.setText("D-" + enddate);
+        } else if (enddate == 0) {
+            enddate = 24 - (mItem.getRegDate() % (24 * 60 * 60 * 1000)) / (1 * 60 * 60 * 1000);
+            endDate.setText(enddate + "시간");
+            if (enddate <= 1) {
+                endDate.setText("마감 임박");
+            }
+        } else if (enddate < 0) {
+            enddate = 0;
+            endDate.setText("종료");
+        }
 
         marketType_title.setText(item.getMarketSubType());
         if (item.getMarketType().equals("기타"))
@@ -52,10 +71,18 @@ public class MyEstimateDetailHeaderViewHolder extends RecyclerView.ViewHolder {
         } else if (item.getMarketType().equals("기타")) {
             marketType_sub[0].setText("상세 페이지를 확인하세요");
         }
-        endDate.setText("D-" + item.getEnddate());
         address.setText(item.getAddress1() + " " + item.getAddress2());
         content.setText(item.getContent());
         address.setText(item.getAddress1() + " " + item.getAddress2());
-        bidCount.setText("" + item.getBidCount());
+        if(item.getStatus().equals("입찰전")){
+            bidCount.setText("견적확인중");
+            bidCountIcon.setVisibility(View.GONE);
+        }else if(item.getStatus().equals("낙찰완료")){
+            bidCount.setText("낙찰완료");
+            bidCountIcon.setVisibility(View.GONE);
+        }else{
+            bidCount.setText("" + item.getBidCount());
+            bidCountIcon.setVisibility(View.VISIBLE);
+        }
     }
 }

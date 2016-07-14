@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,10 +25,9 @@ import okhttp3.Request;
  */
 public class NomalNavigationDrawer extends Fragment {
 
-    TextView profieName, profileEmail, ask, notice, event, use_way, myEstimate, logout_btn, user_out_btn,myQna;
+    TextView profieName, profileEmail, ask, notice, event, use_way, myEstimate, logout_btn, user_out_btn, myQna;
     LinearLayout logout_layout;
     ImageButton setting_btn;
-    Button logout;
 
     public interface OnMenuClickListener {
         public void onMenuClick(int menuId);
@@ -54,7 +52,6 @@ public class NomalNavigationDrawer extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_nomal_navigation_drawer, container, false);
-        logout = (Button) v.findViewById(R.id.nomal_drawer_logout);
         ask = (TextView) v.findViewById(R.id.nomal_drawer_ask);
         notice = (TextView) v.findViewById(R.id.nomal_drawer_notice);
         event = (TextView) v.findViewById(R.id.nomal_drawer_event);
@@ -62,26 +59,9 @@ public class NomalNavigationDrawer extends Fragment {
         use_way = (TextView) v.findViewById(R.id.nomal_drawer_use_way);
         profieName = (TextView) v.findViewById(R.id.nomal_drawer_name);
         profileEmail = (TextView) v.findViewById(R.id.nomal_drawer_email);
-        user_out_btn = (TextView) v.findViewById(R.id.nomal_drawer_user_out_btn);
-        logout_btn = (TextView) v.findViewById(R.id.nomal_drawer_logout_btn);
-        logout_layout = (LinearLayout) v.findViewById(R.id.nomal_drawer_logout_layout);
         setting_btn = (ImageButton) v.findViewById(R.id.nomal_drawer_setting);
-        myQna = (TextView)v.findViewById(R.id.nomal_drawer_my_qna);
-//        setting_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(NomalNavigationDrawer.this, "준비중 입니다.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (logout_layout.getVisibility() == View.VISIBLE) {
-                    logout_layout.setVisibility(View.GONE);
-                } else
-                    logout_layout.setVisibility(View.VISIBLE);
-            }
-        });
+        myQna = (TextView) v.findViewById(R.id.nomal_drawer_my_qna);
+
         setUserData();
         return v;
     }

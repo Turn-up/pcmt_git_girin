@@ -40,9 +40,10 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_marginTop="22dp"
+            android:onClick="onNavClick"
             android:background="@android:color/transparent"
             android:src="@drawable/setting_icon"
-            android:visibility="invisible" />
+            android:visibility="visible" />
     </LinearLayout>
 
     <TextView
@@ -62,35 +63,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="25dp"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/nomal_drawer_alarm"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:onClick="onNavClick"
-                android:text="알림 설정"
-                android:textColor="#515151"
-                android:textSize="16sp" />
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/noaml_drawer_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/underbar_10" />
 
         <TextView
             android:id="@+id/nomal_drawer_ask"
@@ -188,46 +160,5 @@
             android:layout_height="wrap_content"
             android:src="@drawable/underbar_10" />
 
-        <Button
-            android:id="@+id/nomal_drawer_logout"
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:gravity="center_vertical"
-            android:text="회원탈퇴 및 로그아웃"
-            android:textColor="#515151"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:id="@+id/nomal_drawer_logout_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/expert_drawer_logout_background"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/nomal_drawer_user_out_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="21dp"
-                android:onClick="onLogout"
-                android:text="회원탈퇴"
-                android:textColor="#959595"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/nomal_drawer_logout_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="7dp"
-                android:onClick="onLogout"
-                android:text="로그아웃"
-                android:textColor="#959595"
-                android:textSize="13sp" />
-        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

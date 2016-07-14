@@ -32,7 +32,7 @@ import okhttp3.Request;
 public class MyEstimateListActivity extends AppCompatActivity {
 
     public static final String PAGESIZE = "10";
-    String last_marketSn,marketSn,markettype,status;
+    String last_marketSn, marketSn, markettype, status;
     RecyclerView listView;
     MyEstimateListAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
@@ -46,7 +46,7 @@ public class MyEstimateListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        last_marketSn="0";
+        last_marketSn = "0";
         mLayoutManager = new LinearLayoutManager(this);
 
         mAdapter = new MyEstimateListAdapter();
@@ -57,18 +57,17 @@ public class MyEstimateListActivity extends AppCompatActivity {
                 marketSn = String.valueOf(myEsitmateList.getMarketSn());
                 markettype = myEsitmateList.getMarketType();
                 status = myEsitmateList.getStatus();
-                if(myEsitmateList.getStatus().equals("입찰전")){
+                if (myEsitmateList.getStatus().equals("입찰전")) {
                     ModifyDialog modifyDialog = new ModifyDialog(MyEstimateListActivity.this);
                     modifyDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     modifyDialog.show();
 
-                }else {
+                }  else {
                     Intent intent = new Intent(MyEstimateListActivity.this, MyEstimateDetailActivity.class);
-                    intent.putExtra("marketSn",marketSn);
+                    intent.putExtra("marketSn", marketSn);
                     intent.putExtra("status", status);
                     startActivity(intent);
                 }
-
 
 
             }
@@ -76,11 +75,11 @@ public class MyEstimateListActivity extends AppCompatActivity {
         listView.setAdapter(mAdapter);
         listView.setLayoutManager(mLayoutManager);
 
-        isLast=false;
+        isLast = false;
         listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if(isLast && newState == RecyclerView.SCROLL_STATE_IDLE){
+                if (isLast && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     getMoreData();
                 }
             }
@@ -89,15 +88,16 @@ public class MyEstimateListActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int totalCount = mAdapter.getItemCount();
                 int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
-                if (totalCount > 0 && lastVisibleItem >= totalCount - 1){
-                    isLast =true;
-                }else
-                    isLast= false;
+                if (totalCount > 0 && lastVisibleItem >= totalCount - 1) {
+                    isLast = true;
+                } else
+                    isLast = false;
             }
         });
         setData();
         //recycler view 구현
     }
+
     //입찰 수정 다이얼로그
     class ModifyDialog extends Dialog implements View.OnClickListener {
 
@@ -122,38 +122,40 @@ public class MyEstimateListActivity extends AppCompatActivity {
             if (v == btn_cancel) {
                 dismiss();
             } else if (v == estimate_modify_btn) {
-                if(markettype.equals("기장")){
+                if (markettype.equals("기장")) {
                     Intent intent = new Intent(MyEstimateListActivity.this, MyEstimateEntryModify.class);
-                    intent.putExtra("marketSn",marketSn);
+                    intent.putExtra("marketSn", marketSn);
                     startActivity(intent);
                     dismiss();
-                }else if(markettype.equals("TAX")){
+                } else if (markettype.equals("TAX")) {
                     Intent intent = new Intent(MyEstimateListActivity.this, MyEstimateTaxModify.class);
-                    intent.putExtra("marketSn",marketSn);
+                    intent.putExtra("marketSn", marketSn);
                     startActivity(intent);
                     dismiss();
-                }else{
+                } else {
                     Intent intent = new Intent(MyEstimateListActivity.this, MyEstimateEtcModify.class);
-                    intent.putExtra("marketSn",marketSn);
+                    intent.putExtra("marketSn", marketSn);
                     startActivity(intent);
                     dismiss();
                 }
             } else if (v == estimate_detail_btn) {
                 Intent intent = new Intent(MyEstimateListActivity.this, MyEstimateDetailActivity.class);
-                intent.putExtra("marketSn",marketSn);
+                intent.putExtra("marketSn", marketSn);
                 intent.putExtra("status", status);
                 startActivity(intent);
                 dismiss();
             }
         }
     }
+
     private boolean isMoreData = false;
-    public void getMoreData(){
-        if(!isMoreData && mAdapter.isMoreData()){
+
+    public void getMoreData() {
+        if (!isMoreData && mAdapter.isMoreData()) {
             isMoreData = true;
-            final int sn = mAdapter.getLastSn(mAdapter.getItemCount()-1);
+            final int sn = mAdapter.getLastSn(mAdapter.getItemCount() - 1);
             try {
-                NetworkManager.getInstance().getNomalEstiamteList(PAGESIZE, String.valueOf(sn),new NetworkManager.OnResultListener<MyEstimateListResult>() {
+                NetworkManager.getInstance().getNomalEstiamteList(PAGESIZE, String.valueOf(sn), new NetworkManager.OnResultListener<MyEstimateListResult>() {
                     @Override
                     public void onSuccess(Request request, MyEstimateListResult result) {
                         mAdapter.addAll(result.getList());
@@ -165,7 +167,7 @@ public class MyEstimateListActivity extends AppCompatActivity {
 
                     }
                 });
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 isMoreData = false;
 
@@ -204,7 +206,7 @@ public class MyEstimateListActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if(id == android.R.id.home){
+        if (id == android.R.id.home) {
             finish();
         }
         //noinspection SimplifiableIfStatement

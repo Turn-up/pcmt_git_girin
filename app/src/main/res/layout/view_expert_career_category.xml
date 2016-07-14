@@ -37,14 +37,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="14dp"
-                android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="40dp">
 
                     <ImageView
                         android:id="@+id/expert_career_category_image1"
@@ -57,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:text="카테1"
+                        android:text="유통"
                         android:textColor="#515151"
                         android:textSize="11sp" />
 
@@ -66,7 +67,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
@@ -81,20 +81,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:text="카테2"
+                        android:text="산업"
                         android:textColor="#515151"
                         android:textIsSelectable="false"
                         android:textSize="11dp" />
 
                 </LinearLayout>
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:paddingRight="40dp">
                     <ImageView
                         android:id="@+id/expert_career_category_image3"
                         android:layout_width="wrap_content"
@@ -107,11 +112,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:text="카테3"
+                        android:text="유통"
                         android:textColor="#515151"
                         android:textSize="11dp" />
                 </LinearLayout>
-
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

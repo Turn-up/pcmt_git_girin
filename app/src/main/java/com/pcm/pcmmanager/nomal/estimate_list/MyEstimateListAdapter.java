@@ -17,6 +17,7 @@ import java.util.List;
 public class MyEstimateListAdapter extends RecyclerView.Adapter<MyEstimateListViewHolder> {
 
     List<MyEsitmateList> items = new ArrayList<>();
+
     private int totalCount = 0;
     public void clear() {
         items.clear();

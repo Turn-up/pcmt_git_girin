@@ -19,6 +19,15 @@ public class ExpertEstimateDetailBidList {
     @SerializedName("regdate")
     String regDate;
     String sex;
+    String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public String getSex() {
         return sex;

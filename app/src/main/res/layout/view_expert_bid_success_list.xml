@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="18dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp">
 
                 <TextView
                     android:id="@+id/bid_success_market_type_title"
@@ -39,15 +40,52 @@
                     android:textColor="#515151"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:id="@+id/bid_success_market_type_sub"
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/bid_success_market_type_title"
-                    android:text="Small Text"
-                    android:textColor="#838383"
-                    android:textSize="13sp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/bid_success_market_type_sub1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Small Text"
+                        android:textColor="#838383"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/bid_success_market_type_sub2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Small Text"
+                        android:textColor="#838383"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/bid_success_market_type_sub3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Small Text"
+                        android:textColor="#838383"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/bid_success_market_type_sub4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Small Text"
+                        android:textColor="#838383"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/bid_success_end_date"
@@ -67,10 +105,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/bid_success_end_date"
                     android:layout_alignRight="@+id/bid_success_end_date"
-                    android:layout_alignTop="@+id/bid_success_market_type_sub"
-                    android:drawablePadding="7dp"
-                    android:drawableRight="@drawable/bidcount_icon"
-                    android:text="New Text"
+                    android:layout_alignBottom="@+id/linearLayout5"
+                    android:text="낙찰"
                     android:textColor="#ff8f00"
                     android:textSize="13sp" />
 

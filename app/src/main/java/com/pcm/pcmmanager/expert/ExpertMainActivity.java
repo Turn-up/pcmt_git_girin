@@ -1,12 +1,10 @@
 package com.pcm.pcmmanager.expert;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -19,17 +17,14 @@ import com.pcm.pcmmanager.common.ask.AskActivity;
 import com.pcm.pcmmanager.common.notice.event.NoticeEventActivity;
 import com.pcm.pcmmanager.common.notice.text.NoticeListActivity;
 import com.pcm.pcmmanager.common.use_way.UseWayActivity;
-import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.PointListResult;
-import com.pcm.pcmmanager.data.UserSignupResult;
-import com.pcm.pcmmanager.expert.drawer.ExpertNavigationDrawerFramgent;
 import com.pcm.pcmmanager.expert.bid_info.BidFinishFragment;
 import com.pcm.pcmmanager.expert.bid_info.BidIngListFragment;
 import com.pcm.pcmmanager.expert.bid_info.BidSuccessFragment;
+import com.pcm.pcmmanager.expert.drawer.ExpertNavigationDrawerFramgent;
+import com.pcm.pcmmanager.expert.info.ExpertInfoEditActivity;
 import com.pcm.pcmmanager.expert.point.PointListActivity;
-import com.pcm.pcmmanager.login.LoginActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
-import com.pcm.pcmmanager.manager.PropertyManager;
 
 import java.io.IOException;
 
@@ -83,6 +78,10 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
                 intent = new Intent(this, UseWayActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.expert_drawer_personal_info_btn:
+                intent = new Intent(this, ExpertInfoEditActivity.class);
+                startActivity(intent);
+                break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -112,18 +111,6 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
         }
     }
 
-    //로그아웃 및 탈퇴
-    public void onLogout(View v) {
-        switch (v.getId()) {
-            case R.id.expert_drawer_logout_btn:
-                LogoutCheckDialog();
-                break;
-            case R.id.expert_drawer_user_out_btn:
-                UserOut();
-                break;
-        }
-    }
-
     //포인트 조회
     public void onPoint(View v) {
         if (v.getId() == R.id.nav_header_expert_profile_point) {
@@ -147,91 +134,6 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
             });
         }
     }
-
-    private void LogoutCheckDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        // AlertDialog 셋팅
-        alertDialogBuilder
-                .setMessage("로그아웃 하시겠습니까?")
-                .setCancelable(false)
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        NetworkManager.getInstance().getLogout(new NetworkManager.OnResultListener<UserSignupResult>() {
-                            @Override
-                            public void onSuccess(Request request, UserSignupResult result) {
-                                if (result.getResult() == -1)
-                                    Toast.makeText(ExpertMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                                else {
-                                    // 로그아웃한다
-                                    PropertyManager.getInstance().setAuthorizationToken("");
-                                    Intent intent = new Intent(ExpertMainActivity.this, LoginActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                            @Override
-                            public void onFail(Request request, IOException exception) {
-
-                            }
-                        });
-
-                    }
-                })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // 다이얼로그를 취소한다
-                        dialog.cancel();
-                    }
-                });
-        // 다이얼로그 보여주기
-        alertDialogBuilder.setCancelable(true);
-        alertDialogBuilder.show();
-    }
-
-    /*회원탈퇴 다이얼로그*/
-    private void UserOut() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        // AlertDialog 셋팅
-        alertDialogBuilder
-                .setMessage("회원탈퇴 하시겠습니까?")
-                .setCancelable(false)
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        NetworkManager.getInstance().getUserDelete(new NetworkManager.OnResultListener<CommonResult>() {
-                            @Override
-                            public void onSuccess(Request request, CommonResult result) {
-                                if (result.getResult() == -1)
-                                    Toast.makeText(ExpertMainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                                else {
-                                    PropertyManager.getInstance().setAuthorizationToken("");
-                                    Intent intent = new Intent(ExpertMainActivity.this, LoginActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-
-                            @Override
-                            public void onFail(Request request, IOException exception) {
-
-                            }
-                        });
-                    }
-                })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int arg1) {
-                        dialog.cancel();
-                    }
-                });
-        // 다이얼로그 보여주기
-        alertDialogBuilder.setCancelable(true);
-        alertDialogBuilder.show();
-    }
-
 
     @Override
     public void onBackPressed() {

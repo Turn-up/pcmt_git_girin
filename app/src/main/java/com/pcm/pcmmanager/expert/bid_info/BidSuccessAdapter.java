@@ -17,6 +17,14 @@ import java.util.List;
 public class BidSuccessAdapter extends RecyclerView.Adapter<BidSucessViewHolder> {
 
     List<ExpertBidStatus> items = new ArrayList<>();
+    private int totalCount = 0;
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
 
     public void clear() {
         items.clear();
@@ -35,13 +43,14 @@ public class BidSuccessAdapter extends RecyclerView.Adapter<BidSucessViewHolder>
     }
 
     BidSucessViewHolder.OnItemClickListener mListener;
+
     public void setOnItemClickListener(BidSucessViewHolder.OnItemClickListener listener) {
         mListener = listener;
     }
 
     @Override
     public BidSucessViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_expert_bid_success_list, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_expert_bid_success_list, parent, false);
         return new BidSucessViewHolder(view);
     }
 
@@ -54,5 +63,12 @@ public class BidSuccessAdapter extends RecyclerView.Adapter<BidSucessViewHolder>
     @Override
     public int getItemCount() {
         return items.size();
+    }
+    public boolean isMoreData() {
+        return totalCount == 0 ? false : (totalCount) > items.size() ? true : false;
+    }
+
+    public int getLastSn(int sn) {
+        return items.get(sn).getMarketSn();
     }
 }

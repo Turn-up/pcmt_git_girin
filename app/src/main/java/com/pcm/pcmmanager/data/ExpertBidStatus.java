@@ -2,6 +2,11 @@ package com.pcm.pcmmanager.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,17 +28,8 @@ public class ExpertBidStatus {
     int employeeCount;
     @SerializedName("markettype2_1")
     List<String> assetType;
-
-    public List<String> getAssetType() {
-        return assetType;
-    }
-
-    public void setAssetType(List<String> assetType) {
-        this.assetType = assetType;
-    }
-
     @SerializedName("markettype2_2")
-    long marketPrice;
+    List<Long> marketPrice;
     @SerializedName("bidscount")
     int bidCount;
     @SerializedName("regdate")
@@ -45,6 +41,15 @@ public class ExpertBidStatus {
     int price2;
     String phone;
     String status;
+
+    public List<String> getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(List<String> assetType) {
+        this.assetType = assetType;
+    }
+
 
     public String getPhone() {
         return phone;
@@ -87,8 +92,40 @@ public class ExpertBidStatus {
     }
 
 
-    public String getRegDate() {
+    public String getStringRegdate() {
+        SimpleDateFormat original_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat new_format = new SimpleDateFormat("yy.MM.dd");
+        try {
+            Date original_date = original_format.parse(regDate);
+            regDate = new_format.format(original_date);
+            Date regdate = new_format.parse(regDate);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(regdate);
+            int cal_add = Integer.valueOf(endDate);
+            cal.add(Calendar.DATE,cal_add);
+            regDate = new_format.format(cal.getTime());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return regDate;
+    }
+    public long getLongRegDate() {
+
+        long now = System.currentTimeMillis();// 시스템으로부터 현재시간(ms) 가져오기
+        long dateResult = 0;
+        try {
+            SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date toDate = transFormat.parse(regDate);
+            Date nowDate = new Date(now); // Data 객체에 시간을 저장한다.
+            String strNowDate =  transFormat.format(nowDate);
+            nowDate = transFormat.parse(strNowDate);
+            dateResult = nowDate.getTime() - toDate.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dateResult;
     }
 
     public void setRegDate(String regDate) {
@@ -103,19 +140,21 @@ public class ExpertBidStatus {
         this.bidCount = bidCount;
     }
 
-    public String getMarketPrice() {
-        String bs;
-        if (marketPrice < 1000000) {
-            bs = marketPrice/1000 +"만원";
-        } else if (1000000 <= marketPrice && marketPrice < 100000000) {
-            bs = marketPrice / 100000 + "만원";
-        } else {
-            bs = marketPrice / 10000000 + "억";
+    public List<String> getMarketPrice() {
+        List<String> bs = new ArrayList<String>();
+        for(int i=0; i<marketPrice.size(); i++) {
+            if (marketPrice.get(i) < 1000000) {
+                bs.add(marketPrice.get(i) / 10000 + "만원");
+            } else if (1000000 <= marketPrice.get(i) && marketPrice.get(i) < 100000000) {
+                bs.add(marketPrice.get(i) / 10000 + "만원");
+            } else {
+                bs.add(marketPrice.get(i) / 100000000 + "." + (marketPrice.get(i) % 100000000) / 10000000 + "억원");
+            }
         }
         return bs;
     }
 
-    public void setMarketPrice(long marketMoney) {
+    public void setMarketPrice(List<Long> marketMoney) {
         this.marketPrice = marketMoney;
     }
 
@@ -130,9 +169,9 @@ public class ExpertBidStatus {
     public String getBusinessScale() {
         String bs;
         if (businessScale < 1000000) {
-            bs = businessScale/1000 +"만원";
+            bs = businessScale/10000 +"만원";
         } else if (1000000 <= businessScale && businessScale < 100000000) {
-            bs = businessScale / 100000 + "만원";
+            bs = businessScale / 10000 + "만원";
         } else {
             bs = businessScale / 10000000 + "억";
         }

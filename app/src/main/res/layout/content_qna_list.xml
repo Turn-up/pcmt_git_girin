@@ -27,10 +27,11 @@
             android:hint="키워드를 입력해 주세요"
             android:paddingLeft="19dp"
             android:textColor="#7485e2"
+            android:singleLine="true"
             android:textSize="12sp" />
 
         <ImageButton
-            android:id="@+id/btn_qna_search"
+            android:id="@+id/qna_list_keyword_search_imagebtn"
             style="@android:style/Widget.Holo.Button.Borderless"
             android:layout_width="16dp"
             android:layout_height="16dp"
@@ -53,5 +54,6 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:visibility="gone"
         android:background="@drawable/qna_ask_button" />
 </LinearLayout>

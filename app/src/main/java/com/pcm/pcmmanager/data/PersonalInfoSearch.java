@@ -10,6 +10,24 @@ public class PersonalInfoSearch {
     String phone;
     String roles;
     String status;
+    String usertype1;
+    String usertype2;
+
+    public String getUsertype1() {
+        return usertype1;
+    }
+
+    public void setUsertype1(String usertype1) {
+        this.usertype1 = usertype1;
+    }
+
+    public String getUsertype2() {
+        return usertype2;
+    }
+
+    public void setUsertype2(String usertype2) {
+        this.usertype2 = usertype2;
+    }
 
     public int getUsersn() {
         return usersn;

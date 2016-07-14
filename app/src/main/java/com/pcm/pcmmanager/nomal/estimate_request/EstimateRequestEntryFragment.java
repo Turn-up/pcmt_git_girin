@@ -1,10 +1,13 @@
 package com.pcm.pcmmanager.nomal.estimate_request;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +47,7 @@ public class EstimateRequestEntryFragment extends Fragment {
     Spinner marketSubTypeSpinner, address1Spinner, address2Spinner;
     ArrayAdapter<String> marketSubAdapter, a1Adapter, a2Adapter;
     Button entryAdd;
-    EditText businessScale, employeeCount, entryContent;
+    EditText businessScale, employeeCount, entryContent, phone;
     String marketSubType, address1, address2, marketType1_3, tempAddress1; //업종, 주소(시, 군),부가내용
     String endDate = "7"; // 마감일
     RadioButton radioButton;
@@ -84,11 +87,15 @@ public class EstimateRequestEntryFragment extends Fragment {
         businessScale = (EditText) view.findViewById(R.id.estimate_request_entry_businessScale);
         employeeCount = (EditText) view.findViewById(R.id.estimate_request_entry_employleeCount);
         radioButton = (RadioButton) view.findViewById(R.id.btn_entry_artifical_radio);
+        phone = (EditText) view.findViewById(R.id.estimate_request_entry_phone);
         /*3자리 씩 끊기*/
         businessScale.addTextChangedListener(new CustomTextWathcer(businessScale));
         employeeCount.addTextChangedListener(new CustomTextWathcer(employeeCount));
         marketType1_3 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_BUSINESS_TYPE_POSITION).getList().get(0).getCode(); //디폴트값
 
+        TelephonyManager telManager = (TelephonyManager) getContext().getSystemService(getContext().TELEPHONY_SERVICE);
+        final String phoneNum = telManager.getLine1Number();
+        phone.setText(phoneNum);
         /*사업자 구분*/
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -194,6 +201,8 @@ public class EstimateRequestEntryFragment extends Fragment {
                     Toast.makeText(getContext(), "매출을 입력하세요", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(employeeCount.getText().toString())) {
                     Toast.makeText(getContext(), "직원수를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(phone.getText().toString())) {
+                    Toast.makeText(getContext(), "연락처를 입력하세요", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(entryContent.getText().toString())) {
                     Toast.makeText(getContext(), "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
                 } else {
@@ -201,24 +210,54 @@ public class EstimateRequestEntryFragment extends Fragment {
                     bScale = bScale.replaceAll(",", "");
                     String eCount = employeeCount.getText().toString();
                     eCount = eCount.replaceAll(",", "");
-                    NetworkManager.getInstance().getNomalEstiamteRequestList(EntryCode, marketSubType, address1, address2, TEMP, bScale, marketType1_3, eCount, null, null
-                            , endDate, entryContent.getText().toString(), new NetworkManager.OnResultListener<CommonResult>() {
-                                @Override
-                                public void onSuccess(Request request, CommonResult result) {
-                                    Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
-                                    startActivity(intent);
-                                    getActivity().finish();
-                                }
-
-                                @Override
-                                public void onFail(Request request, IOException exception) {
-
-                                }
-                            });
+                    CheckDialog(bScale,eCount);
                 }
             }
         });
         return view;
+    }
+
+    private void CheckDialog(final String Scale,final String Count) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        // AlertDialog 셋팅
+        alertDialogBuilder
+                .setMessage("견적을 등록 하시겠습니까?")
+                .setCancelable(false)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        String bScale = Scale;
+                        String eCount = Count;
+                        NetworkManager.getInstance().getNomalEstiamteRequestList(phone.getText().toString(), EntryCode, marketSubType, address1, address2, TEMP, bScale, marketType1_3, eCount, null, null
+                                , endDate, entryContent.getText().toString(), new NetworkManager.OnResultListener<CommonResult>() {
+                                    @Override
+                                    public void onSuccess(Request request, CommonResult result) {
+                                        if (result.getResult() == -1) {
+                                            Toast.makeText(getContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
+                                            startActivity(intent);
+                                            getActivity().finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFail(Request request, IOException exception) {
+
+                                    }
+                                });
+
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // 다이얼로그를 취소한다
+                        dialog.cancel();
+                    }
+                });
+        // 다이얼로그 보여주기
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.show();
     }
 
 }

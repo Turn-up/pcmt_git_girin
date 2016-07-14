@@ -1,14 +1,17 @@
 package com.pcm.pcmmanager.qna.list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
+import com.pcm.pcmmanager.data.QnaKeywordSearchResult;
 import com.pcm.pcmmanager.data.QnaList;
 import com.pcm.pcmmanager.data.QnaListResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
@@ -29,8 +33,8 @@ import java.io.IOException;
 import okhttp3.Request;
 
 public class QnaListActivity extends AppCompatActivity {
-    ImageButton qnaSearch;
-    EditText qnaKeyword;
+    EditText qnaKeywordText;
+    ImageButton qnaKeywordButton;
     Button qnaDo;
     RecyclerView rv_list;
     QnaAdapter mAdapter;
@@ -51,31 +55,34 @@ public class QnaListActivity extends AppCompatActivity {
         last_qnaSn = "0";
         mLayoutManager = new LinearLayoutManager(this);
 
-        qnaSearch = (ImageButton) findViewById(R.id.btn_qna_search);
         qnaDo = (Button) findViewById(R.id.btn_qna_do);
-        qnaKeyword = (EditText) findViewById(R.id.edittext_qna_search_text);
+        qnaKeywordText = (EditText) findViewById(R.id.edittext_qna_search_text);
+        qnaKeywordButton = (ImageButton) findViewById(R.id.qna_list_keyword_search_imagebtn);
         rv_list = (RecyclerView) findViewById(R.id.qna_rv_list);
         mAdapter = new QnaAdapter();
         mAdapter.setOnItemClickListener(new QnaViewHolder.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, QnaList qnaList) {
-                if(qnaList.getSecretyn()){
+                if (qnaList.getSecretyn()) {
                     if (MyApplication.getUserType().equals("Users")) {
-                        Toast.makeText(QnaListActivity.this, "비밀글 입니다.", Toast.LENGTH_SHORT).show();
+                        if (qnaList.getReadyn()) {
+                            Intent intent = new Intent(QnaListActivity.this, QnaDetailActivity.class);
+                            intent.putExtra("qnaSn", "" + qnaList.getQnasn());
+                            startActivity(intent);
+                        } else
+                            Toast.makeText(QnaListActivity.this, "비밀글 입니다.", Toast.LENGTH_SHORT).show();
                     } else if (MyApplication.getUserType().equals("Experts")) {
                         Intent intent = new Intent(QnaListActivity.this, QnaDetailActivity.class);
                         intent.putExtra("qnaSn", "" + qnaList.getQnasn());
                         startActivity(intent);
                     }
-                }else{
+                } else {
                     Intent intent = new Intent(QnaListActivity.this, QnaDetailActivity.class);
                     intent.putExtra("qnaSn", "" + qnaList.getQnasn());
                     startActivity(intent);
-
                 }
             }
         });
-
         rv_list.setLayoutManager(mLayoutManager);
         rv_list.setAdapter(mAdapter);
         isLast = false;
@@ -96,14 +103,44 @@ public class QnaListActivity extends AppCompatActivity {
                     isLast = false;
             }
         });
-        qnaDo.setOnClickListener(new View.OnClickListener() {
+        if (MyApplication.getUserType().equals("Users")) {
+            qnaDo.setVisibility(View.VISIBLE);
+            qnaDo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(QnaListActivity.this, QnaAskActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        qnaKeywordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QnaListActivity.this, QnaAskActivity.class);
-                startActivity(intent);
+                if (TextUtils.isEmpty(qnaKeywordText.getText()))
+                    Toast.makeText(QnaListActivity.this, "키워드를 입력하세요", Toast.LENGTH_SHORT).show();
+                else {
+                    NetworkManager.getInstance().getQnakeywordSearch(PAGESIZE, "0", qnaKeywordText.getText().toString(), new NetworkManager.OnResultListener<QnaKeywordSearchResult>() {
+                        @Override
+                        public void onSuccess(Request request, QnaKeywordSearchResult result) {
+                            if (result.getResult() == -1) {
+                                Toast.makeText(QnaListActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                InputMethodManager mInputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                                mInputMethodManager.hideSoftInputFromWindow(qnaKeywordText.getWindowToken(), 0);
+                                mAdapter.clear();
+                                mAdapter.addAll(result.getKeywordSearchList());
+                                mAdapter.setTotalCount(result.getTotalcount());
+                            }
+                        }
+
+                        @Override
+                        public void onFail(Request request, IOException exception) {
+
+                        }
+                    });
+                }
             }
         });
-        //recycler view 구현
 
     }
 

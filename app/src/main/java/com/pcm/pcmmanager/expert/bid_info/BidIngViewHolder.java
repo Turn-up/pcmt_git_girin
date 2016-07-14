@@ -16,8 +16,8 @@ public class BidIngViewHolder extends RecyclerView.ViewHolder {
     ExpertBidStatus expertBidStatus;
 
     ImageView Bid_ing_marketType_image;
-    TextView Bid_ing_marketType_title, Bid_ing_marketType_sub, endDate, bidCount;
-
+    TextView Bid_ing_marketType_title, endDate, bidCount;
+    TextView Bid_ing_marketType_sub[];
 
     public interface OnItemClickListener {
         public void OnItemClick(View view, ExpertBidStatus expertBidStatus);
@@ -33,7 +33,11 @@ public class BidIngViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         Bid_ing_marketType_image = (ImageView) itemView.findViewById(R.id.bid_ing_market_type_image);
         Bid_ing_marketType_title = (TextView) itemView.findViewById(R.id.bid_ing_market_type_title);
-        Bid_ing_marketType_sub = (TextView) itemView.findViewById(R.id.bid_ing_market_type_sub);
+        Bid_ing_marketType_sub = new TextView[4];
+        Bid_ing_marketType_sub[0] = (TextView) itemView.findViewById(R.id.bid_ing_market_type_sub1);
+        Bid_ing_marketType_sub[1] = (TextView) itemView.findViewById(R.id.bid_ing_market_type_sub2);
+        Bid_ing_marketType_sub[2] = (TextView) itemView.findViewById(R.id.bid_ing_market_type_sub3);
+        Bid_ing_marketType_sub[3] = (TextView) itemView.findViewById(R.id.bid_ing_market_type_sub4);
         endDate = (TextView) itemView.findViewById(R.id.bid_ing_end_date);
         bidCount = (TextView) itemView.findViewById(R.id.bid_ing_bid_count);
 
@@ -53,21 +57,18 @@ public class BidIngViewHolder extends RecyclerView.ViewHolder {
         if (this.expertBidStatus.getMarketType().equals("기장")) {
             Bid_ing_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
             Bid_ing_marketType_image.setImageResource(R.drawable.entry_icon);
-            Bid_ing_marketType_sub.setText("매출 " + this.expertBidStatus.getBusinessScale() + ", 종업원" + this.expertBidStatus.getEmployeeCount()+"명");
+            Bid_ing_marketType_sub[0].setText("매출 " + this.expertBidStatus.getBusinessScale() + ", 종업원" + this.expertBidStatus.getEmployeeCount()+"명");
         } else if (this.expertBidStatus.getMarketType().equals("TAX")) {
             Bid_ing_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
             Bid_ing_marketType_image.setImageResource(R.drawable.tax_icon);
-            String temp="";
-            if(!this.expertBidStatus.getMarketSubtype().equals("세무조사")) {
-                temp = "자산 내용";
-                for (int i = 0; i < this.expertBidStatus.getAssetType().size(); i++)
-                    temp += this.expertBidStatus.getAssetType().get(i) + " ";
+            for (int i = 0; i < this.expertBidStatus.getAssetType().size(); i++) {
+                Bid_ing_marketType_sub[i].setVisibility(View.VISIBLE);
+                Bid_ing_marketType_sub[i].setText("자산 " + this.expertBidStatus.getAssetType().get(i) + ", " + this.expertBidStatus.getMarketPrice().get(i));
             }
-            Bid_ing_marketType_sub.setText("자산 " + this.expertBidStatus.getMarketPrice()+temp);
         } else {
             Bid_ing_marketType_image.setImageResource(R.drawable.etc_icon);
             Bid_ing_marketType_title.setText("기타");
-            Bid_ing_marketType_sub.setText("상세 내용을 확인하세요");
+            Bid_ing_marketType_sub[0].setText("상세 내용을 확인하세요");
         }
         bidCount.setText("" + this.expertBidStatus.getBidCount());
         endDate.setText("D-" + this.expertBidStatus.getEndDate());

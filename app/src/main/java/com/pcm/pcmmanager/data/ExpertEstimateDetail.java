@@ -2,7 +2,10 @@ package com.pcm.pcmmanager.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,7 +15,7 @@ public class ExpertEstimateDetail {
     String _id;
     int usersn;
     String username;
-    int reviewsn;
+    Boolean reviewyn;
     @SerializedName("markettype")
     String marketType;
     @SerializedName("marketsubtype")
@@ -23,7 +26,7 @@ public class ExpertEstimateDetail {
     String address2;
     String markettype1_3;
     @SerializedName("markettype2_2")
-    List<Long>  assetMoney;
+    List<Long> assetMoney;
     List<ExpertEstimateDetailBidList> bids;
     String content;
     String success_bid_id; //낙찰일련번호
@@ -39,6 +42,15 @@ public class ExpertEstimateDetail {
     int employeeCount;
     @SerializedName("markettype2_1")
     List<String> assetType;
+    String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getMarkettpye1_3() {
         return markettype1_3;
@@ -131,17 +143,17 @@ public class ExpertEstimateDetail {
         this.employeeCount = employeeCount;
     }
 
-    public long getNumberAssetMoney() {
-        return assetMoney.get(0);
+    public List<Long> getNumberAssetMoney() {
+        return assetMoney;
     }
 
     public List<String> getAssetMoney() {
         List<String> bs = new ArrayList<String>();
         for (int i = 0; i < assetMoney.size(); i++) {
             if (assetMoney.get(i) < 1000000) {
-                bs.add(assetMoney.get(i) / 1000 + "만원");
+                bs.add(assetMoney.get(i) / 10000 + "만원");
             } else if (1000000 <= assetMoney.get(i) && assetMoney.get(i) < 100000000) {
-                bs.add(assetMoney.get(i) / 100000 + "만원");
+                bs.add(assetMoney.get(i) / 10000 + "만원");
             } else {
                 bs.add(assetMoney.get(i) / 100000000 + "." + (assetMoney.get(i) % 100000000) / 10000000 + "억원");
             }
@@ -190,8 +202,21 @@ public class ExpertEstimateDetail {
         this.status = status;
     }
 
-    public String getRegDate() {
-        return regDate;
+    public long getRegDate() {
+        long now = System.currentTimeMillis();// 시스템으로부터 현재시간(ms) 가져오기
+        long dateResult = 0;
+        try {
+            SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date toDate = transFormat.parse(regDate);
+            Date nowDate = new Date(now); // Data 객체에 시간을 저장한다.
+            String strNowDate =  transFormat.format(nowDate);
+            nowDate = transFormat.parse(strNowDate);
+            dateResult = nowDate.getTime() - toDate.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dateResult;
     }
 
     public void setRegDate(String regDate) {
@@ -222,11 +247,11 @@ public class ExpertEstimateDetail {
         this.assetType = assetType;
     }
 
-    public int getReviewsn() {
-        return reviewsn;
+    public boolean getReviewyn() {
+        return reviewyn;
     }
 
-    public void setReviewsn(int reviewsn) {
-        this.reviewsn = reviewsn;
+    public void setReviewyn(boolean reviewyn) {
+        this.reviewyn = reviewyn;
     }
 }

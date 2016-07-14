@@ -133,7 +133,7 @@ public class MyEsitmateList {
     public String getBusinessScale() {
         String bs;
         if (businessScale < 1000000) {
-            bs = businessScale / 1000 + "만원";
+            bs = businessScale / 10000 + "만원";
         } else if (1000000 <= businessScale && businessScale < 100000000) {
             bs = businessScale / 10000 + "만원";
         } else {
@@ -158,7 +158,7 @@ public class MyEsitmateList {
         List<String> bs = new ArrayList<String>();
         for(int i=0; i<marketPrice.size(); i++) {
             if (marketPrice.get(i) < 1000000) {
-                bs.add(marketPrice.get(i) / 1000 + "만원");
+                bs.add(marketPrice.get(i) / 10000 + "만원");
             } else if (1000000 <= marketPrice.get(i) && marketPrice.get(i) < 100000000) {
                 bs.add(marketPrice.get(i) / 10000 + "만원");
             } else {

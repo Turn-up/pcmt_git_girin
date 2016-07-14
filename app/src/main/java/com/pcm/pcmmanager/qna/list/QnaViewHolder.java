@@ -59,4 +59,5 @@ public class QnaViewHolder extends RecyclerView.ViewHolder {
         writer.setText(qnaList.getUsername());
         reviewCount.setText(""+qnaList.getCommentcount());
     }
+
 }

@@ -26,7 +26,7 @@ import okhttp3.Request;
  * Created by LG on 2016-06-28.
  */
 public class QnaDetailReviewViewHolder extends RecyclerView.ViewHolder {
-    TextView name, mainContent, officeName, career, comment,delete;
+    TextView name, mainContent, officeName, career, comment,delete,regdate;
     ImageView photo;
     CheckBox checkBox;
     QnaDetailReviewList mList;
@@ -51,6 +51,7 @@ public class QnaDetailReviewViewHolder extends RecyclerView.ViewHolder {
         photo = (ImageView) itemView.findViewById(R.id.qna_detail_expert_image);
         checkBox = (CheckBox) itemView.findViewById(R.id.qna_detail_review_like_checkBox);
         delete = (TextView)itemView.findViewById(R.id.qna_detail_review_delete);
+        regdate = (TextView)itemView.findViewById(R.id.qna_detail_review_regdate);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,8 +68,10 @@ public class QnaDetailReviewViewHolder extends RecyclerView.ViewHolder {
         name.setText(qnaDetailReviewList.getExpertname());
         mainContent.setText(qnaDetailReviewList.getMainintroduce());
         officeName.setText(qnaDetailReviewList.getOfficename());
+        regdate.setText(qnaDetailReviewList.getRegdate());
         career.setText(qnaDetailReviewList.getAge() + "세, 경력 " + qnaDetailReviewList.getCareer() + "년");
         comment.setText(qnaDetailReviewList.getContent());
+        checkBox.setChecked(qnaDetailReviewList.isLikeyn());
         checkBox.setText(String.valueOf(qnaDetailReviewList.getLikecount()));
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

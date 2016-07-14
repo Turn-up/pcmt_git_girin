@@ -1,10 +1,13 @@
 package com.pcm.pcmmanager.nomal.estimate_request;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +39,7 @@ public class EstimateRequestEtcFragment extends Fragment {
     public static final String ESTIMATE_REQUEST_ETC_CODE = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ETC_POSITION).getCode();
     SeekBar seekBar;
     String content, address1, address2, tempAddress1;
-    EditText etcContent;
+    EditText etcContent,phone;
     ArrayAdapter<String> a1Adapter, a2Adapter; //업종, 주소
     Spinner address1Spinner, address2Spinner;
     String endDate = "7"; // 마감일
@@ -59,7 +62,7 @@ public class EstimateRequestEtcFragment extends Fragment {
         a1Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         a2Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         etcAdd = (Button) view.findViewById(R.id.estimate_request_etc_btn);
-
+        phone = (EditText)view.findViewById(R.id.estimate_request_etc_phone);
         day = new TextView[7];
         day[0] = (TextView) view.findViewById(R.id.seek_day1);
         day[1] = (TextView) view.findViewById(R.id.seek_day2);
@@ -70,7 +73,11 @@ public class EstimateRequestEtcFragment extends Fragment {
         day[6] = (TextView) view.findViewById(R.id.seek_day7);
         color = view.getResources().getColor(R.color.bid_finish);
 
-        a1Adapter.setDropDownViewResource(R.layout.spinner_item_text);
+        TelephonyManager telManager = (TelephonyManager) getContext().getSystemService(getContext().TELEPHONY_SERVICE);
+        final String phoneNum = telManager.getLine1Number();
+        phone.setText(phoneNum);
+
+        a1Adapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         for (int i = 0; i < PropertyManager.getInstance().getCommonRegionLists().size(); i++) {
             a1Adapter.add(PropertyManager.getInstance().getCommonRegionLists().get(i).getValue());
         }
@@ -93,7 +100,7 @@ public class EstimateRequestEtcFragment extends Fragment {
 
             }
         });
-        a2Adapter.setDropDownViewResource(R.layout.spinner_item_text);
+        a2Adapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         address2Spinner.setAdapter(a2Adapter);
         address2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -136,28 +143,53 @@ public class EstimateRequestEtcFragment extends Fragment {
             public void onClick(View v) {
                 if (TextUtils.isEmpty(etcContent.getText().toString())) {
                     Toast.makeText(getContext(), "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
+                }else if (TextUtils.isEmpty(phone.getText().toString())) {
+                    Toast.makeText(getContext(), "연락처를 입력하세요", Toast.LENGTH_SHORT).show();
                 } else {
                     content = etcContent.getText().toString();
-                    NetworkManager.getInstance().getNomalEstiamteRequestList(ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
-                            null, endDate, content, new NetworkManager.OnResultListener<CommonResult>() {
-                                @Override
-                                public void onSuccess(Request request, CommonResult result) {
-                                    Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
-                                    startActivity(intent);
-                                    getActivity().finish();
-                                }
-
-                                @Override
-                                public void onFail(Request request, IOException exception) {
-
-                                }
-                            });
+                    CheckDialog(content);
                 }
             }
         });
 
         return view;
-
     }
 
+    private void CheckDialog(final String sContent) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        // AlertDialog 셋팅
+        alertDialogBuilder
+                .setMessage("견적을 등록 하시겠습니까?")
+                .setCancelable(false)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        String content = sContent;
+                        NetworkManager.getInstance().getNomalEstiamteRequestList(phone.getText().toString(),ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
+                                null, endDate, content, new NetworkManager.OnResultListener<CommonResult>() {
+                                    @Override
+                                    public void onSuccess(Request request, CommonResult result) {
+                                        Intent intent = new Intent(getContext(), MyEstimateListActivity.class);
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                    }
+
+                                    @Override
+                                    public void onFail(Request request, IOException exception) {
+
+                                    }
+                                });
+
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // 다이얼로그를 취소한다
+                        dialog.cancel();
+                    }
+                });
+        // 다이얼로그 보여주기
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.show();
+    }
 }

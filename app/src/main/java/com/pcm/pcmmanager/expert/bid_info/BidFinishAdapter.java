@@ -18,9 +18,18 @@ public class BidFinishAdapter extends RecyclerView.Adapter<BidFinishViewHolder> 
 
     List<ExpertBidStatus> items = new ArrayList<>();
 
+    private int totalCount = 0;
     public void clear() {
         items.clear();
         notifyDataSetChanged();
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 
     public void add(ExpertBidStatus expertBidStatus) {
@@ -46,5 +55,12 @@ public class BidFinishAdapter extends RecyclerView.Adapter<BidFinishViewHolder> 
     @Override
     public int getItemCount() {
         return items.size();
+    }
+    public boolean isMoreData() {
+        return totalCount == 0 ? false : (totalCount) > items.size() ? true : false;
+    }
+
+    public int getLastSn(int sn) {
+        return items.get(sn).getMarketSn();
     }
 }

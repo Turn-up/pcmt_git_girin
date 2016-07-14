@@ -15,6 +15,15 @@ public class QnaList {
     Boolean secretyn;
     String regdate;
     String content;
+    Boolean readyn;
+
+    public Boolean getReadyn() {
+        return readyn;
+    }
+
+    public void setReadyn(Boolean readyn) {
+        this.readyn = readyn;
+    }
 
     public int getQnasn() {
         return qnasn;

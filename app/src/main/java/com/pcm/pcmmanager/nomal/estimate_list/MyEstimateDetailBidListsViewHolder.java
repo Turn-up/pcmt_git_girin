@@ -68,7 +68,7 @@ public class MyEstimateDetailBidListsViewHolder extends RecyclerView.ViewHolder 
         } else {
             Glide.with(expertIamge.getContext()).load(mList.getPhoto()).into(expertIamge);
         }
-        comment.setText(mList.getMainIntroduce());
+        comment.setText(mList.getComment());
         if (markettype.equals("기장")) {
             moneyTypeOne.setText("제시금액");
             moneyTypeTwo.setText("조정료");

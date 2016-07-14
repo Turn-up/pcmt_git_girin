@@ -32,8 +32,11 @@ public class BidSuccessFragment extends Fragment {
     RecyclerView recyclerView;
     BidSuccessAdapter mAdapter;
 
-    public static final String PAGE_SIZE = "10";
+    public static final String PAGESIZE = "10";
     public static final String STATUS = "110_004";
+    LinearLayoutManager mLayoutManager;
+    Boolean isLast;
+    String last_marketSn;
 
     public BidSuccessFragment() {
         // Required empty public constructor
@@ -46,9 +49,11 @@ public class BidSuccessFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_bid_success, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.bid_success_rv_list);
+        last_marketSn = "0";
+        mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new BidSuccessAdapter();
         recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(mLayoutManager);
         mAdapter.setOnItemClickListener(new BidSucessViewHolder.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, final ExpertBidStatus expertBidStatus) {
@@ -85,6 +90,28 @@ public class BidSuccessFragment extends Fragment {
                 }
             }
         });
+        isLast = false;
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(isLast && newState == RecyclerView.SCROLL_STATE_IDLE){
+                    getMoreData();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int totalCount = mAdapter.getItemCount();
+                int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                if (totalCount > 0 && lastVisibleItem >= totalCount - 1){
+                    isLast =true;
+                }else
+                    isLast= false;
+            }
+        });
+
         setData();
         return v;
     }
@@ -92,10 +119,12 @@ public class BidSuccessFragment extends Fragment {
     private void setData() {
         mAdapter.clear();
         String last_marketsn = "0";
-        NetworkManager.getInstance().getExpertBidStatus(PAGE_SIZE, last_marketsn, STATUS, new NetworkManager.OnResultListener<ExpertBidStatusResult>() {
+        NetworkManager.getInstance().getExpertBidStatus(PAGESIZE, last_marketsn, STATUS, new NetworkManager.OnResultListener<ExpertBidStatusResult>() {
             @Override
             public void onSuccess(Request request, ExpertBidStatusResult result) {
+                mAdapter.clear();
                 mAdapter.addAll(result.getList());
+                mAdapter.setTotalCount(result.getTotalcount());
             }
 
             @Override
@@ -104,4 +133,32 @@ public class BidSuccessFragment extends Fragment {
             }
         });
     }
+    private boolean isMoreData = false;
+
+    public void getMoreData() {
+        if (!isMoreData && mAdapter.isMoreData()) {
+            isMoreData = true;
+            final int sn = mAdapter.getLastSn(mAdapter.getItemCount() - 1);
+            try {
+                NetworkManager.getInstance().getExpertBidStatus(PAGESIZE, String.valueOf(sn), STATUS, new NetworkManager.OnResultListener<ExpertBidStatusResult>() {
+                    @Override
+                    public void onSuccess(Request request, ExpertBidStatusResult result) {
+                        mAdapter.addAll(result.getList());
+                        isMoreData = false;
+                    }
+
+                    @Override
+                    public void onFail(Request request, IOException exception) {
+
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                isMoreData = false;
+
+            }
+
+        }
+    }
+
 }

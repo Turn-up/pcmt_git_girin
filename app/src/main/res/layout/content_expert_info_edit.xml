@@ -27,13 +27,13 @@
         android:layout_marginLeft="34dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
         android:drawableLeft="@drawable/email_icon"
         android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="1dp"
         android:text="이메일"
         android:textColor="#777777"
-        android:textSize="13sp"
-        android:paddingLeft="1dp" />
+        android:textSize="13sp" />
 
     <EditText
         android:id="@+id/expert_personal_info_phone"
@@ -45,15 +45,77 @@
         android:textColor="#777777"
         android:textSize="13sp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:src="@drawable/underbar28"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="알림 설정"
+            android:textColor="#777777"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/expert_personal_info_push_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:text="로그아웃"
+        android:id="@+id/expert_personal_info_password"
+        android:background="@drawable/logout_button_round"
+        android:layout_gravity="center_horizontal"
+        android:textSize="13dp"
+        android:textColor="#777777"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*회계매니저를 더 이상 이용하지 않으시려면"
+            android:layout_gravity="center_horizontal"
+            android:textSize="11dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원탈퇴하기>>"
+            android:id="@+id/expert_personal_info_out"
+            android:textSize="12dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="3dp" />
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:src="@drawable/expert_personal_info_text_icon"/>
+        android:src="@drawable/underbar28" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/expert_personal_info_text_icon" />
 </LinearLayout>

@@ -199,9 +199,8 @@ public class NomalUserFragment extends Fragment implements View.OnClickListener 
                             break;
                         case '9':
                             totalCount[5 - i].setImageResource(R.drawable.count_nine_icon);
+                            break;
                     }
-                    break;
-
                 }
                 String bidIng = "" + result.getMainBidCount().getBidCount();
                 for (int i = bidIng.length(); i > 0; i--) {

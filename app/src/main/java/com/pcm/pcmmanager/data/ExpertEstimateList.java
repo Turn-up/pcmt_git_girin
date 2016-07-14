@@ -2,7 +2,10 @@ package com.pcm.pcmmanager.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +33,7 @@ public class ExpertEstimateList {
     List<Long> marketPrice;
     private String enddate;
     private String content;
+    private String regdate;
     private List<MainBidCount> bids;
 
     public List<String> getAssetType() {
@@ -84,7 +88,7 @@ public class ExpertEstimateList {
         List<String> bs = new ArrayList<String>();
         for(int i=0; i<marketPrice.size(); i++) {
             if (marketPrice.get(i) < 1000000) {
-                bs.add(marketPrice.get(i) / 1000 + "만원");
+                bs.add(marketPrice.get(i) / 10000 + "만원");
             } else if (1000000 <= marketPrice.get(i) && marketPrice.get(i) < 100000000) {
                 bs.add(marketPrice.get(i) / 10000 + "만원");
             } else {
@@ -142,6 +146,26 @@ public class ExpertEstimateList {
         this.userSn = userSn;
     }
 
+    public long getRegdate() {
+        long now = System.currentTimeMillis();// 시스템으로부터 현재시간(ms) 가져오기
+        long dateResult = 0;
+        try {
+            SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date toDate = transFormat.parse(regdate);
+            Date nowDate = new Date(now); // Data 객체에 시간을 저장한다.
+            String strNowDate =  transFormat.format(nowDate);
+            nowDate = transFormat.parse(strNowDate);
+            dateResult = nowDate.getTime() - toDate.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dateResult;
+    }
+
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
+    }
 }
 
 

@@ -36,7 +36,7 @@ public class MyEstimateEtcModify extends AppCompatActivity {
     public static final String ESTIMATE_REQUEST_ETC_CODE = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ETC_POSITION).getCode();
     SeekBar seekBar;
     String content, address1, address2, tempAddress1;
-    EditText etcContent;
+    EditText etcContent, phone;
     ArrayAdapter<String> a1Adapter, a2Adapter; //업종, 주소
     Spinner address1Spinner, address2Spinner;
     String endDate = "1", marketSn; // 마감일
@@ -57,6 +57,7 @@ public class MyEstimateEtcModify extends AppCompatActivity {
         a1Adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_text);
         a2Adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_text);
         etcAdd = (Button) findViewById(R.id.estimate_modify_etc_btn);
+        phone = (EditText) findViewById(R.id.estimate_modify_etc_phone);
 
         day = new TextView[7];
         day[0] = (TextView) findViewById(R.id.seek_day1);
@@ -133,14 +134,16 @@ public class MyEstimateEtcModify extends AppCompatActivity {
         etcAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(etcContent.getText().toString())) {
+                if (TextUtils.isEmpty(phone.getText().toString())) {
+                    Toast.makeText(MyEstimateEtcModify.this, "연락처를 입력하세요", Toast.LENGTH_SHORT).show();
+                }else if (TextUtils.isEmpty(etcContent.getText().toString())) {
                     Toast.makeText(MyEstimateEtcModify.this, "부가정보를 입력하세요", Toast.LENGTH_SHORT).show();
                 } else {
                     content = etcContent.getText().toString();
                     address1 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getCode();
                     address2 = PropertyManager.getInstance().getCommonRegionLists().get(address1Spinner.getSelectedItemPosition()).getList().get(address2Spinner.getSelectedItemPosition()).getCode();
-                    NetworkManager.getInstance().getNomalEstiamteModify(marketSn, ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
-                            "", endDate, content, new NetworkManager.OnResultListener<CommonResult>() {
+                    NetworkManager.getInstance().getNomalEstiamteModify(phone.getText().toString(), marketSn, ESTIMATE_REQUEST_ETC_CODE, "", address1, address2, "", "", "", "", null,
+                            null, endDate, content, new NetworkManager.OnResultListener<CommonResult>() {
                                 @Override
                                 public void onSuccess(Request request, CommonResult result) {
                                     Intent intent = new Intent(MyEstimateEtcModify.this, MyEstimateListActivity.class);
@@ -167,8 +170,9 @@ public class MyEstimateEtcModify extends AppCompatActivity {
             public void onSuccess(Request request, ExpertEstimateDetailResult result) {
                 ExpertEstimateDetail items = result.getItem();
                 endDate = items.getEnddate();
+                phone.setText(items.getPhone());
                 seekBar.setProgress(Integer.valueOf(endDate) - 1);
-                day[Integer.valueOf(endDate)-1].setTextColor(Color.BLACK);
+                day[Integer.valueOf(endDate) - 1].setTextColor(Color.BLACK);
                 etcContent.setText(items.getContent());
                 address1 = items.getAddress1();
                 address2 = items.getAddress2();

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="285dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="278dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -48,17 +48,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/linearLayout5"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_below="@+id/detail_header_market_type"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
@@ -97,23 +97,23 @@
                             android:visibility="gone" />
                     </LinearLayout>
 
-
                     <TextView
-                        android:id="@+id/deail_bid_count"
+                        android:id="@+id/deail_bid_count_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:layout_gravity="bottom"
-                        android:layout_marginRight="7dp"
                         android:text="bid"
                         android:textColor="#ff8f00"
                         android:textSize="13sp" />
 
                     <ImageView
-                        android:layout_gravity="bottom"
+                        android:id="@+id/detail_bid_count_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/bidcount_icon" />
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="7dp"
+                        android:src="@drawable/bidcount_icon"
+                        android:visibility="visible" />
                 </LinearLayout>
 
                 <ImageView
@@ -156,5 +156,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/main_tab_under_box" />
+        android:src="@drawable/main_tab_under_box"
+        android:layout_marginTop="30dp" />
 </LinearLayout>

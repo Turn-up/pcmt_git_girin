@@ -44,7 +44,7 @@ public class ExpertFragment extends Fragment {
     RecyclerView recyclerView;
     AuctionAdapter mAdapter;
 
-    Button btn_expert_condition_search, btn_expert_estimate_view,btn_expert_qna_search;
+    Button btn_expert_condition_search, btn_expert_estimate_view, btn_expert_qna_search;
     Boolean isLast;
     LinearLayoutManager mLayoutManager;
 
@@ -116,7 +116,7 @@ public class ExpertFragment extends Fragment {
             }
         });
         //Q&A 검색 버튼
-        btn_expert_qna_search = (Button)view.findViewById(R.id.btn_expert_qna_search);
+        btn_expert_qna_search = (Button) view.findViewById(R.id.btn_expert_qna_search);
         btn_expert_qna_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,9 +186,9 @@ public class ExpertFragment extends Fragment {
                         @Override
                         public void onSuccess(Request request, ExpertBidStatusResult bidResult) {
                             mAdapter.addAll(estimateResult.getEstimateList());
-                            for(int i = 0 ; i < bidResult.getList().size();i++){
-                                for(int j = 0 ; j < estimateResult.getEstimateList().size() ; j++){
-                                    if(estimateResult.getEstimateList().get(j).getMarketSn()==bidResult.getList().get(i).getMarketSn()){
+                            for (int i = 0; i < bidResult.getList().size(); i++) {
+                                for (int j = 0; j < estimateResult.getEstimateList().size(); j++) {
+                                    if (estimateResult.getEstimateList().get(j).getMarketSn() == bidResult.getList().get(i).getMarketSn()) {
                                         mAdapter.remove(i);
                                     }
                                 }
@@ -214,7 +214,7 @@ public class ExpertFragment extends Fragment {
             public void onSuccess(Request request, MainBidCountResult result) {
                 String total = String.valueOf(result.getMainBidCount().getBidEndCount());
                 for (int i = total.length(); 0 < i; i--) {
-                    switch (total.charAt(total.length()-i)) {
+                    switch (total.charAt(total.length() - i)) {
                         case '0':
                             totalCount[5 - i].setImageResource(R.drawable.count_zero_icon);
                             break;
@@ -244,13 +244,12 @@ public class ExpertFragment extends Fragment {
                             break;
                         case '9':
                             totalCount[5 - i].setImageResource(R.drawable.count_nine_icon);
+                            break;
                     }
-                    break;
-
                 }
                 String bidIng = "" + result.getMainBidCount().getBidCount();
                 for (int i = bidIng.length(); i > 0; i--) {
-                    switch (bidIng.charAt(bidIng.length()-i)) {
+                    switch (bidIng.charAt(bidIng.length() - i)) {
                         case '0':
                             auctionCount[5 - i].setImageResource(R.drawable.count_zero_icon);
                             break;
@@ -293,6 +292,7 @@ public class ExpertFragment extends Fragment {
     }
 
     private boolean isMoreData = false;
+
     private void getMoreData() {
         if (!isMoreData && mAdapter.isMoreData()) {
             isMoreData = true;

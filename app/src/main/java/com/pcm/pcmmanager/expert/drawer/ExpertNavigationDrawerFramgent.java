@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,7 +19,6 @@ import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity;
 import com.pcm.pcmmanager.data.ExpertNavInfo;
 import com.pcm.pcmmanager.data.ExpertNavInfoResult;
-import com.pcm.pcmmanager.expert.info.ExpertInfoEditActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
 import com.pcm.pcmmanager.manager.PropertyManager;
 
@@ -33,8 +31,7 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
     ImageView profileImage, underbar;
     TextView profileName, profileEmail, profilePoint, profileEntryCount, profileBidSuccessCount, Myinfo,
             profileBidFinishCount, ask, notice, event, use_way;
-    Button logout;
-    LinearLayout layout1, layout_un_confirm, layout, logout_layout;
+    LinearLayout layout1, layout_un_confirm, layout;
     FrameLayout layout2;
     ImageButton personal_info;
 
@@ -51,7 +48,6 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
             mCallback = (OnMenuClickListener) context;
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,31 +65,12 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
         notice = (TextView) v.findViewById(R.id.expert_drawer_notice);
         event = (TextView) v.findViewById(R.id.expert_drawer_event);
         use_way = (TextView) v.findViewById(R.id.expert_drawer_use_way);
-        logout = (Button) v.findViewById(R.id.expert_drawer_logout);
         underbar = (ImageView) v.findViewById(R.id.textView);
         layout1 = (LinearLayout) v.findViewById(R.id.expert_drawer_layout1);
         layout2 = (FrameLayout) v.findViewById(R.id.expert_drawer_layout2);
         layout_un_confirm = (LinearLayout) v.findViewById(R.id.layout_un_confirm);
         layout = (LinearLayout) v.findViewById(R.id.layout);
-        logout_layout = (LinearLayout) v.findViewById(R.id.expert_drawer_logout_layout);
         personal_info = (ImageButton)v.findViewById(R.id.expert_drawer_personal_info_btn);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (logout_layout.getVisibility() == View.VISIBLE) {
-                    logout_layout.setVisibility(View.GONE);
-                } else
-                    logout_layout.setVisibility(View.VISIBLE);
-            }
-        });
-
-        personal_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ExpertInfoEditActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return v;
     }
@@ -109,7 +86,7 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
             @Override
             public void onSuccess(Request request, final ExpertNavInfoResult result) {
                 ExpertNavInfo item = result.getExpertNavInfo();
-                if (PropertyManager.getInstance().getExpertCheck()) {
+                 if (PropertyManager.getInstance().getExpertCheck()) {
                     layout.setBackgroundResource(R.drawable.expert_drawer_background);
                     layout_un_confirm.setVisibility(View.GONE);
                     underbar.setVisibility(View.VISIBLE);
