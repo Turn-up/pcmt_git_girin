@@ -43,7 +43,7 @@ public class BidFinishAdapter extends RecyclerView.Adapter<BidFinishViewHolder> 
 
     @Override
     public BidFinishViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_expert_bid_finish_list, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_expert_bid_finish_list, parent,false);
         return new BidFinishViewHolder(view);
     }
 

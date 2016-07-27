@@ -29,11 +29,24 @@
         android:text="150000"
         android:textColor="#ffc21f"
         android:textSize="30sp" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="충전하기"
+        android:textColor="@color/colorPrimary"
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/point_payment"
+        android:layout_gravity="right"
+        android:layout_marginTop="42dp"
+        android:layout_marginRight="21dp" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/underbar_point_list_21"
-        android:layout_marginTop="42dp"/>
+        android:layout_marginTop="5dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/point_rv_list"

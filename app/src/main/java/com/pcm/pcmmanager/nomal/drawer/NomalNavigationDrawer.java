@@ -25,7 +25,7 @@ import okhttp3.Request;
  */
 public class NomalNavigationDrawer extends Fragment {
 
-    TextView profieName, profileEmail, ask, notice, event, use_way, myEstimate, logout_btn, user_out_btn, myQna;
+    TextView profieName, profileEmail, ask, notice, event, use_way, myEstimate, logout_btn, user_out_btn, myQna,faq;
     LinearLayout logout_layout;
     ImageButton setting_btn;
 
@@ -61,6 +61,7 @@ public class NomalNavigationDrawer extends Fragment {
         profileEmail = (TextView) v.findViewById(R.id.nomal_drawer_email);
         setting_btn = (ImageButton) v.findViewById(R.id.nomal_drawer_setting);
         myQna = (TextView) v.findViewById(R.id.nomal_drawer_my_qna);
+        faq = (TextView)v.findViewById(R.id.nomal_drawer_faq);
 
         setUserData();
         return v;

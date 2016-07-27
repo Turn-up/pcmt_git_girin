@@ -296,6 +296,8 @@
                             <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:paddingLeft="2dp"
+                                android:layout_marginLeft="2dp"
                                 android:layout_marginRight="18dp"
                                 android:layout_weight="0.8">
 

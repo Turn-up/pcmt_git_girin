@@ -189,7 +189,8 @@ public class ExpertFragment extends Fragment {
                             for (int i = 0; i < bidResult.getList().size(); i++) {
                                 for (int j = 0; j < estimateResult.getEstimateList().size(); j++) {
                                     if (estimateResult.getEstimateList().get(j).getMarketSn() == bidResult.getList().get(i).getMarketSn()) {
-                                        mAdapter.remove(i);
+                                        mAdapter.remove(j-i);
+                                        break;
                                     }
                                 }
                             }

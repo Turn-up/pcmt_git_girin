@@ -40,7 +40,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
     @Override
     public void onBindViewHolder(ReviewViewHolder holder, int position) {
         holder.setExpertDetailReview(items.get(position));
-
     }
 
     @Override

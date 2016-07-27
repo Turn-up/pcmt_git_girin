@@ -45,4 +45,5 @@
     <string name="title_activity_qna_detail">QnaDetailActivity</string>
     <string name="title_activity_qna_ask">QnaAskActivity</string>
     <string name="title_activity_my_qna_list">MyQnaListActivity</string>
+    <string name="title_activity_faq">FaqActivity</string>
 </resources>

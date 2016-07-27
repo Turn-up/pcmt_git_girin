@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.MyEsitmateList;
+import com.pcm.pcmmanager.utill.Utills;
 
 /**
  * Created by LG on 2016-05-18.
@@ -73,7 +74,7 @@ public class MyEstimateListViewHolder extends RecyclerView.ViewHolder {
         }
 
         if (myEsitmateList.getMarketType().equals("기장")) {//기장
-            marketType_image.setImageResource(R.drawable.entry_icon);
+            marketType_image.setImageResource(Utills.entryIcon(this.myEsitmateList.getMarketSubType()));
             marketType_title.setText(this.myEsitmateList.getMarketSubType());
             marketType_sub[0].setText("매출 " + this.myEsitmateList.getBusinessScale() + ", 종업원 " + this.myEsitmateList.getEmployeeCount() + "명");
             for (int i = 1; i < 4; i++)

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.ask.AskActivity;
+import com.pcm.pcmmanager.common.faq.FaqActivity;
 import com.pcm.pcmmanager.common.notice.event.NoticeEventActivity;
 import com.pcm.pcmmanager.common.notice.text.NoticeListActivity;
 import com.pcm.pcmmanager.common.use_way.UseWayActivity;
@@ -80,6 +81,10 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
                 break;
             case R.id.expert_drawer_personal_info_btn:
                 intent = new Intent(this, ExpertInfoEditActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nomal_drawer_faq:
+                intent = new Intent(this, FaqActivity.class);
                 startActivity(intent);
                 break;
         }

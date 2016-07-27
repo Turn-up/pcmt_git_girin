@@ -49,8 +49,8 @@
             android:name=".nomal.estimate_request.EstimateRequestActivity"
             android:label="@string/title_activity_estimate_request"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".nomal.estimate_list.MyEstimateListActivity"
             android:label="@string/title_activity_nomal_user_estimate_list"
@@ -199,6 +199,11 @@
         <activity
             android:name=".nomal.qna_list.MyQnaListActivity"
             android:label="@string/title_activity_my_qna_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".expert.payment.PaymentActivity" />
+        <activity
+            android:name=".common.faq.FaqActivity"
+            android:label="@string/title_activity_faq"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

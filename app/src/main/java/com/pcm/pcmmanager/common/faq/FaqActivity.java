@@ -1,4 +1,4 @@
-package com.pcm.pcmmanager.expert.point;
+package com.pcm.pcmmanager.common.faq;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,50 +9,57 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
-import com.pcm.pcmmanager.data.PointListResult;
-import com.pcm.pcmmanager.expert.payment.PaymentActivity;
+import com.pcm.pcmmanager.data.FaqList;
+import com.pcm.pcmmanager.data.FaqListResult;
+import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
+import com.pcm.pcmmanager.nomal.NomalMainActivity;
 
 import java.io.IOException;
 
 import okhttp3.Request;
 
-public class PointListActivity extends AppCompatActivity {
-    public static final String POINT_PAGESIZE = "10";
-    public static final String POINT_LAST_POINTSN = "0";
-
+public class FaqActivity extends AppCompatActivity {
+    public static final String PAGE_SIZE = "10";
     RecyclerView recyclerView;
-    PointListAdapter mAdapter;
-    TextView pointView;
-    Button paymentBtn;
-
+    FaqAdapter mAdapter;
     Boolean isLast;
     LinearLayoutManager mLayoutManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_point_list);
+        setContentView(R.layout.activity_faq);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        pointView = (TextView) findViewById(R.id.point_value);
-        recyclerView = (RecyclerView) findViewById(R.id.point_rv_list);
-        paymentBtn = (Button) findViewById(R.id.point_payment);
-        mAdapter = new PointListAdapter();
         mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView = (RecyclerView) findViewById(R.id.faq_rv_list);
+        mAdapter = new FaqAdapter();
         recyclerView.setAdapter(mAdapter);
-        setData();
-
+        recyclerView.setLayoutManager(mLayoutManager);
+        mAdapter.setOnItemClickListener(new FaqViewHolder.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, FaqList faqList) {
+                TextView faqContentText = (TextView) view.findViewById(R.id.faq_content_text);
+                TextView faqUnderbar = (TextView) view.findViewById(R.id.faq_underbar);
+                if (faqContentText.getVisibility() == View.VISIBLE) {
+                    faqContentText.setVisibility(View.GONE);
+                    faqUnderbar.setVisibility(View.GONE);
+                }
+                else {
+                    faqContentText.setVisibility(View.VISIBLE);
+                    faqUnderbar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         isLast = false;
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -74,25 +81,21 @@ public class PointListActivity extends AppCompatActivity {
                     isLast = false;
             }
         });
-        paymentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PointListActivity.this, PaymentActivity.class);
-                startActivity(intent);
-            }
-        });
+        setData();
+
     }
 
     private boolean isMoreData = false;
+
     public void getMoreData() {
         if (!isMoreData && mAdapter.isMoreData()) {
             isMoreData = true;
             final int sn = mAdapter.getLastSn(mAdapter.getItemCount() - 1);
             try {
-                NetworkManager.getInstance().getMileageList(POINT_PAGESIZE, String.valueOf(sn), new NetworkManager.OnResultListener<PointListResult>() {
+                NetworkManager.getInstance().getFaqList(PAGE_SIZE, String.valueOf(sn), new NetworkManager.OnResultListener<FaqListResult>() {
                     @Override
-                    public void onSuccess(Request request, PointListResult result) {
-                        mAdapter.addAll(result.getPointList());
+                    public void onSuccess(Request request, FaqListResult result) {
+                        mAdapter.addAll(result.getFaqList());
                         isMoreData = false;
                     }
 
@@ -109,17 +112,16 @@ public class PointListActivity extends AppCompatActivity {
         }
     }
 
-    private void setData() {
-        mAdapter.clear();
-        NetworkManager.getInstance().getMileageList(POINT_PAGESIZE, POINT_LAST_POINTSN, new NetworkManager.OnResultListener<PointListResult>() {
+    public void setData() {
+        NetworkManager.getInstance().getFaqList(PAGE_SIZE, "0", new NetworkManager.OnResultListener<FaqListResult>() {
             @Override
-            public void onSuccess(Request request, PointListResult result) {
+            public void onSuccess(Request request, final FaqListResult result) {
+                mAdapter.clear();
                 if (result.getResult() == -1) {
-                    Toast.makeText(PointListActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FaqActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
                     mAdapter.setTotalCount(result.getTotalcount());
-                    mAdapter.addAll(result.getPointList());
-                    pointView.setText("" + result.getRemainMileage());
+                    mAdapter.addAll(result.getFaqList());
                 }
             }
 
@@ -128,8 +130,8 @@ public class PointListActivity extends AppCompatActivity {
 
             }
         });
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,10 +151,17 @@ public class PointListActivity extends AppCompatActivity {
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
-            finish();
+            if (MyApplication.getUserType().equals("Users")) {
+                Intent intent = new Intent(this, NomalMainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            } else if (MyApplication.getUserType().equals("Experts")) {
+                Intent intent = new Intent(this, ExpertMainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 }
-

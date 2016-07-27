@@ -28,8 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="18dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/bid_ing_market_type_title"
@@ -86,7 +86,6 @@
                         android:visibility="gone" />
                 </LinearLayout>
 
-
                 <TextView
                     android:id="@+id/bid_ing_end_date"
                     android:layout_width="wrap_content"
@@ -118,7 +117,7 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="66dp"
         android:layout_marginTop="20dp"

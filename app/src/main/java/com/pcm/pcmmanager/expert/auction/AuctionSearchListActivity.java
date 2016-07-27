@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertBidStatusResult;
 import com.pcm.pcmmanager.data.ExpertEstimateList;
@@ -19,13 +18,12 @@ import com.pcm.pcmmanager.data.ExpertEstimateResult;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.expert.bid_do.BidDoActivity;
 import com.pcm.pcmmanager.manager.NetworkManager;
-import com.pcm.pcmmanager.nomal.NomalMainActivity;
 
 import java.io.IOException;
 
 import okhttp3.Request;
 
-public class AuctionSearchListActivity extends AppCompatActivity{
+public class AuctionSearchListActivity extends AppCompatActivity {
 
     public static final String PAGE_SIZE = "10";
     public static final String STATUS = "110_002";
@@ -34,6 +32,7 @@ public class AuctionSearchListActivity extends AppCompatActivity{
     String marketType, marketSubType, regionType, regionSubType;
     Boolean isLast;
     LinearLayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,7 @@ public class AuctionSearchListActivity extends AppCompatActivity{
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(isLast && newState == RecyclerView.SCROLL_STATE_IDLE){
+                if (isLast && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     getMoreData();
                 }
             }
@@ -76,14 +75,15 @@ public class AuctionSearchListActivity extends AppCompatActivity{
                 super.onScrolled(recyclerView, dx, dy);
                 int totalCount = mAdapter.getItemCount();
                 int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
-                if (totalCount > 0 && lastVisibleItem >= totalCount - 1){
-                    isLast =true;
-                }else
-                    isLast= false;
+                if (totalCount > 0 && lastVisibleItem >= totalCount - 1) {
+                    isLast = true;
+                } else
+                    isLast = false;
             }
         });
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -91,12 +91,13 @@ public class AuctionSearchListActivity extends AppCompatActivity{
     }
 
     private boolean isMoreData = false;
-    public void getMoreData(){
-        if(!isMoreData && mAdapter.isMoreData()){
+
+    public void getMoreData() {
+        if (!isMoreData && mAdapter.isMoreData()) {
             isMoreData = true;
-            final int sn = mAdapter.getLastSn(mAdapter.getItemCount()-1);
+            final int sn = mAdapter.getLastSn(mAdapter.getItemCount() - 1);
             try {
-                NetworkManager.getInstance().getExpertEstimateSearch(PAGE_SIZE, String.valueOf(sn),marketType,marketSubType, regionType,regionSubType,new NetworkManager.OnResultListener<ExpertEstimateResult>() {
+                NetworkManager.getInstance().getExpertEstimateSearch(PAGE_SIZE, String.valueOf(sn), marketType, marketSubType, regionType, regionSubType, new NetworkManager.OnResultListener<ExpertEstimateResult>() {
                     @Override
                     public void onSuccess(Request request, ExpertEstimateResult result) {
                         mAdapter.addAll(result.getEstimateList());
@@ -108,13 +109,14 @@ public class AuctionSearchListActivity extends AppCompatActivity{
 
                     }
                 });
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 isMoreData = false;
 
             }
         }
     }
+
     public void setData(String marketType, String marketSubType, String regionType, String regionSubType) {
         NetworkManager.getInstance().getExpertEstimateSearch(PAGE_SIZE, "0", marketType, marketSubType, regionType, regionSubType, new NetworkManager.OnResultListener<ExpertEstimateResult>() {
             @Override
@@ -123,7 +125,6 @@ public class AuctionSearchListActivity extends AppCompatActivity{
                 if (estimateResult.getResult() == -1) {
                     Toast.makeText(AuctionSearchListActivity.this, estimateResult.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    //입찰된 리스트인지 비교하기 marketsn으로
                     mAdapter.setTotalCount(estimateResult.getTotalCount());
 
                     String marketSn = "0";
@@ -131,10 +132,10 @@ public class AuctionSearchListActivity extends AppCompatActivity{
                         @Override
                         public void onSuccess(Request request, ExpertBidStatusResult bidResult) {
                             mAdapter.addAll(estimateResult.getEstimateList());
-                            for(int i = 0 ; i < bidResult.getList().size();i++){
-                                for(int j = 0 ; j < estimateResult.getEstimateList().size() ; j++){
-                                    if(estimateResult.getEstimateList().get(j).getMarketSn()==bidResult.getList().get(i).getMarketSn()){
-                                        mAdapter.remove(i);
+                            for (int i = 0; i < bidResult.getList().size(); i++) {
+                                for (int j = 0; j < estimateResult.getEstimateList().size(); j++) {
+                                    if (estimateResult.getEstimateList().get(j).getMarketSn() == bidResult.getList().get(i).getMarketSn()) {
+                                        mAdapter.remove(j - i);
                                     }
                                 }
                             }
@@ -175,15 +176,9 @@ public class AuctionSearchListActivity extends AppCompatActivity{
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
-            if (MyApplication.getUserType().equals("Users")) {
-                Intent intent = new Intent(this, NomalMainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            } else if (MyApplication.getUserType().equals("Experts")) {
-                Intent intent = new Intent(this, ExpertMainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(this, ExpertMainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertBidStatus;
+import com.pcm.pcmmanager.utill.Utills;
 
 /**
  * Created by LG on 2016-05-22.
@@ -56,7 +57,7 @@ public class BidIngViewHolder extends RecyclerView.ViewHolder {
         this.expertBidStatus = expertBidStatus;
         if (this.expertBidStatus.getMarketType().equals("기장")) {
             Bid_ing_marketType_title.setText(this.expertBidStatus.getMarketSubtype());
-            Bid_ing_marketType_image.setImageResource(R.drawable.entry_icon);
+            Bid_ing_marketType_image.setImageResource(Utills.entryIcon(expertBidStatus.getMarketSubtype().toString()));
             Bid_ing_marketType_sub[0].setText("매출 " + this.expertBidStatus.getBusinessScale() + ", 종업원" + this.expertBidStatus.getEmployeeCount()+"명");
         } else if (this.expertBidStatus.getMarketType().equals("TAX")) {
             Bid_ing_marketType_title.setText(this.expertBidStatus.getMarketSubtype());

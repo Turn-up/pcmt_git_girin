@@ -331,5 +331,26 @@
             android:textColor="#515151"
             android:textSize="16sp" />
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
+        <TextView
+            android:id="@+id/expert_drawer_faq"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:onClick="onNavClick"
+            android:text="자주묻는질문"
+            android:textColor="#515151"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/underbar_10" />
+
     </LinearLayout>
 </LinearLayout>

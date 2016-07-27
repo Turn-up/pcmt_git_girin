@@ -39,7 +39,6 @@ public class AccountInfoViewPagerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account_info_view_pager, container, false);
         ImageView accountImageView = (ImageView)view.findViewById(R.id.accountInfoImage);
         Glide.with(getContext()).load(imageUrl).into(accountImageView);
-        accountImageView.setImageResource(R.drawable.ic_menu_camera);
         accountImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

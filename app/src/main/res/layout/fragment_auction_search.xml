@@ -90,7 +90,6 @@
             android:layout_marginLeft="87dp"
             android:layout_marginTop="5dp"
             android:background="@android:color/transparent"
-            android:onClick="onEstimateClick"
             android:src="@drawable/expert_search_entry_icon_unselect" />
 
         <ImageView
@@ -107,7 +106,6 @@
             android:layout_marginLeft="39dp"
             android:layout_marginTop="5dp"
             android:background="@android:color/transparent"
-            android:onClick="onEstimateClick"
             android:src="@drawable/expert_search_tax_icon_unselect" />
 
     </LinearLayout>

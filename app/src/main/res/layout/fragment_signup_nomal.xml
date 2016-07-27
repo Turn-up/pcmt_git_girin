@@ -48,6 +48,16 @@
             android:textColor="#a0a0a0"
             android:textSize="13sp" />
 
+        <TextView
+            android:id="@+id/user_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="5dp"
+            android:text="오류"
+            android:textColor="#ff0000"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/user_password_icon"
             android:layout_width="wrap_content"
@@ -73,6 +83,16 @@
             android:paddingLeft="27dp"
             android:textColor="#a0a0a0"
             android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/user_password_check_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="5dp"
+            android:text="오류"
+            android:textColor="#ff0000"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/user_password_check_icon"

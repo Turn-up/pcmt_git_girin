@@ -39,7 +39,7 @@ public class BidIngAdapter extends RecyclerView.Adapter<BidIngViewHolder> {
 
     @Override
     public BidIngViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_expert_bid_ing_list, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_expert_bid_ing_list, parent,false);
         return new BidIngViewHolder(view);
     }
 

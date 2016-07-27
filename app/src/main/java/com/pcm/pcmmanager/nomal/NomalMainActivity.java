@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.ask.AskActivity;
+import com.pcm.pcmmanager.common.faq.FaqActivity;
 import com.pcm.pcmmanager.common.notice.event.NoticeEventActivity;
 import com.pcm.pcmmanager.common.notice.text.NoticeListActivity;
 import com.pcm.pcmmanager.common.use_way.UseWayActivity;
@@ -86,6 +87,11 @@ public class NomalMainActivity extends AppCompatActivity implements NomalNavigat
             case R.id.nomal_drawer_setting:
                 intent = new Intent(this, NomalUserInfoEditActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.nomal_drawer_faq:
+                intent = new Intent(this, FaqActivity.class);
+                startActivity(intent);
+                break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

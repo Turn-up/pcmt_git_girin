@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertDetailReviewResult;
@@ -20,6 +21,7 @@ public class ExpertDetailInfoReviewFragment extends Fragment implements ExpertDe
     RecyclerView recyclerView;
     ReviewAdapter mAdapter;
     ExpertDetailReviewResult expertDetailReviewResult;
+    LinearLayout reviewNull;
     public ExpertDetailInfoReviewFragment() {
         // Required empty public constructor
     }
@@ -30,6 +32,7 @@ public class ExpertDetailInfoReviewFragment extends Fragment implements ExpertDe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_expert_detail_info_review, container, false);
+        reviewNull = (LinearLayout) view.findViewById(R.id.expert_detail_info_review_null_layout);
         recyclerView = (RecyclerView)view.findViewById(R.id.expert_detail_info_review_rv_list);
         mAdapter = new ReviewAdapter();
         recyclerView.setAdapter(mAdapter);
@@ -59,7 +62,10 @@ public class ExpertDetailInfoReviewFragment extends Fragment implements ExpertDe
     }
     public void setData(){
         if (expertDetailReviewResult != null) {
-            mAdapter.addAll(expertDetailReviewResult.getReviewList());
+            if(expertDetailReviewResult.getReviewList().size() != 0){
+                mAdapter.addAll(expertDetailReviewResult.getReviewList());
+                reviewNull.setVisibility(View.GONE);
+            }
         }
     };
 

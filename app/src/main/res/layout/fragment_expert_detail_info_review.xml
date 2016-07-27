@@ -5,10 +5,38 @@
     android:background="#eeeeee"
     tools:context="com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoReviewFragment">
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/expert_detail_info_review_rv_list">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/expert_detail_info_review_rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/expert_detail_info_review_null_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/expert_no_review"/>
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#aaaaaa"
+            android:textSize="15sp"
+            android:text="아직 등록 된 후기가 없습니다."/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#aaaaaa"
+            android:textSize="15sp"
+            android:text="저의 첫 고객이 되어주시겠습니까?"/>
+    </LinearLayout>
 </FrameLayout>

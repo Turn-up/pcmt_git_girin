@@ -18,6 +18,7 @@ import com.pcm.pcmmanager.data.ExpertDetailReviewResult;
 import com.pcm.pcmmanager.data.ExpertEstimateDetailResult;
 import com.pcm.pcmmanager.data.ExpertEstimateResult;
 import com.pcm.pcmmanager.data.ExpertNavInfoResult;
+import com.pcm.pcmmanager.data.FaqListResult;
 import com.pcm.pcmmanager.data.LoginResult;
 import com.pcm.pcmmanager.data.MainBidCountResult;
 import com.pcm.pcmmanager.data.MyEstimateListResult;
@@ -1934,6 +1935,49 @@ public class NetworkManager {
                 String text = response.body().string();
                 if (response.isSuccessful()) {
                     RefreshTokenResult data = gson.fromJson(text, RefreshTokenResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    result.excpetion = new IOException(response.message());
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+                }
+            }
+        });
+        return request;
+    }
+    /*52. FAQ 리스트 조회*/
+    private static final String PCM_FAQ_LIST = PCM_SEVER + "/faqs/list";
+
+    public Request getFaqList(String pagesize,String lastSn, OnResultListener<FaqListResult> listener) {
+        String url = PCM_FAQ_LIST;
+
+        RequestBody body = new FormBody.Builder()
+                .add("pagesize", pagesize)
+                .add("last_faqsn",lastSn)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("authorization", PropertyManager.getInstance().getAuthorizationToken())
+                .header("version", "1.0") //안드로이드 버젼 전송
+                .build();
+
+        final NetworkResult<FaqListResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String text = response.body().string();
+                if (response.isSuccessful()) {
+                    FaqListResult data = gson.fromJson(text, FaqListResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {

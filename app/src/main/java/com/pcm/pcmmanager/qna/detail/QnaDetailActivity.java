@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class QnaDetailActivity extends AppCompatActivity {
     EditText reviewText;
     ImageButton reviewButton;
     String qnaSn;
+    InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class QnaDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
 
         mLayoutManager = new LinearLayoutManager(this);
         reviewText = (EditText) findViewById(R.id.qna_detail_input_text);
@@ -131,6 +134,7 @@ public class QnaDetailActivity extends AppCompatActivity {
                                     Toast.makeText(QnaDetailActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                                 else {
                                     Toast.makeText(QnaDetailActivity.this, "댓글 작성 완료", Toast.LENGTH_SHORT).show();
+                                    imm.hideSoftInputFromWindow(reviewText.getWindowToken(),0);
                                     reviewText.setText("");
                                     setData();
 

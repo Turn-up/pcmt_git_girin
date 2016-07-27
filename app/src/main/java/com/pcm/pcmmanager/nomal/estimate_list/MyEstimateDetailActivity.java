@@ -100,6 +100,10 @@ public class MyEstimateDetailActivity extends AppCompatActivity {
                                     intent.putExtra("expertSn",expertSn);
                                     startActivity(intent);
                                 }
+                            }else if(status.equals("입찰취소")){
+                                Intent intent = new Intent(MyEstimateDetailActivity.this, ExpertDetailInfoActivity.class);
+                                intent.putExtra("expertSn", expertSn);
+                                startActivity(intent);
                             } else {
                                 eName = mList.getExpertName();
                                 ePhoto = mList.getPhoto();

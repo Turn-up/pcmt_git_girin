@@ -5,6 +5,9 @@ package com.pcm.pcmmanager.data;
  */
 public class PointList {
     int mileagelogsn;
+    String mileagetype;
+    int mileage;
+    String regdate;
 
     public int getMileagelogsn() {
         return mileagelogsn;
@@ -38,7 +41,5 @@ public class PointList {
         this.regdate = regdate;
     }
 
-    String mileagetype;
-    int mileage;
-    String regdate;
+
 }

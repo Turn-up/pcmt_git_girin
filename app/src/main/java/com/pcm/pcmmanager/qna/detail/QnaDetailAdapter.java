@@ -85,7 +85,7 @@ public class QnaDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return;
         } else {
             QnaDetailReviewViewHolder h = (QnaDetailReviewViewHolder) holder;
-            h.setReviewData(item.getQnaDetailReviewList().get(item.getQnaDetailReviewList().size() - position + 1), qnasn);
+            h.setReviewData(item.getQnaDetailReviewList().get(position - 2), qnasn);
             h.setOnItemClickListener(mListener);
             return;
         }

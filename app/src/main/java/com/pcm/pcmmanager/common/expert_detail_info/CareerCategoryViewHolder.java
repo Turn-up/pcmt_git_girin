@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertDetailCategory;
+import com.pcm.pcmmanager.utill.Utills;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +38,13 @@ public class CareerCategoryViewHolder extends RecyclerView.ViewHolder {
 
     public void setCategory(List<ExpertDetailCategory> item) {
         for (int i = 0; i < 3; i++) {
-            if (item.get(i).getMarketType().equals("기장"))
-                category_image[i].setImageResource(R.drawable.entry_icon);
-            else if (item.get(i).getMarketType().equals("TAX"))
+            if (item.get(i).getMarketType().equals("기장")) {
+               category_image[i].setImageResource(Utills.entryIcon(item.get(i).getMarketSubType()));
+            } else if (item.get(i).getMarketType().equals("TAX"))
                 category_image[i].setImageResource(R.drawable.tax_icon);
             else if (item.get(i).getMarketType().equals("기타"))
                 category_image[i].setImageResource(R.drawable.etc_icon);
             category_text[i].setText(item.get(i).getMarketSubType());
-       }
+        }
     }
 }

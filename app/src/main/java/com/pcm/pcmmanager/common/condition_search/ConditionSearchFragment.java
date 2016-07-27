@@ -109,8 +109,15 @@ public class ConditionSearchFragment extends Fragment {
                     a2Adapter.add("전체");
                     for (int i = 0; i < PropertyManager.getInstance().getCommonRegionLists().get(position - 1).getList().size(); i++) {
                         a2Adapter.add(PropertyManager.getInstance().getCommonRegionLists().get(position - 1).getList().get(i).getValue());
-                        address2Spinner.setAdapter(a2Adapter);
                     }
+                    address2Spinner.setAdapter(a2Adapter);
+
+                }else{
+                    region1 = "";
+                    region2 = "";
+                    a2Adapter.clear();
+                    a2Adapter.add("전체");
+                    address2Spinner.setAdapter(a2Adapter);
                 }
                 address2Spinner.setSelection(0);
             }
@@ -126,6 +133,9 @@ public class ConditionSearchFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!a2Adapter.getItem(position).equals("전체"))
                     region2 = PropertyManager.getInstance().getCommonRegionLists().get(a1Adapter.getPosition(tempResgion)-1).getList().get(position-1).getCode();
+                else{
+                    region2 = "";
+                }
             }
 
             @Override
@@ -137,11 +147,20 @@ public class ConditionSearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (entryBoolean) {
-                    entryBoolean = false;
-                    entryBtn.setImageResource(R.drawable.expert_search_entry_icon_unselect);
-                    //클릭 안됐을때 이미지
+                    if(taxBoolean){
+                        taxBoolean = false;
+                        entryBtn.setImageResource(R.drawable.expert_search_entry_icon_select);
+                        taxBtn.setImageResource(R.drawable.expert_search_tax_icon_unselect);
+                        marketType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ENTRY_POSITION).getCode();
+                    }else{
+                        entryBoolean = false;
+                        entryBtn.setImageResource(R.drawable.expert_search_entry_icon_unselect);
+                        marketType  = "";
+                        //클릭 안됐을때 이미지
+                    }
                 } else {
                     entryBoolean = true;
+                    taxBoolean = false;
                     entryBtn.setImageResource(R.drawable.expert_search_entry_icon_select);
                     taxBtn.setImageResource(R.drawable.expert_search_tax_icon_unselect);
                     marketType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ENTRY_POSITION).getCode();//기장
@@ -155,11 +174,20 @@ public class ConditionSearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (taxBoolean) {
-                    taxBoolean = false;
-                    taxBtn.setImageResource(R.drawable.expert_search_tax_icon_unselect);
-                    //클릭 안됐을때 이미지
+                    if(entryBoolean){
+                        entryBoolean = false;
+                        taxBtn.setImageResource(R.drawable.expert_search_tax_icon_select);
+                        entryBtn.setImageResource(R.drawable.expert_search_entry_icon_unselect);
+                        marketType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getCode();//TAX
+                        //클릭 안됐을때 이미지
+                    }else{
+                        taxBoolean = false;
+                        taxBtn.setImageResource(R.drawable.expert_search_tax_icon_unselect);
+                        marketType  = "";
+                    }
                 } else {
                     taxBoolean = true;
+                    entryBoolean = false;
                     taxBtn.setImageResource(R.drawable.expert_search_tax_icon_select);
                     entryBtn.setImageResource(R.drawable.expert_search_entry_icon_unselect);
                     marketType = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_TAX_POSITION).getCode();//TAX
@@ -210,5 +238,11 @@ public class ConditionSearchFragment extends Fragment {
             marketSubAdapter.add("전체");
             marketSubTypeSpinner.setAdapter(marketSubAdapter);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

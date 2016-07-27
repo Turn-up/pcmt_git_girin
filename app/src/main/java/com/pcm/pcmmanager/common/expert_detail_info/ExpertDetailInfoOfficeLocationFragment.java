@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,7 @@ public class ExpertDetailInfoOfficeLocationFragment extends Fragment implements 
     Button tel;
     ExpertDetailInfo expertDetailInfo;
     Double lat,lon;
+    RecyclerView recyclerView;
 
     public ExpertDetailInfoOfficeLocationFragment() {
 
@@ -44,12 +47,14 @@ public class ExpertDetailInfoOfficeLocationFragment extends Fragment implements 
         View view = inflater.inflate(R.layout.fragment_expert_detail_info_office_location, container, false);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.detail_map_fragment);
         mapFragment.getMapAsync(this);
+        recyclerView = (RecyclerView)view.findViewById(R.id.expert_detail_info_office_rv_list);
         name = (TextView) view.findViewById(R.id.expert_detail_info_office_name);
         email = (TextView) view.findViewById(R.id.expert_detail_info_office_email);
         domain = (TextView) view.findViewById(R.id.expert_detail_info_office_domain);
         address = (TextView) view.findViewById(R.id.expert_detail_info_office_address);
         tel = (Button) view.findViewById(R.id.expert_detail_info_office_tel);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         onNotify();
         return view;
 

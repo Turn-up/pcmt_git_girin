@@ -30,7 +30,7 @@ import okhttp3.Request;
 public class ExpertNavigationDrawerFramgent extends Fragment {
     ImageView profileImage, underbar;
     TextView profileName, profileEmail, profilePoint, profileEntryCount, profileBidSuccessCount, Myinfo,
-            profileBidFinishCount, ask, notice, event, use_way;
+            profileBidFinishCount, ask, notice, event, use_way,faq;
     LinearLayout layout1, layout_un_confirm, layout;
     FrameLayout layout2;
     ImageButton personal_info;
@@ -65,6 +65,7 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
         notice = (TextView) v.findViewById(R.id.expert_drawer_notice);
         event = (TextView) v.findViewById(R.id.expert_drawer_event);
         use_way = (TextView) v.findViewById(R.id.expert_drawer_use_way);
+        faq = (TextView) v.findViewById(R.id.expert_drawer_faq);
         underbar = (ImageView) v.findViewById(R.id.textView);
         layout1 = (LinearLayout) v.findViewById(R.id.expert_drawer_layout1);
         layout2 = (FrameLayout) v.findViewById(R.id.expert_drawer_layout2);
