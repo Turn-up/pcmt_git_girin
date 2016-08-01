@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.pcm.pcmmanager.R;
 
@@ -30,7 +29,8 @@ public class AskActivity extends AppCompatActivity {
         ask_kakao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AskActivity.this, "준비중 입니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://plus.kakao.com/home/@회계매니저"));
+                startActivity(intent);
             }
         });
         ask_phone.setOnClickListener(new View.OnClickListener() {

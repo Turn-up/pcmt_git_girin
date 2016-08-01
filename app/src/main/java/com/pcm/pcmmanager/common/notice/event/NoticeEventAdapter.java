@@ -31,7 +31,7 @@ public class NoticeEventAdapter extends RecyclerView.Adapter<NoticeEventViewHold
     }
     @Override
     public NoticeEventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_notice_event_image,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_notice_event_image,parent, false);
         return new NoticeEventViewHolder(view);
     }
 

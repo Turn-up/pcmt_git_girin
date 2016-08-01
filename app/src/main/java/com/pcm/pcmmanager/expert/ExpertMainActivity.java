@@ -83,7 +83,7 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
                 intent = new Intent(this, ExpertInfoEditActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.nomal_drawer_faq:
+            case R.id.expert_drawer_faq:
                 intent = new Intent(this, FaqActivity.class);
                 startActivity(intent);
                 break;

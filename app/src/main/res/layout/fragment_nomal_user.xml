@@ -200,6 +200,7 @@
                         android:id="@+id/info_indicator_ad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:layout_gravity="bottom|center_horizontal" />
 
                 </FrameLayout>
@@ -226,6 +227,7 @@
                         android:id="@+id/notice_indicator_ad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:layout_gravity="bottom|center_horizontal" />
 
                 </FrameLayout>
