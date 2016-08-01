@@ -110,6 +110,8 @@ public class QnaDetailReviewViewHolder extends RecyclerView.ViewHolder {
                                 DeleteDialog(qnasn);
                             }
                         });
+                    }else{
+                        delete.setVisibility(View.INVISIBLE);
                     }
                 }
             }
