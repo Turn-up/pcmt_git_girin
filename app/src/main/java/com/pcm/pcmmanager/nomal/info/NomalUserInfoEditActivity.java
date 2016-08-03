@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,7 +42,7 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
     Button logout;
     SwitchCompat pushSwitch;
     RadioGroup businessRadioGroup, taxationRadioGroup;
-    RadioButton personRadioButton,artiRadioButton,easeRadioButton, taxationNoRadioButton;
+    RadioButton personRadioButton, artiRadioButton, easeRadioButton, taxationNoRadioButton;
     String marketType1_3, marketType1_4;
     Boolean personal;
 
@@ -61,27 +62,6 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         personl_out = (TextView) findViewById(R.id.nomal_personal_info_out);
         logout = (Button) findViewById(R.id.nomal_personal_info_password);
         pushSwitch = (SwitchCompat) findViewById(R.id.nomal_personal_info_push_switch);
-        pushSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NetworkManager.getInstance().getPushSetting(String.valueOf(pushSwitch.isChecked()), new NetworkManager.OnResultListener<RefreshTokenResult>() {
-                    @Override
-                    public void onSuccess(Request request, RefreshTokenResult result) {
-                        if (result.getResult() == -1) {
-                            Toast.makeText(NomalUserInfoEditActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            PropertyManager.getInstance().setPushYN(pushSwitch.isChecked());
-                            PropertyManager.getInstance().setAuthorizationToken(result.getToken());
-                        }
-                    }
-
-                    @Override
-                    public void onFail(Request request, IOException exception) {
-
-                    }
-                });
-            }
-        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,8 +77,8 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         businessRadioGroup = (RadioGroup) findViewById(R.id.business_radiogroup);
         taxationRadioGroup = (RadioGroup) findViewById(R.id.taxation_radiogroup);
         artiRadioButton = (RadioButton) findViewById(R.id.btn_entry_artifical_radio);
-        personRadioButton = (RadioButton)findViewById(R.id.btn_entry_personal_radio);
-        easeRadioButton = (RadioButton)findViewById(R.id.btn_entry_ease_radio);
+        personRadioButton = (RadioButton) findViewById(R.id.btn_entry_personal_radio);
+        easeRadioButton = (RadioButton) findViewById(R.id.btn_entry_ease_radio);
         if (!artiRadioButton.isChecked()) {
             artiRadioButton.setBackgroundResource(R.drawable.article_default_icon);
         }
@@ -110,7 +90,7 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
                     case R.id.btn_entry_personal_radio:
                         marketType1_3 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_BUSINESS_TYPE_POSITION).getList().get(0).getCode();
                         artiRadioButton.setBackgroundResource(R.drawable.radio_background_arti_person);
-                        if(personRadioButton.isChecked())
+                        if (personRadioButton.isChecked())
                             businessRadioGroup.clearCheck();
                         break;
                     case R.id.btn_entry_artifical_radio:
@@ -153,6 +133,25 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         pushSwitch.setChecked(PropertyManager.getInstance().getPushYN());
         getData();
 
+    }
+
+    public void setPush() {
+        NetworkManager.getInstance().getPushSetting(String.valueOf(pushSwitch.isChecked()), new NetworkManager.OnResultListener<RefreshTokenResult>() {
+            @Override
+            public void onSuccess(Request request, RefreshTokenResult result) {
+                if (result.getResult() == -1) {
+                    Toast.makeText(NomalUserInfoEditActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    PropertyManager.getInstance().setPushYN(pushSwitch.isChecked());
+                    PropertyManager.getInstance().setAuthorizationToken(result.getToken());
+                }
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
     }
 
     /*정보 조회*/
@@ -253,6 +252,14 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         alertDialogBuilder.show();
     }
 
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) { // 백 버튼
+            SaveDialog();
+        }
+        return true;
+    }
+
     /*회원탈퇴 다이얼로그*/
     private void UserOut() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -305,6 +312,7 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        setPush();
                         NetworkManager.getInstance().getPersonalInfoModify(name.getText().toString(), phone.getText().toString(), marketType1_3, marketType1_4, new NetworkManager.OnResultListener<UserInfoModifyResult>() {
                             @Override
                             public void onSuccess(Request request, UserInfoModifyResult result) {
@@ -328,6 +336,7 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+                        finish();
                     }
                 });
 
@@ -349,7 +358,7 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            finish();
+            SaveDialog();
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {

@@ -26,7 +26,7 @@
         android:drawablePadding="12dp"
         android:layout_marginTop="13dp"
         android:drawableRight="@drawable/point_list_point_icon"
-        android:text="150000"
+        android:text="0"
         android:textColor="#ffc21f"
         android:textSize="30sp" />
 
@@ -54,6 +54,6 @@
         android:layout_marginRight="21dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

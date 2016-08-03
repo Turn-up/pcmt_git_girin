@@ -28,12 +28,12 @@ import okhttp3.Request;
 
 
 public class ExpertNavigationDrawerFramgent extends Fragment {
-    ImageView profileImage, underbar;
+    ImageView profileImage, underbar, underbar2;
     TextView profileName, profileEmail, profilePoint, profileEntryCount, profileBidSuccessCount, Myinfo,
-            profileBidFinishCount, ask, notice, event, use_way,faq;
+            profileBidFinishCount, ask, notice, event, use_way, faq;
     LinearLayout layout1, layout_un_confirm, layout;
     FrameLayout layout2;
-    ImageButton personal_info;
+    ImageButton personal_info, personal_info_no_confirm;
 
     public interface OnMenuClickListener {
         public void onMenuClick(int menuId);
@@ -48,6 +48,7 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
             mCallback = (OnMenuClickListener) context;
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,12 +68,13 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
         use_way = (TextView) v.findViewById(R.id.expert_drawer_use_way);
         faq = (TextView) v.findViewById(R.id.expert_drawer_faq);
         underbar = (ImageView) v.findViewById(R.id.textView);
+        underbar2 = (ImageView) v.findViewById(R.id.expert_drawer_underbar);
         layout1 = (LinearLayout) v.findViewById(R.id.expert_drawer_layout1);
         layout2 = (FrameLayout) v.findViewById(R.id.expert_drawer_layout2);
         layout_un_confirm = (LinearLayout) v.findViewById(R.id.layout_un_confirm);
         layout = (LinearLayout) v.findViewById(R.id.layout);
-        personal_info = (ImageButton)v.findViewById(R.id.expert_drawer_personal_info_btn);
-
+        personal_info = (ImageButton) v.findViewById(R.id.expert_drawer_personal_info_btn);
+        personal_info_no_confirm  = (ImageButton) v.findViewById(R.id.expert_drawer_personal_info_btn_no_confirm);
         return v;
     }
 
@@ -87,7 +89,7 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
             @Override
             public void onSuccess(Request request, final ExpertNavInfoResult result) {
                 ExpertNavInfo item = result.getExpertNavInfo();
-                 if (PropertyManager.getInstance().getExpertCheck()) {
+                if (PropertyManager.getInstance().getExpertCheck()) {
                     layout.setBackgroundResource(R.drawable.expert_drawer_background);
                     layout_un_confirm.setVisibility(View.GONE);
                     underbar.setVisibility(View.VISIBLE);
@@ -112,7 +114,7 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), ExpertDetailInfoActivity.class);
-                            intent.putExtra("expertSn",String.valueOf(result.getExpertNavInfo().getExpertSn()));
+                            intent.putExtra("expertSn", String.valueOf(result.getExpertNavInfo().getExpertSn()));
                             startActivity(intent);
 
                         }
@@ -124,6 +126,8 @@ public class ExpertNavigationDrawerFramgent extends Fragment {
                     underbar.setVisibility(View.GONE);
                     layout1.setVisibility(View.GONE);
                     layout2.setVisibility(View.GONE);
+                    Myinfo.setVisibility(View.GONE);
+                    underbar2.setVisibility(View.GONE);
 
                 }
             }

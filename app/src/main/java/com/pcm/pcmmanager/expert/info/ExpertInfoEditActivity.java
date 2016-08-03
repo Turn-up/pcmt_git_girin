@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,27 +54,8 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
         personl_out = (TextView) findViewById(R.id.expert_personal_info_out);
         logout = (Button) findViewById(R.id.expert_personal_info_password);
         pushSwitch = (SwitchCompat) findViewById(R.id.expert_personal_info_push_switch);
-        pushSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NetworkManager.getInstance().getPushSetting(String.valueOf(pushSwitch.isChecked()), new NetworkManager.OnResultListener<RefreshTokenResult>() {
-                    @Override
-                    public void onSuccess(Request request, RefreshTokenResult result) {
-                        if (result.getResult() == -1) {
-                            Toast.makeText(ExpertInfoEditActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            PropertyManager.getInstance().setPushYN(pushSwitch.isChecked());
-                            PropertyManager.getInstance().setAuthorizationToken(result.getToken());
-                        }
-                    }
 
-                    @Override
-                    public void onFail(Request request, IOException exception) {
 
-                    }
-                });
-            }
-        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +68,14 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
                 UserOut();
             }
         });
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) { // 백 버튼
+            SaveDialog();
+        }
+        return true;
     }
 
     @Override
@@ -216,14 +206,15 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        NetworkManager.getInstance().getPersonalInfoModify(name.getText().toString(), phone.getText().toString(),"","", new NetworkManager.OnResultListener<UserInfoModifyResult>() {
+                        setPush();
+                        NetworkManager.getInstance().getPersonalInfoModify(name.getText().toString(), phone.getText().toString(), "", "", new NetworkManager.OnResultListener<UserInfoModifyResult>() {
                             @Override
                             public void onSuccess(Request request, UserInfoModifyResult result) {
                                 if (result.getResult() == -1) {
                                     Toast.makeText(ExpertInfoEditActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ExpertInfoEditActivity.this, "개인정보 수정이 완료됐습니다.", Toast.LENGTH_SHORT).show();
                                     PropertyManager.getInstance().setAuthorizationToken(result.getToken());
+                                    Toast.makeText(ExpertInfoEditActivity.this, "개인정보 수정이 완료됐습니다.", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                             }
@@ -239,11 +230,31 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+                        finish();
                     }
                 });
 
         alertDialogBuilder.setCancelable(true);
         alertDialogBuilder.show();
+    }
+
+    public void setPush() {
+        NetworkManager.getInstance().getPushSetting(String.valueOf(pushSwitch.isChecked()), new NetworkManager.OnResultListener<RefreshTokenResult>() {
+            @Override
+            public void onSuccess(Request request, RefreshTokenResult result) {
+                if (result.getResult() == -1) {
+                    Toast.makeText(ExpertInfoEditActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    PropertyManager.getInstance().setPushYN(pushSwitch.isChecked());
+                    PropertyManager.getInstance().setAuthorizationToken(result.getToken());
+
+                }
+            }
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
     }
 
     @Override
@@ -260,15 +271,15 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            finish();
+            SaveDialog();
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
-            if(TextUtils.isEmpty(name.getText().toString())){
+            if (TextUtils.isEmpty(name.getText().toString())) {
                 Toast.makeText(ExpertInfoEditActivity.this, "이름을 입력하세요", Toast.LENGTH_SHORT).show();
-            }else if(TextUtils.isEmpty(phone.getText().toString())){
+            } else if (TextUtils.isEmpty(phone.getText().toString())) {
                 Toast.makeText(ExpertInfoEditActivity.this, "번호를 입력하세요", Toast.LENGTH_SHORT).show();
-            }else
+            } else
                 SaveDialog();
             return true;
         }

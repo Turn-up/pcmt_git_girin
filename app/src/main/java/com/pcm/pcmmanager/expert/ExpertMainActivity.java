@@ -83,6 +83,10 @@ public class ExpertMainActivity extends AppCompatActivity implements ExpertNavig
                 intent = new Intent(this, ExpertInfoEditActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.expert_drawer_personal_info_btn_no_confirm :
+                intent = new Intent(this, ExpertInfoEditActivity.class);
+                startActivity(intent);
+                break;
             case R.id.expert_drawer_faq:
                 intent = new Intent(this, FaqActivity.class);
                 startActivity(intent);

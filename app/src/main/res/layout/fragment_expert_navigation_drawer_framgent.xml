@@ -15,19 +15,29 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="35dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="gone">
 
 
         <TextView
             android:id="@+id/expert_drawer_nmae"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="전문가님은 현재 검증을 진행중입니다."
             android:textColor="#ffffff"
             android:textSize="13sp" />
+
+        <ImageButton
+            android:id="@+id/expert_drawer_personal_info_btn_no_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="onNavClick"
+            android:src="@drawable/setting_icon" />
 
     </LinearLayout>
 
@@ -284,6 +294,7 @@
             android:textSize="16sp" />
 
         <ImageView
+            android:id="@+id/expert_drawer_underbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/underbar_10" />

@@ -87,7 +87,7 @@ public class ExpertFragment extends Fragment {
                     intent.putExtra("marketSn", String.valueOf(expertEstimateList.getMarketSn()));
                     startActivity(intent);
                 } else {
-                    Toast.makeText(getContext(), "심사중입니다. 심사완료후 이용가능합니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "전문가 심사완료 후 이용가능합니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -100,7 +100,7 @@ public class ExpertFragment extends Fragment {
                             .replace(R.id.expert_parent_container, new AuctionSearchFragment())
                             .commit();
                 } else {
-                    Toast.makeText(getContext(), "심사중입니다. 심사완료후 이용가능합니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "전문가 심사완료 후 이용가능합니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

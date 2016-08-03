@@ -51,7 +51,7 @@ public class PointListActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
-        setData();
+
 
         isLast = false;
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -81,6 +81,12 @@ public class PointListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+         setData();
     }
 
     private boolean isMoreData = false;

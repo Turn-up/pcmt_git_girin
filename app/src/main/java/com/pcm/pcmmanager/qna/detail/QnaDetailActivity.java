@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity;
+import com.pcm.pcmmanager.data.ExpertCheckResult;
 import com.pcm.pcmmanager.data.QnaDetailResult;
 import com.pcm.pcmmanager.data.QnaDetailReviewList;
 import com.pcm.pcmmanager.data.QnaReviewResult;
@@ -95,7 +96,6 @@ public class QnaDetailActivity extends AppCompatActivity {
         super.onResume();
         setData();
     }
-
     private void setData() {
         qnaSn = getIntent().getStringExtra("qnaSn");
         NetworkManager.getInstance().getQnaDetail(qnaSn, new NetworkManager.OnResultListener<QnaDetailResult>() {
@@ -111,6 +111,25 @@ public class QnaDetailActivity extends AppCompatActivity {
                     }
                 }
             }
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+        /*전문가 체크*/
+        NetworkManager.getInstance().getExpertCheck(new NetworkManager.OnResultListener<ExpertCheckResult>() {
+            @Override
+            public void onSuccess(Request request, ExpertCheckResult result) {
+                if(result.getCheck()){
+                    reviewButton.setVisibility(View.VISIBLE);
+                    reviewText.setVisibility(View.VISIBLE);
+                }else{
+                    reviewButton.setVisibility(View.GONE);
+                    reviewText.setVisibility(View.GONE);
+                }
+
+            }
+
             @Override
             public void onFail(Request request, IOException exception) {
 
