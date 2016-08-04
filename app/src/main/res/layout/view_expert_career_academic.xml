@@ -1,7 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#eeeeee">
+    android:background="#eeeeee"
+    tools:ignore="MissingPrefix">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -22,7 +25,8 @@
                 android:layout_marginTop="20dp"
                 android:text="학력"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -33,13 +37,13 @@
 
             <LinearLayout
 
+                android:id="@+id/academic_layout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
                 android:layout_marginTop="14dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:id="@+id/academic_layout1"
-                android:layout_marginBottom="7dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/expert_career_academic1_year_front"
@@ -47,17 +51,19 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom2" />
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:text="~"
                     android:textColor="#515151"
                     android:textSize="11sp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp" />
+                    app:font="custom2" />
 
                 <TextView
                     android:id="@+id/expert_career_academic1_year_back"
@@ -65,7 +71,8 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom2" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -82,17 +89,18 @@
                     android:gravity="end"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom1" />
             </LinearLayout>
 
             <LinearLayout
 
+                android:id="@+id/academic_layout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:id="@+id/academic_layout2"
-                android:layout_marginBottom="7dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/expert_career_academic2_year_front"
@@ -100,16 +108,18 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:text="~"
                     android:textColor="#515151"
                     android:textSize="11sp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginLeft="2dp" />
+                    app:font="custom2" />
 
                 <TextView
                     android:id="@+id/expert_career_academic2_year_back"
@@ -117,7 +127,8 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom2" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -134,17 +145,18 @@
                     android:gravity="end"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom1" />
             </LinearLayout>
 
             <LinearLayout
 
+                android:id="@+id/academic_layout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:id="@+id/academic_layout3">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/expert_career_academic3_year_front"
@@ -152,16 +164,18 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:text="~"
                     android:textColor="#515151"
                     android:textSize="11sp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp" />
+                    app:font="custom2" />
 
                 <TextView
                     android:id="@+id/expert_career_academic3_year_back"
@@ -169,7 +183,8 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom2" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -186,7 +201,8 @@
                     android:gravity="end"
                     android:text="Small Text"
                     android:textColor="#515151"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom1" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

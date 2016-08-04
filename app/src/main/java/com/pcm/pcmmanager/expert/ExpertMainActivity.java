@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.ask.AskActivity;
 import com.pcm.pcmmanager.common.faq.FaqActivity;
@@ -31,7 +31,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class ExpertMainActivity extends AppCompatActivity implements ExpertNavigationDrawerFramgent.OnMenuClickListener {
+public class ExpertMainActivity extends BaseActivity implements ExpertNavigationDrawerFramgent.OnMenuClickListener {
     DrawerLayout drawer;
 
     public static final String PAGESIZE = "10";

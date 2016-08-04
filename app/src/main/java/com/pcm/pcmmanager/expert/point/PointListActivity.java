@@ -2,7 +2,6 @@ package com.pcm.pcmmanager.expert.point;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.PointListResult;
 import com.pcm.pcmmanager.expert.payment.PaymentActivity;
@@ -22,7 +22,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class PointListActivity extends AppCompatActivity {
+public class PointListActivity extends BaseActivity {
     public static final String POINT_PAGESIZE = "10";
     public static final String POINT_LAST_POINTSN = "0";
 

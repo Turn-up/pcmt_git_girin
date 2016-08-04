@@ -3,7 +3,6 @@ package com.pcm.pcmmanager.nomal.estimate_modify;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -20,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.CustomTextWathcer;
@@ -35,7 +35,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class MyEstimateEntryModify extends AppCompatActivity {
+public class MyEstimateEntryModify extends BaseActivity {
     public static final String EntryCode = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ENTRY_POSITION).getCode();
     public static final String TEMP = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_ESTIMATE_TYPE_POSITION).getList().get(0).getCode(); //현재는 무조건 신규
 

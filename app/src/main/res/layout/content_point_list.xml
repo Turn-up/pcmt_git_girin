@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    tools:ignore="MissingPrefix"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.pcm.pcmmanager.expert.point.PointListActivity"
@@ -17,43 +18,45 @@
         android:layout_marginTop="40dp"
         android:text="포인트 잔액"
         android:textColor="#4c4c4c"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        app:font="custom1" />
 
     <TextView
         android:id="@+id/point_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="12dp"
         android:layout_marginTop="13dp"
+        android:drawablePadding="12dp"
         android:drawableRight="@drawable/point_list_point_icon"
         android:text="0"
         android:textColor="#ffc21f"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        app:font="custom2" />
 
 
     <Button
+        app:font="custom1"
+        android:id="@+id/point_payment"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="충전하기"
-        android:textColor="@color/colorPrimary"
-        style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/point_payment"
         android:layout_gravity="right"
+        android:layout_marginRight="21dp"
         android:layout_marginTop="42dp"
-        android:layout_marginRight="21dp" />
+        android:text="충전하기"
+        android:textColor="@color/colorPrimary" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/underbar_point_list_21"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:src="@drawable/underbar_point_list_21" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/point_rv_list"
-        android:layout_marginLeft="21dp"
-        android:layout_marginRight="21dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

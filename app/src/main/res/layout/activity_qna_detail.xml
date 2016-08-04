@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.pcm.pcmmanager.qna.detail.QnaDetailActivity">
+    tools:context="com.pcm.pcmmanager.qna.detail.QnaDetailActivity"
+    tools:ignore="MissingPrefix">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
                 android:gravity="center"
                 android:text="질문하기"
                 android:textColor="#ffffff"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:font="custom1" />
         </FrameLayout>
 
 

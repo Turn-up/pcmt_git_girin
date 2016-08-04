@@ -7,6 +7,7 @@
     android:background="#eeeeee"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.pcm.pcmmanager.expert.bid_do.BidDoActivity"
+    tools:ignore="MissingPrefix"
     tools:showIn="@layout/activity_bid_do">
 
     <LinearLayout
@@ -35,7 +36,8 @@
                     android:layout_alignParentTop="true"
                     android:text="LargeText"
                     android:textColor="#515151"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    app:font="custom1" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout5"
@@ -51,7 +53,8 @@
                         android:layout_height="wrap_content"
                         android:text="SmallText"
                         android:textColor="#838383"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/expert_estimate_market_type_sub2"
@@ -60,7 +63,8 @@
                         android:text="SmallText"
                         android:textColor="#838383"
                         android:textSize="13sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/expert_estimate_market_type_sub3"
@@ -69,7 +73,8 @@
                         android:text="SmallText"
                         android:textColor="#838383"
                         android:textSize="13sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/expert_estimate_market_type_sub4"
@@ -78,7 +83,8 @@
                         android:text="SmallText"
                         android:textColor="#838383"
                         android:textSize="13sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:font="custom1" />
                 </LinearLayout>
 
                 <TextView
@@ -91,7 +97,8 @@
                     android:text="SmallText"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#838383"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    app:font="custom1" />
 
                 <TextView
                     android:id="@+id/expert_estimate_bid_count"
@@ -105,7 +112,8 @@
                     android:text="SmallText"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#ff8f00"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    app:font="custom2" />
             </RelativeLayout>
 
             <ImageView
@@ -121,7 +129,8 @@
                 android:layout_marginTop="15dp"
                 android:text="SmallText"
                 android:textColor="#838383"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                app:font="custom1" />
 
             <TextView
                 android:id="@+id/expert_estimate_content"
@@ -134,7 +143,8 @@
                 android:padding="5dp"
                 android:text="content"
                 android:textColor="#838383"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:font="custom1" />
 
 
         </LinearLayout>
@@ -192,7 +202,8 @@
                                 android:layout_marginRight="18dp"
                                 android:layout_weight="0.2"
                                 android:textColor="#515151"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                app:font="custom1" />
 
                             <FrameLayout
                                 android:layout_width="0dp"
@@ -210,8 +221,9 @@
                                     android:inputType="number"
                                     android:paddingRight="23dp"
                                     android:paddingTop="3dp"
-                                    android:textColor="#515151"
-                                    android:textSize="16sp" />
+                                    android:textColor="#838383"
+                                    android:textSize="16sp"
+                                    app:font="custom2" />
 
                                 <TextView
                                     android:id="@+id/estimate_put_money1_backround"
@@ -220,7 +232,8 @@
                                     android:background="@drawable/textview_rounded_corner"
                                     android:gravity="center"
                                     android:text="상속세는하나만입력할수있습니다"
-                                    android:visibility="gone" />
+                                    android:visibility="gone"
+                                    app:font="custom1" />
                             </FrameLayout>
 
                         </LinearLayout>
@@ -242,7 +255,8 @@
                                 android:layout_weight="0.2"
                                 android:text="dd"
                                 android:textColor="#515151"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                app:font="custom1" />
 
                             <FrameLayout
                                 android:layout_width="0dp"
@@ -259,8 +273,9 @@
                                     android:inputType="numberDecimal"
                                     android:paddingRight="23dp"
                                     android:paddingTop="3dp"
-                                    android:textColor="#515151"
-                                    android:textSize="16sp" />
+                                    android:textColor="#838383"
+                                    android:textSize="16sp"
+                                    app:font="custom2" />
 
                                 <TextView
                                     android:id="@+id/estimate_put_money2_backround"
@@ -269,7 +284,8 @@
                                     android:background="@drawable/textview_rounded_corner"
                                     android:gravity="center"
                                     android:text="상속세는하나만입력할수있습니다"
-                                    android:visibility="gone" />
+                                    android:visibility="gone"
+                                    app:font="custom1" />
 
                             </FrameLayout>
                         </LinearLayout>
@@ -289,26 +305,31 @@
                                 android:layout_marginLeft="18dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_weight="0.2"
-                                android:text="dd"
+                                android:text="소개글"
                                 android:textColor="#515151"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                app:font="custom1" />
 
                             <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="2dp"
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginRight="18dp"
-                                android:layout_weight="0.8">
+                                android:layout_weight="0.8"
+                                android:paddingLeft="2dp">
 
                                 <EditText
+                                    android:paddingLeft="10dp"
+                                    android:hint="특화된 서비스를 소개해주세요"
                                     android:id="@+id/estimate_put_comment"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/comment_box2"
                                     android:maxLength="50"
-                                    android:textColor="#515151"
-                                    android:textSize="16sp" />
+                                    android:textColor="#838383"
+                                    android:textColorHint="#838383"
+                                    android:textSize="16sp"
+                                    app:font="custom1" />
 
                                 <TextView
                                     android:id="@+id/expert_estimate_bid_comment_text_count"
@@ -316,10 +337,11 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentBottom="true"
                                     android:layout_alignParentRight="true"
-                                    android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:textColor="#CCCCCC"
                                     android:textSize="10sp"
-                                    android:textColor="#CCCCCC"/>
+                                    app:font="custom1" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>

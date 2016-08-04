@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/login_backround"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    tools:ignore="MissingPrefix"
     tools:context="com.pcm.pcmmanager.login.LoginFragment">
 
     <EditText
+        app:font="custom2"
         android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +25,7 @@
         android:textSize="13sp" />
 
     <EditText
+        app:font="custom2"
         android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

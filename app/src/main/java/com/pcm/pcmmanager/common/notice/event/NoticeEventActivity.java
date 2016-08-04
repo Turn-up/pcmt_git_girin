@@ -1,7 +1,6 @@
 package com.pcm.pcmmanager.common.notice.event;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.NoticeListResult;
@@ -19,7 +19,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class NoticeEventActivity extends AppCompatActivity {
+public class NoticeEventActivity extends BaseActivity {
     RecyclerView recyclerView;
     NoticeEventAdapter mAdapter;
     public static final String NOTICE_TEXT_STATUS = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_NOTICE_STATE_POSITION).getList().get(1).getCode();

@@ -2,7 +2,6 @@ package com.pcm.pcmmanager.expert.auction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertBidStatusResult;
 import com.pcm.pcmmanager.data.ExpertEstimateList;
@@ -23,7 +23,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class AuctionSearchListActivity extends AppCompatActivity {
+public class AuctionSearchListActivity extends BaseActivity {
 
     public static final String PAGE_SIZE = "10";
     public static final String STATUS = "110_002";

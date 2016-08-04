@@ -1,12 +1,12 @@
 package com.pcm.pcmmanager.login;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

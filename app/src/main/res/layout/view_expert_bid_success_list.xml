@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="18dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/bid_success_market_type_title"
@@ -38,7 +41,8 @@
                     android:layout_alignParentTop="true"
                     android:text="Large Text"
                     android:textColor="#515151"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    app:font="custom1" />
 
 
                 <LinearLayout
@@ -57,7 +61,8 @@
                         android:layout_height="wrap_content"
                         android:text="Small Text"
                         android:textColor="#838383"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/bid_success_market_type_sub2"
@@ -66,7 +71,8 @@
                         android:text="Small Text"
                         android:textColor="#838383"
                         android:textSize="13sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/bid_success_market_type_sub3"
@@ -75,7 +81,8 @@
                         android:text="Small Text"
                         android:textColor="#838383"
                         android:textSize="13sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/bid_success_market_type_sub4"
@@ -84,7 +91,8 @@
                         android:text="Small Text"
                         android:textColor="#838383"
                         android:textSize="13sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:font="custom1" />
                 </LinearLayout>
 
                 <TextView
@@ -94,21 +102,23 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:textSize="10sp"
-                    android:textColor="#838383"
                     android:layout_marginTop="2dp"
-                    android:text="16.05.08 마감" />
+                    android:text="16.05.08 마감"
+                    android:textColor="#838383"
+                    android:textSize="10sp"
+                    app:font="custom1" />
 
                 <TextView
                     android:id="@+id/bid_success_bid_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/linearLayout5"
                     android:layout_alignEnd="@+id/bid_success_end_date"
                     android:layout_alignRight="@+id/bid_success_end_date"
-                    android:layout_alignBottom="@+id/linearLayout5"
                     android:text="낙찰"
                     android:textColor="#ff8f00"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    app:font="custom2" />
 
             </RelativeLayout>
 
@@ -132,8 +142,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="22dp"
                         android:layout_marginLeft="21dp"
+                        android:layout_marginTop="22dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -144,7 +154,8 @@
                             android:gravity="left"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="#959595"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"
+                            app:font="custom1" />
 
                         <TextView
                             android:id="@+id/bid_success_month_money"
@@ -153,24 +164,27 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="1-000000000"
+                            android:textColor="#ff9800"
                             android:textSize="13sp"
-                            android:textColor="#ff9800" />
+                            app:font="custom2" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
-                            android:text="원"
                             android:paddingRight="15dp"
+                            android:text="원"
+                            android:textColor="#ff8b00"
                             android:textSize="11sp"
-                            android:textColor="#ff8b00" />
+                            app:font="custom1" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/bid_success_money_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/bid_success_money_layout"
-                        android:layout_marginTop="6dp"
                         android:layout_marginLeft="21dp"
+                        android:layout_marginTop="6dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -181,37 +195,41 @@
                             android:gravity="left"
                             android:text="과세금액"
                             android:textColor="#959595"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"
+                            app:font="custom1" />
 
                         <TextView
                             android:id="@+id/bid_success_edit_money"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textSize="13sp"
-                            android:textColor="#ff9800"
                             android:gravity="right"
-                            android:text="Small Text"/>
+                            android:text="Small Text"
+                            android:textColor="#ff9800"
+                            android:textSize="13sp"
+                            app:font="custom2" />
 
                         <TextView
                             android:id="@+id/won"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
-                            android:text="원"
                             android:paddingRight="15dp"
+                            android:text="원"
+                            android:textColor="#ff8b00"
                             android:textSize="11sp"
-                            android:textColor="#ff8b00" />
+                            app:font="custom1" />
 
                         <TextView
                             android:id="@+id/persent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
-                            android:text="%"
                             android:paddingRight="15dp"
+                            android:text="%"
+                            android:textColor="#ff8b00"
                             android:textSize="11sp"
-                            android:textColor="#ff8b00" />
+                            app:font="custom1" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -220,9 +238,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginRight="21dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/expert_bid_success_list_call_icon"
-                    android:layout_marginRight="21dp" />
+                    android:src="@drawable/expert_bid_success_list_call_icon" />
             </LinearLayout>
 
         </LinearLayout>

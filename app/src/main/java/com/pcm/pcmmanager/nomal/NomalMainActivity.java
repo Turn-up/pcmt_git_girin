@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.ask.AskActivity;
 import com.pcm.pcmmanager.common.faq.FaqActivity;
@@ -20,7 +20,7 @@ import com.pcm.pcmmanager.nomal.estimate_list.MyEstimateListActivity;
 import com.pcm.pcmmanager.nomal.info.NomalUserInfoEditActivity;
 import com.pcm.pcmmanager.nomal.qna_list.MyQnaListActivity;
 
-public class NomalMainActivity extends AppCompatActivity implements NomalNavigationDrawer.OnMenuClickListener {
+public class NomalMainActivity extends BaseActivity implements NomalNavigationDrawer.OnMenuClickListener {
     DrawerLayout drawer;
 
     @Override

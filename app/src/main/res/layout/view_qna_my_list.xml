@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="28dp"
     android:layout_marginRight="28dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <TextView
         android:id="@+id/my_qna_list_title"
@@ -15,7 +18,8 @@
         android:layout_alignParentTop="true"
         android:text="Title"
         android:textColor="#3f3f3f"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        app:font="custom1" />
 
     <TextView
         android:id="@+id/my_qna_list_regdate"
@@ -26,7 +30,8 @@
         android:layout_alignParentTop="true"
         android:text="2015.05.06"
         android:textColor="#717171"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        app:font="custom1" />
 
     <TextView
         android:id="@+id/my_qna_list_writer"
@@ -38,7 +43,8 @@
         android:layout_marginTop="10dp"
         android:text="name"
         android:textColor="#7485e2"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        app:font="custom1" />
 
     <TextView
         android:id="@+id/my_qna_list_content"
@@ -52,7 +58,8 @@
         android:singleLine="true"
         android:text="content"
         android:textColor="#717171"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        app:font="custom1" />
 
     <TextView
         android:id="@+id/my_qna_list_review_count"
@@ -65,7 +72,8 @@
         android:drawablePadding="6dp"
         android:text="5"
         android:textColor="#717171"
-        android:textSize="11sp" />
+        android:textSize="11sp"
+        app:font="custom1" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -87,5 +95,5 @@
         android:layout_toRightOf="@+id/my_qna_list_title"
         android:src="@drawable/lock_icon"
         android:visibility="visible" />
-    
+
 </RelativeLayout>

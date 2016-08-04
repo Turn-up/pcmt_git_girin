@@ -3,7 +3,6 @@ package com.pcm.pcmmanager.qna.list;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.QnaKeywordSearchResult;
@@ -32,7 +32,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class QnaListActivity extends AppCompatActivity {
+public class QnaListActivity extends BaseActivity {
     EditText qnaKeywordText;
     ImageButton qnaKeywordButton;
     Button qnaDo;

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +21,8 @@
             android:layout_marginTop="15dp"
             android:text="Q. "
             android:textColor="#515151"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:font="custom1" />
 
         <TextView
             android:id="@+id/faq_title_text"
@@ -31,7 +35,8 @@
             android:layout_weight="1"
             android:text="감사합니다"
             android:textColor="#515151"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            app:font="custom1" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -44,10 +49,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#eeeeee" />
+        android:background="#eeeeee"
+        app:font="custom1" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/faq_content_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,15 +61,18 @@
         android:paddingLeft="36dp"
         android:paddingRight="36dp"
         android:paddingTop="15dp"
-        android:textSize="13sp"
         android:text="aa"
-        android:textColor="#777777" />
+        android:textColor="#777777"
+        android:textSize="13sp"
+        android:visibility="gone"
+        app:font="custom1" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/faq_underbar"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#eeeeee" />
+        android:background="#eeeeee"
+        android:visibility="gone"
+        app:font="custom1" />
 
 </LinearLayout>

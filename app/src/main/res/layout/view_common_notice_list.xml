@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_height="wrap_content"
     android:layout_marginLeft="21dp"
     android:layout_marginRight="21dp"
@@ -19,6 +22,7 @@
 
 
             <TextView
+                app:font="custom1"
                 android:id="@+id/notice_list_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,6 +30,7 @@
                 android:textColor="#515151"/>
 
             <TextView
+                app:font="custom1"
                 android:id="@+id/notice_list_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

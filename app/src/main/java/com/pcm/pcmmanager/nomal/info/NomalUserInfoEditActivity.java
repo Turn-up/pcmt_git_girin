@@ -4,11 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.CommonResult;
@@ -35,7 +34,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class NomalUserInfoEditActivity extends AppCompatActivity {
+public class NomalUserInfoEditActivity extends BaseActivity {
 
     EditText name, phone;
     TextView email, personl_out;
@@ -90,8 +89,6 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
                     case R.id.btn_entry_personal_radio:
                         marketType1_3 = PropertyManager.getInstance().getCommonCodeList().get(MyApplication.CODELIST_BUSINESS_TYPE_POSITION).getList().get(0).getCode();
                         artiRadioButton.setBackgroundResource(R.drawable.radio_background_arti_person);
-                        if (personRadioButton.isChecked())
-                            businessRadioGroup.clearCheck();
                         break;
                     case R.id.btn_entry_artifical_radio:
                         artiRadioButton.setBackgroundResource(R.drawable.business_arti_select);
@@ -133,6 +130,13 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         pushSwitch.setChecked(PropertyManager.getInstance().getPushYN());
         getData();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setPush();
+        finish();
     }
 
     public void setPush() {
@@ -252,14 +256,6 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         alertDialogBuilder.show();
     }
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) { // 백 버튼
-            SaveDialog();
-        }
-        return true;
-    }
-
     /*회원탈퇴 다이얼로그*/
     private void UserOut() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -358,7 +354,8 @@ public class NomalUserInfoEditActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            SaveDialog();
+            setPush();
+            finish();
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {

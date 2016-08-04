@@ -2,7 +2,6 @@ package com.pcm.pcmmanager.nomal.qna_list;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.QnaMyList;
@@ -24,7 +24,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class MyQnaListActivity extends AppCompatActivity {
+public class MyQnaListActivity extends BaseActivity {
 
     RecyclerView rv_list;
     MyQnaListAdapter mAdapter;

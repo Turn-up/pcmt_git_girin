@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.ExpertDetailInfo;
@@ -31,7 +31,7 @@ import java.util.List;
 
 import okhttp3.Request;
 
-public class ExpertDetailInfoActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+public class ExpertDetailInfoActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     public static final String PAGE_SIZE = "10";
 

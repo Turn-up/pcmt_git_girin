@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    tools:ignore="MissingPrefix"
     tools:context="com.pcm.pcmmanager.common.faq.FaqActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -29,7 +30,7 @@
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:text="자주 묻는 질문"
-
+                app:font="custom1"
                 android:textColor="#ffffff" />
         </FrameLayout>
 

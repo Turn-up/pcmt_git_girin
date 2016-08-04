@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    tools:ignore="MissingPrefix"
     tools:context="com.pcm.pcmmanager.expert.bid_do.BidDoActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -28,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="견적내기"
-
+                app:font="custom1"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
         </FrameLayout>

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.pcm.pcmmanager.expert.point.PointListActivity">
+    tools:context="com.pcm.pcmmanager.expert.point.PointListActivity"
+    tools:ignore="MissingPrefix">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,11 +25,12 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             <TextView
+                app:font="custom1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="포인트 사용내역"
                 android:textColor="#ffffff"
-                android:gravity="center"
                 android:textSize="18sp" />
         </FrameLayout>
     </android.support.design.widget.AppBarLayout>

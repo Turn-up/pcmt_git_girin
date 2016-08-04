@@ -1,8 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pcm.pcmmanager.expert.ExpertFragment">
+    tools:context="com.pcm.pcmmanager.expert.ExpertFragment"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +27,8 @@
                 android:layout_marginLeft="22dp"
                 android:text="총 경매수"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/abc_primary_text_material_dark" />
+                android:textColor="@color/abc_primary_text_material_dark"
+                app:font="custom1" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -72,7 +75,8 @@
                 android:layout_marginLeft="34dp"
                 android:text="거래 진행중"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/abc_primary_text_material_dark" />
+                android:textColor="@color/abc_primary_text_material_dark"
+                app:font="custom1" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -129,7 +133,8 @@
                 android:drawablePadding="7dp"
                 android:text="견적찾기"
                 android:textColor="#515151"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:font="custom1" />
 
             <Button
                 android:id="@+id/btn_expert_condition_search"
@@ -145,7 +150,8 @@
                 android:drawablePadding="7dp"
                 android:text="전문가 검색"
                 android:textColor="#515151"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:font="custom1" />
 
             <Button
                 android:id="@+id/btn_expert_qna_search"
@@ -161,7 +167,8 @@
                 android:drawablePadding="7dp"
                 android:text="질문보기"
                 android:textColor="#515151"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:font="custom1" />
         </RelativeLayout>
 
         <ImageView

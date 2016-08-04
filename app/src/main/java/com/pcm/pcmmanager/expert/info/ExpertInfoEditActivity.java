@@ -4,11 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.CommonResult;
 import com.pcm.pcmmanager.data.PersonalInfoSearch;
@@ -32,7 +31,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class ExpertInfoEditActivity extends AppCompatActivity {
+public class ExpertInfoEditActivity extends BaseActivity {
 
     EditText name, phone;
     TextView email, personl_out;
@@ -71,11 +70,10 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) { // 백 버튼
-            SaveDialog();
-        }
-        return true;
+    public void onBackPressed() {
+        super.onBackPressed();
+        setPush();
+        finish();
     }
 
     @Override
@@ -271,7 +269,8 @@ public class ExpertInfoEditActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            SaveDialog();
+            setPush();
+            finish();
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {

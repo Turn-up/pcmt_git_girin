@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity;
 import com.pcm.pcmmanager.data.CommonResult;
@@ -42,7 +42,7 @@ import okhttp3.Request;
 /*
 * 내 견적 상세리스트
 * */
-public class MyEstimateDetailActivity extends AppCompatActivity {
+public class MyEstimateDetailActivity extends BaseActivity {
 
     RecyclerView listView;
     MyEstimateDetailAdapter mAdapter;

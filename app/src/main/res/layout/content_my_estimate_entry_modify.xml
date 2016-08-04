@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.pcm.pcmmanager.nomal.estimate_modify.MyEstimateEntryModify"
+    tools:ignore="MissingPrefix"
     tools:showIn="@layout/activity_my_estimate_entry_modify">
 
     <LinearLayout
@@ -26,7 +27,8 @@
                 android:layout_marginTop="40dp"
                 android:text="업무"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
 
             <ImageView
@@ -52,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:text="업종"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <Spinner
                 android:id="@+id/estimate_modify_entry_marketSubtype_spinner"
@@ -76,7 +79,8 @@
                 android:layout_height="wrap_content"
                 android:text="위치"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <Spinner
                 android:id="@+id/estimate_modify_entry_regionType_spinner"
@@ -111,7 +115,8 @@
                 android:layout_gravity="center_vertical"
                 android:text="연매출"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <EditText
                 android:id="@+id/estimate_modify_entry_businessScale"
@@ -120,13 +125,14 @@
                 android:layout_marginLeft="21dp"
                 android:layout_weight="0.7"
                 android:background="@drawable/box_midle"
-                android:gravity="right"
+                android:gravity="right|center_vertical"
                 android:hint="원"
                 android:inputType="number"
                 android:paddingRight="5dp"
                 android:singleLine="true"
                 android:textColor="#c6c6c6"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                app:font="custom1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,7 +140,8 @@
                 android:layout_marginLeft="12dp"
                 android:text="직원"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <EditText
                 android:id="@+id/estimate_modify_entry_employleeCount"
@@ -144,13 +151,15 @@
                 android:layout_marginLeft="15dp"
                 android:layout_weight="0.4"
                 android:background="@drawable/box_small"
-                android:gravity="right"
+                android:gravity="right|center_vertical"
                 android:hint="명"
                 android:inputType="number"
+
                 android:paddingRight="5dp"
                 android:singleLine="true"
                 android:textColor="#c6c6c6"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
         </LinearLayout>
 
@@ -167,20 +176,24 @@
                 android:layout_gravity="center_vertical"
                 android:text="연락처"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <EditText
                 android:id="@+id/estimate_modify_entry_phone"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:layout_marginLeft="21dp"
+
                 android:background="@drawable/text_default_rounded_corner"
                 android:gravity="right|center_vertical"
                 android:inputType="number"
                 android:paddingRight="5dp"
                 android:singleLine="true"
                 android:textColor="#c6c6c6"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                app:font="custom1" />
 
         </LinearLayout>
 
@@ -197,7 +210,9 @@
                 android:layout_gravity="center_vertical"
                 android:text="사업자 분류"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <RadioGroup
                 android:id="@+id/entry_radiogroup"
@@ -255,7 +270,9 @@
                 android:layout_height="wrap_content"
                 android:text="입찰기간"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+
+                app:font="custom1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -280,29 +297,35 @@
                     <TextView
                         android:id="@+id/seek_day1"
                         android:layout_width="0dp"
+
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="1"
                         android:textColor="#515151"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day2"
                         android:layout_width="0dp"
+
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="2"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+
                         android:layout_weight="1"
                         android:text="3"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day4"
@@ -310,8 +333,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="4"
+
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day5"
@@ -320,7 +345,9 @@
                         android:layout_weight="1"
                         android:text="5"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day6"
@@ -329,7 +356,9 @@
                         android:layout_weight="1"
                         android:text="6"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day7"
@@ -338,7 +367,8 @@
                         android:layout_weight="1"
                         android:text="7일"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -360,7 +390,9 @@
                 android:layout_gravity="top"
                 android:text="부가정보"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+
+                app:font="custom1" />
 
             <EditText
                 android:id="@+id/estimate_modify_entry_content"
@@ -372,7 +404,8 @@
                 android:hint="자세한 정보를 기입 할수록 더욱 정확한 견적 산정이 가능합니다."
                 android:padding="5dp"
                 android:textColor="#979696"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
         </LinearLayout>
 
@@ -381,8 +414,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/estimate_modify_btn" />
 
     </LinearLayout>

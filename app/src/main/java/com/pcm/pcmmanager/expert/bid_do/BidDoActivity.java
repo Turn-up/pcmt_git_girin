@@ -1,7 +1,6 @@
 package com.pcm.pcmmanager.expert.bid_do;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -16,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.common.CustomTextWathcer;
 import com.pcm.pcmmanager.data.CommonResult;
@@ -27,7 +27,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class BidDoActivity extends AppCompatActivity {
+public class BidDoActivity extends BaseActivity {
     ImageButton bid_do;
     ImageButton bid_do_up, bid_do_down;
     TextView moneyTitle1, moneyTitle2, marketTypeView, endDateView, bidCountView, addressView, contentView, moneyBackColor1, moneyBackColor2,comment_text_count;

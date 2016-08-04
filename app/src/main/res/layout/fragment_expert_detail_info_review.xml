@@ -1,5 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eeeeee"
@@ -26,6 +28,7 @@
             android:src="@drawable/expert_no_review"/>
 
         <TextView
+            app:font="custom1"
             android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,6 +36,7 @@
             android:textSize="15sp"
             android:text="아직 등록 된 후기가 없습니다."/>
         <TextView
+            app:font="custom1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#aaaaaa"

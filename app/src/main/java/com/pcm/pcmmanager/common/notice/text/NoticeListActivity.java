@@ -2,7 +2,6 @@ package com.pcm.pcmmanager.common.notice.text;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.NoticeList;
@@ -21,7 +21,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class NoticeListActivity extends AppCompatActivity {
+public class NoticeListActivity extends BaseActivity {
 
     RecyclerView recyclerView;
     NoticeListAdapter mAdapter;

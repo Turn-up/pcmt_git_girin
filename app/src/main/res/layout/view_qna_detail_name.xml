@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="23dp"
+    android:background="@drawable/qna_detail_nick_name_card"
     android:gravity="center_vertical"
-    android:background="@drawable/qna_detail_nick_name_card">
+    tools:ignore="MissingPrefix">
 
     <TextView
         android:id="@+id/qna_detail_user_name"
@@ -19,7 +22,8 @@
         android:layout_marginRight="20dp"
         android:text="NickName"
         android:textColor="#7485e2"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        app:font="custom1" />
 
     <TextView
         android:id="@+id/qna_detail_regdate"
@@ -32,6 +36,7 @@
         android:layout_marginRight="20dp"
         android:text="regdate"
         android:textColor="#717171"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        app:font="custom1" />
 
 </RelativeLayout>

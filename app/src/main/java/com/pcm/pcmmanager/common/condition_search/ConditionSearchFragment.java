@@ -44,9 +44,9 @@ public class ConditionSearchFragment extends Fragment {
         marketSubTypeSpinner = (Spinner) v.findViewById(R.id.condition_search_marketSub_spinner);
         address1Spinner = (Spinner) v.findViewById(R.id.condition_search_address1_spinner);
         address2Spinner = (Spinner) v.findViewById(R.id.condition_search_address2_spinner);
-        marketSubAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item);
-        a1Adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item);
-        a2Adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item);
+        marketSubAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
+        a1Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
+        a2Adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_text);
         entryBtn = (ImageButton) v.findViewById(R.id.condition_search_marketType_entry_btn);
         taxBtn = (ImageButton) v.findViewById(R.id.condition_search_marketType_tax_btn);
         searchBtn = (Button) v.findViewById(R.id.condition_search_btn);
@@ -79,18 +79,18 @@ public class ConditionSearchFragment extends Fragment {
             }
         });
 
-        marketSubAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        marketSubAdapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         marketSubAdapter.clear();
         marketSubAdapter.add("전체");
         marketSubTypeSpinner.setAdapter(marketSubAdapter);
 
-        a2Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        a2Adapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         a2Adapter.clear();
         a2Adapter.add("전체");
         address2Spinner.setAdapter(a2Adapter);
 
          /*지역 시 분류*/
-        a1Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        a1Adapter.setDropDownViewResource(R.layout.spinner_drop_down_item);
         a1Adapter.clear();
         a1Adapter.add("전체");
         for (int i = 0; i < PropertyManager.getInstance().getCommonRegionLists().size(); i++) {

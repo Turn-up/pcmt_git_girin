@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity">
+    tools:context="com.pcm.pcmmanager.common.expert_detail_info.ExpertDetailInfoActivity"
+    tools:ignore="MissingPrefix">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/htab_appbar"
@@ -45,7 +46,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="82dp"
                         android:alpha="0.4"
-                        android:background="#000000"/>
+                        android:background="#000000" />
                 </FrameLayout>
 
                 <TextView
@@ -56,7 +57,8 @@
                     android:gravity="center_horizontal"
                     android:text="회계사"
                     android:textColor="#ffffff"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:font="custom1" />
 
                 <com.makeramen.RoundedImageView
                     android:id="@+id/expert_detail_image_profile"
@@ -68,9 +70,9 @@
                     android:layout_marginTop="24dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/semooman_icon"
+                    app:border_color="#00ffffff"
                     app:border_width="1dip"
-                    app:corner_radius="5dip"
-                    app:border_color="#00ffffff" />
+                    app:corner_radius="5dip" />
 
                 <TextView
                     android:id="@+id/expert_detail_profile_name"
@@ -82,7 +84,8 @@
                     android:layout_marginTop="14dp"
                     android:text="Medium Text"
                     android:textColor="#515151"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:font="custom1" />
 
                 <ImageView
                     android:id="@+id/imageView1"
@@ -106,7 +109,8 @@
                     android:drawablePadding="7dp"
                     android:text="사무실이름"
                     android:textColor="#515151"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    app:font="custom1" />
 
                 <TextView
                     android:id="@+id/expert_detail_profile_career"
@@ -119,7 +123,8 @@
                     android:layout_marginTop="18dp"
                     android:text="경력"
                     android:textColor="#515151"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    app:font="custom1" />
 
                 <TextView
                     android:id="@+id/expert_detail_profile_age"
@@ -132,7 +137,8 @@
                     android:drawablePadding="7dp"
                     android:text="나이"
                     android:textColor="#515151"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    app:font="custom1" />
 
                 <ImageView
                     android:id="@+id/imageView"

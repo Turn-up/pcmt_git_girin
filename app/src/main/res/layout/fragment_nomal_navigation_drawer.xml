@@ -2,18 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/nomal_nav_backround"
     android:orientation="vertical"
+    tools:ignore="MissingPrefix"
     tools:context="com.pcm.pcmmanager.nomal.drawer.NomalNavigationDrawer">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="horizontal">
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,6 +26,7 @@
             android:textSize="16sp" />
 
         <TextView
+            app:font="custom1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -47,6 +50,7 @@
     </LinearLayout>
 
     <TextView
+        app:font="custom2"
         android:id="@+id/nomal_drawer_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,10 +65,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_ask"
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -81,6 +86,7 @@
             android:src="@drawable/underbar_10" />
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_notice"
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -97,6 +103,7 @@
             android:src="@drawable/underbar_10" />
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_event"
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -113,6 +120,7 @@
             android:src="@drawable/underbar_10" />
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_my_estimate"
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -129,6 +137,7 @@
             android:src="@drawable/underbar_10" />
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_my_qna"
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -145,6 +154,7 @@
             android:src="@drawable/underbar_10" />
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_use_way"
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -161,6 +171,7 @@
             android:src="@drawable/underbar_10" />
 
         <TextView
+            app:font="custom1"
             android:id="@+id/nomal_drawer_faq"
             android:layout_width="match_parent"
             android:layout_height="46dp"

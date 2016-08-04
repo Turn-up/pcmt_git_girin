@@ -1,11 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/signup_expert_background"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".login.SignupNomalFragment">
+    tools:context=".login.SignupNomalFragment"
+    tools:ignore="MissingPrefix">
 
     <EditText
         android:id="@+id/signup_nomal_name"
@@ -16,8 +18,10 @@
         android:hint="이름"
         android:inputType="textPersonName"
         android:paddingLeft="27dp"
-        android:textColor="#a0a0a0"
-        android:textSize="13sp" />
+        android:textColor="#777777"
+        android:textColorHint="#a0a0a0"
+        android:textSize="13sp"
+        app:font="custom1" />
 
     <EditText
         android:id="@+id/signup_nomal_email"
@@ -28,8 +32,10 @@
         android:hint="이메일"
         android:inputType="textEmailAddress"
         android:paddingLeft="27dp"
-        android:textColor="#a0a0a0"
-        android:textSize="13sp" />
+        android:textColor="#777777"
+        android:textColorHint="#a0a0a0"
+        android:textSize="13sp"
+        app:font="custom1" />
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -45,8 +51,10 @@
             android:hint="비밀번호(8자이상)"
             android:inputType="textPassword"
             android:paddingLeft="27dp"
-            android:textColor="#a0a0a0"
-            android:textSize="13sp" />
+            android:textColor="#777777"
+            android:textColorHint="#a0a0a0"
+            android:textSize="13sp"
+            app:font="custom1" />
 
         <TextView
             android:id="@+id/user_password_text"
@@ -56,7 +64,8 @@
             android:layout_marginRight="5dp"
             android:text="오류"
             android:textColor="#ff0000"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:font="custom1" />
 
         <ImageView
             android:id="@+id/user_password_icon"
@@ -81,8 +90,10 @@
             android:hint="비밀번호 확인"
             android:inputType="textPassword"
             android:paddingLeft="27dp"
-            android:textColor="#a0a0a0"
-            android:textSize="13sp" />
+            android:textColor="#777777"
+            android:textColorHint="#a0a0a0"
+            android:textSize="13sp"
+            app:font="custom1" />
 
         <TextView
             android:id="@+id/user_password_check_text"
@@ -92,7 +103,8 @@
             android:layout_marginRight="5dp"
             android:text="오류"
             android:textColor="#ff0000"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:font="custom1" />
 
         <ImageView
             android:id="@+id/user_password_check_icon"
@@ -114,8 +126,10 @@
         android:hint="전화번호"
         android:inputType="phone"
         android:paddingLeft="27dp"
-        android:textColor="#a0a0a0"
-        android:textSize="13sp" />
+        android:textColor="#777777"
+        android:textColorHint="#a0a0a0"
+        android:textSize="13sp"
+        app:font="custom1" />
 
     <ImageView
         android:id="@+id/imageView22"
@@ -135,7 +149,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"
-            android:text="사업자 분류" />
+            android:text="사업자 분류"
+            app:font="custom1" />
 
         <RadioGroup
             android:id="@+id/business_radiogroup"
@@ -184,7 +199,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|left"
-            android:text="과세 여부" />
+            android:text="과세 여부"
+            app:font="custom1" />
 
         <RadioGroup
             android:id="@+id/taxation_radiogroup"

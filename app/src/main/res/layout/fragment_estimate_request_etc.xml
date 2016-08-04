@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    tools:ignore="MissingPrefix"
     tools:context="com.pcm.pcmmanager.nomal.estimate_request.EstimateRequestEtcFragment">
 
     <LinearLayout
@@ -13,6 +15,7 @@
         android:orientation="horizontal">
 
         <TextView
+            app:font="custom1"
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +50,7 @@
         android:layout_marginTop="14dp">
 
         <TextView
+            app:font="custom1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -55,6 +59,7 @@
             android:textSize="16sp" />
 
         <EditText
+            app:font="custom1"
             android:id="@+id/estimate_request_etc_phone"
             android:layout_width="match_parent"
             android:layout_height="29dp"
@@ -85,6 +90,7 @@
         android:layout_marginTop="20dp">
 
         <TextView
+            app:font="custom1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="입찰기간"
@@ -112,6 +118,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    app:font="custom1"
                     android:id="@+id/seek_day1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -121,6 +128,7 @@
                     android:text="1" />
 
                 <TextView
+                    app:font="custom1"
                     android:id="@+id/seek_day2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -130,6 +138,7 @@
                     android:text="2" />
 
                 <TextView
+                    app:font="custom1"
                     android:id="@+id/seek_day3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -139,6 +148,7 @@
                     android:text="3" />
 
                 <TextView
+                    app:font="custom1"
                     android:id="@+id/seek_day4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -148,6 +158,7 @@
                     android:text="4" />
 
                 <TextView
+                    app:font="custom1"
                     android:id="@+id/seek_day5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -157,6 +168,7 @@
                     android:text="5" />
 
                 <TextView
+                    app:font="custom1"
                     android:id="@+id/seek_day6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -166,6 +178,7 @@
                     android:text="6" />
 
                 <TextView
+                    app:font="custom1"
                     android:id="@+id/seek_day7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -190,6 +203,7 @@
         android:orientation="horizontal">
 
         <TextView
+            app:font="custom1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -198,6 +212,7 @@
             android:textSize="16sp" />
 
         <EditText
+            app:font="custom1"
             android:id="@+id/estimate_request_etc_content"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -208,7 +223,7 @@
             android:hint="자세한 정보를 기입 할수록 더욱 정확한 견적 산정이 가능합니다."
             android:padding="5dp"
             android:textColor="#515151"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 

@@ -3,6 +3,8 @@ package com.pcm.pcmmanager;
 import android.app.Application;
 import android.content.Context;
 
+import com.tsengvn.typekit.Typekit;
+
 /**
  * Created by LG on 2016-05-16.
  */
@@ -34,6 +36,10 @@ public class MyApplication extends Application {
         super.onCreate();
         context = this;
 
+        Typekit.getInstance()
+                .addCustom1(Typekit.createFromAsset(this, "fonts/NanumBarunGothic.ttf"))
+                .addCustom2(Typekit.createFromAsset(this, "fonts/NotoSans-Regular.ttf"));
+
     }
     public static Context getContext() {
         return context;
@@ -46,4 +52,6 @@ public class MyApplication extends Application {
     public static void setUserType(String userType) {
         UserType = userType;
     }
+
+
 }

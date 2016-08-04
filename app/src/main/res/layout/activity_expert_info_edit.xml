@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.pcm.pcmmanager.expert.info.ExpertInfoEditActivity">
+    tools:context="com.pcm.pcmmanager.expert.info.ExpertInfoEditActivity"
+    tools:ignore="MissingPrefix">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
                 android:textColor="#ffffff"
                 android:gravity="center"
                 android:textSize="18dp"
-                android:text="내 정보"/>
+                android:text="내 정보"
+                app:font="custom1"/>
         </FrameLayout>
     </android.support.design.widget.AppBarLayout>
 

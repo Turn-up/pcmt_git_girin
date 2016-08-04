@@ -2,18 +2,18 @@ package com.pcm.pcmmanager.common.notice.text;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.expert.ExpertMainActivity;
 import com.pcm.pcmmanager.nomal.NomalMainActivity;
 
-public class NoticeTextDetailActivity extends AppCompatActivity {
+public class NoticeTextDetailActivity extends BaseActivity {
 
     TextView title, date, content;
     String mTitle, mContent, mDate;

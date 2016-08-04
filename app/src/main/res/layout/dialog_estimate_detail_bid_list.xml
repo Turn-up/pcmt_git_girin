@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="323dp"
     android:layout_height="180dp"
     android:background="@drawable/estimate_detail_backround"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <Button
+        app:font="custom1"
         android:id="@+id/dialog_btn_bid_list_go_expert"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
@@ -30,6 +34,7 @@
         android:background="@drawable/underbar_20" />
 
     <Button
+        app:font="custom1"
         android:id="@+id/dialog_btn_bid_list_confirm"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"

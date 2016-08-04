@@ -7,6 +7,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.pcm.pcmmanager.qna.ask.QnaAskActivity"
+    tools:ignore="MissingPrefix"
     tools:showIn="@layout/activity_qna_ask">
 
     <EditText
@@ -15,14 +16,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/qna_keyword_box"
         android:gravity="center_vertical"
-        android:singleLine="true"
-        android:paddingLeft="16dp"
         android:hint="제목을 입력하세요"
+        android:paddingLeft="16dp"
+        android:singleLine="true"
         android:textColor="#a4a4a6"
-        android:textSize="11sp" />
+        android:textSize="11sp"
+        app:font="custom1" />
 
     <EditText
         android:id="@+id/qna_ask_content"
@@ -34,16 +36,17 @@
         android:layout_weight="1"
         android:background="@drawable/qna_ask_content_box"
         android:gravity="top"
+        android:hint="내용을 입력해 주세요"
         android:paddingLeft="16dp"
         android:paddingTop="13dp"
-        android:hint="내용을 입력해 주세요"
         android:textColor="#a4a4a6"
-        android:textSize="11sp" />
+        android:textSize="11sp"
+        app:font="custom1" />
 
     <LinearLayout
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:gravity="center_vertical|right"
         android:orientation="horizontal">
 
@@ -52,17 +55,19 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/qna_ask_lock_icon"
             android:drawablePadding="11dp"
+            android:gravity="center_vertical"
             android:text="비밀글"
+            app:font="custom1"
             android:textColor="#626263"
             android:textSize="11sp" />
 
         <CheckBox
             android:id="@+id/qna_ask_check_box"
-            android:button="@drawable/secret_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="36dp" />
+            android:layout_marginRight="36dp"
+            android:button="@drawable/secret_selector" />
 
     </LinearLayout>
 
@@ -70,10 +75,10 @@
         android:id="@+id/qna_ask_do_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="23dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/estimate_add_btn"
-        android:layout_marginBottom="10dp" />
+        android:src="@drawable/estimate_add_btn" />
 </LinearLayout>

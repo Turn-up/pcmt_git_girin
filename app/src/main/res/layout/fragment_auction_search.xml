@@ -1,9 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".expert.auction.AuctionSearchFragment">
+    tools:context=".expert.auction.AuctionSearchFragment"
+    tools:ignore="MissingPrefix">
 
 
     <ImageView
@@ -21,8 +23,9 @@
         android:layout_marginTop="14dp"
         android:gravity="center_horizontal"
         android:text="검색 항목은 세개까지 설정이 가능합니다."
+        android:textColor="#515151"
         android:textSize="13sp"
-        android:textColor="#515151" />
+        app:font="custom1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,8 +40,9 @@
             android:layout_marginLeft="26dp"
             android:layout_marginRight="18dp"
             android:text="위치"
+            android:textColor="#515151"
             android:textSize="16sp"
-            android:textColor="#515151" />
+            app:font="custom1" />
 
         <Spinner
             android:id="@+id/auction_search_address1_spinner"
@@ -80,8 +84,9 @@
             android:layout_marginLeft="26dp"
             android:layout_marginTop="23dp"
             android:text="업무"
+            android:textColor="#515151"
             android:textSize="16sp"
-            android:textColor="#515151" />
+            app:font="custom1" />
 
         <ImageButton
             android:id="@+id/auction_search_marketType_entry_btn"
@@ -132,8 +137,9 @@
             android:layout_marginLeft="26dp"
             android:layout_marginRight="18dp"
             android:text="업종"
+            android:textColor="#515151"
             android:textSize="16sp"
-            android:textColor="#515151" />
+            app:font="custom1" />
 
         <Spinner
             android:id="@+id/auction_search_marketSub_spinner"

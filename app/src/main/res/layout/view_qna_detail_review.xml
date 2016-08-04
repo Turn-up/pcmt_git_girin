@@ -153,9 +153,9 @@
             android:layout_marginRight="28dp"
             android:gravity="right"
             android:text="삭제"
-            android:visibility="gone"
             android:textColor="#fc0000"
-            android:textSize="13dp" />
+            android:textSize="13dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -169,5 +169,6 @@
         android:layout_marginTop="3dp"
         android:text="New Text"
         android:textColor="#626263"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        app:font="custom1" />
 </LinearLayout>

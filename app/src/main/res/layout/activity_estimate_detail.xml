@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    tools:ignore="MissingPrefix"
     tools:context=".nomal.estimate_list.MyEstimateDetailActivity">
 
 
@@ -25,6 +26,7 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             <TextView
+                app:font="custom1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

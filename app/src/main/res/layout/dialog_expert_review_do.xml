@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/expert_review_backround"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,6 +17,7 @@
         android:orientation="horizontal">
 
         <TextView
+            app:font="custom1"
             android:id="@+id/expert_review_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,30 +25,36 @@
             android:textSize="13sp" />
 
         <TextView
+            app:font="custom1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="회계사님과의 협업은 어떠셨나요?"
             android:textColor="#515151"
-            android:textSize="13sp"
-            android:text="회계사님과의 협업은 어떠셨나요?" />
+            android:textSize="13sp" />
     </LinearLayout>
 
     <RatingBar
+        android:id="@+id/expert_review_rating"
         style="@style/StoreBigRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:stepSize="1"
-        android:id="@+id/expert_review_rating" />
+        android:stepSize="1" />
 
     <EditText
+        app:font="custom1"
         android:id="@+id/expert_review_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
         android:layout_marginTop="22dp"
+        android:textColor="#515151"
+        android:textColorHint="#777777"
+        android:text="후기를 작성해주세요"
+        android:textSize="13sp"
         android:background="@drawable/expert_review_text_backround"
+        android:gravity="top"
         android:padding="4dp" />
 
     <ImageView
@@ -68,10 +79,10 @@
         android:id="@+id/expert_review_cancel_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"
         android:background="@android:color/transparent"
         android:src="@drawable/expert_review_cancel_btn" />
 </LinearLayout>

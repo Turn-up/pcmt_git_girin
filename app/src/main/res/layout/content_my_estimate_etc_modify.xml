@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.pcm.pcmmanager.nomal.estimate_modify.MyEstimateEtcModify"
+    tools:ignore="MissingPrefix"
     tools:showIn="@layout/activity_my_estimate_etc_modify">
 
     <LinearLayout
@@ -26,7 +27,8 @@
                 android:layout_marginTop="40dp"
                 android:text="업무"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -54,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:text="지역"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <Spinner
                 android:id="@+id/estimate_modify_etc_address1_spinner"
@@ -88,7 +91,8 @@
                 android:layout_gravity="center_vertical"
                 android:text="연락처"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <EditText
                 android:id="@+id/estimate_modify_etc_phone"
@@ -125,7 +129,8 @@
                 android:layout_height="wrap_content"
                 android:text="입찰기간"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -154,7 +159,8 @@
                         android:layout_weight="1"
                         android:text="1"
                         android:textColor="#515151"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day2"
@@ -163,7 +169,8 @@
                         android:layout_weight="1"
                         android:text="2"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day3"
@@ -172,7 +179,8 @@
                         android:layout_weight="1"
                         android:text="3"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day4"
@@ -181,7 +189,8 @@
                         android:layout_weight="1"
                         android:text="4"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day5"
@@ -190,7 +199,8 @@
                         android:layout_weight="1"
                         android:text="5"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day6"
@@ -199,7 +209,8 @@
                         android:layout_weight="1"
                         android:text="6"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                     <TextView
                         android:id="@+id/seek_day7"
@@ -208,7 +219,8 @@
                         android:layout_weight="1"
                         android:text="7일"
                         android:textColor="#cecece"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        app:font="custom1" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -231,7 +243,8 @@
                 android:layout_gravity="top"
                 android:layout_marginTop="14dp"
                 android:text="부가정보"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <EditText
                 android:id="@+id/estimate_modify_etc_content"

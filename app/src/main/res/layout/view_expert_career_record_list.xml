@@ -1,5 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_height="wrap_content"
     android:background="#eeeeee">
 
@@ -21,6 +24,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:text="이력"
+                app:font="custom1"
                 android:textColor="#515151"
                 android:textSize="16sp" />
 
@@ -46,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
+                    app:font="custom2"
                     android:textSize="11sp" />
 
                 <TextView
@@ -53,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="~"
+                    app:font="custom2"
                     android:textColor="#515151"
                     android:textSize="11sp"
                     android:layout_marginLeft="2dp"
@@ -64,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
+                    app:font="custom2"
                     android:textSize="11sp" />
 
                 <ImageView
@@ -79,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="end"
+                    app:font="custom1"
                     android:text="Small Text"
                     android:textColor="#515151"
                     android:textSize="11sp" />
@@ -99,12 +107,14 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
+                    app:font="custom2"
                     android:textSize="11sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="~"
+                    app:font="custom2"
                     android:textColor="#515151"
                     android:textSize="11sp"
                     android:layout_marginRight="2dp"
@@ -115,6 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Small Text"
+                    app:font="custom2"
                     android:textColor="#515151"
                     android:textSize="11sp" />
 
@@ -132,6 +143,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="end"
                     android:text="Small Text"
+                    app:font="custom1"
                     android:textColor="#515151"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -151,12 +163,14 @@
                     android:layout_height="wrap_content"
                     android:text="Small Text"
                     android:textColor="#515151"
+                    app:font="custom2"
                     android:textSize="11sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="~"
+                    app:font="custom2"
                     android:textColor="#515151"
                     android:textSize="11sp"
                     android:layout_marginLeft="2dp"
@@ -167,6 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Small Text"
+                    app:font="custom2"
                     android:textColor="#515151"
                     android:textSize="11sp" />
 
@@ -184,6 +199,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="end"
                     android:text="Small Text"
+                    app:font="custom1"
                     android:textColor="#515151"
                     android:textSize="11sp" />
             </LinearLayout>

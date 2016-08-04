@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.MyEsitmateList;
 import com.pcm.pcmmanager.data.MyEstimateListResult;
@@ -29,7 +29,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class MyEstimateListActivity extends AppCompatActivity {
+public class MyEstimateListActivity extends BaseActivity {
 
     public static final String PAGESIZE = "10";
     String last_marketSn, marketSn, markettype, status;

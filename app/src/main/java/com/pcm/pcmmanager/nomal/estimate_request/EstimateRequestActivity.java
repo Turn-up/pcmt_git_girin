@@ -2,16 +2,16 @@ package com.pcm.pcmmanager.nomal.estimate_request;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.nomal.NomalMainActivity;
 
-public class EstimateRequestActivity extends AppCompatActivity {
+public class EstimateRequestActivity extends BaseActivity {
 
     RadioGroup radioGroup;
 

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="21dp"
     android:layout_marginRight="21dp"
     android:layout_marginTop="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,9 +21,9 @@
             android:layout_height="89dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher"
+            app:border_color="#ffffff"
             app:border_width="1dip"
-            app:corner_radius="5dip"
-            app:border_color="#ffffff"/>
+            app:corner_radius="5dip" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -42,7 +44,8 @@
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#515151"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:font="custom1" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -55,7 +58,8 @@
                 android:text="회계사"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#515151"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                app:font="custom1" />
 
             <TextView
                 android:id="@+id/expert_condition_search_comment"
@@ -68,7 +72,8 @@
                 android:text="coment"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#666666"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                app:font="custom1" />
 
             <TextView
                 android:id="@+id/expert_condition_search_office"
@@ -80,7 +85,8 @@
                 android:text="Small Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#666666"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                app:font="custom1" />
 
             <TextView
                 android:id="@+id/expert_condition_search_career"
@@ -94,7 +100,8 @@
                 android:text="Small Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#666666"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                app:font="custom1" />
 
         </RelativeLayout>
     </LinearLayout>

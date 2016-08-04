@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+
     android:background="@drawable/estimate_confrim_background"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    tools:ignore="MissingPrefix">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginRight="21dp"
-        android:layout_marginLeft="21dp">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/dialog_estimate_confirm_expert_image"
@@ -29,20 +34,22 @@
                 android:id="@+id/dialog_estimate_confirm_expert_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
                 android:text="Medium Text"
                 android:textSize="16sp"
-                android:layout_marginLeft="13dp" />
+                app:font="custom1" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/dialog_estimate_confirm_expert_name"
+                android:layout_marginLeft="5dp"
                 android:layout_toEndOf="@+id/dialog_estimate_confirm_expert_name"
                 android:layout_toRightOf="@+id/dialog_estimate_confirm_expert_name"
                 android:text="회계사"
                 android:textSize="13sp"
-                android:layout_marginLeft="5dp" />
+                app:font="custom1" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -57,30 +64,35 @@
                 android:id="@+id/linearLayout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignTop="@+id/textView9"
+                android:layout_alignBottom="@+id/persentORwon"
+                android:layout_marginRight="2dp"
                 android:layout_toLeftOf="@+id/textView10"
                 android:layout_toStartOf="@+id/textView10"
-                android:layout_marginRight="2dp"
-                android:gravity="right">
+                android:gravity="right"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/dialog_estimate_confirm_month_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView10"
+                    android:layout_toEndOf="@+id/linearLayout"
+                    android:layout_toRightOf="@+id/linearLayout"
                     android:text="Small Text"
                     android:textColor="#ff8f00"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    app:font="custom2" />
 
 
                 <TextView
                     android:id="@+id/dialog_estimate_confirm_modify_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:text="Small Text"
                     android:textColor="#ff8f00"
                     android:textSize="13sp"
-                    android:layout_marginTop="4dp" />
+                    app:font="custom2" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/linearLayout4"
+                android:layout_marginBottom="1dp"
                 android:layout_marginRight="8dp"
                 android:layout_toLeftOf="@+id/linearLayout4"
                 android:layout_toStartOf="@+id/linearLayout4"
@@ -101,7 +114,8 @@
                     android:layout_height="wrap_content"
                     android:text="월"
                     android:textColor="#666666"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    app:font="custom1" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -110,7 +124,8 @@
                     android:layout_marginTop="7dp"
                     android:text="조정료"
                     android:textColor="#666666"
-                    android:textSize="11sp" />
+                    android:textSize="11dp"
+                    app:font="custom1" />
 
             </LinearLayout>
 
@@ -118,25 +133,27 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/textView9"
-                android:layout_marginTop="4dp"
+                android:layout_alignLeft="@+id/persentORwon"
+                android:layout_alignStart="@+id/persentORwon"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_marginTop="13dp"
                 android:text="원"
                 android:textColor="#ff8f00"
-                android:textSize="13sp" />
+                android:textSize="10sp"
+                app:font="custom1" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/textView10"
+                android:layout_marginTop="9dp"
                 android:text="원"
                 android:textColor="#ff8f00"
-                android:textSize="13sp"
-                android:layout_below="@+id/imageView5"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="13dp" />
+                android:textSize="10sp"
+                app:font="custom1" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -144,17 +161,17 @@
         android:id="@+id/dialog_estimate_confirm_confirm_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="105dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/estimate_confirm_btn"
-        android:layout_marginTop="105dp" />
+        android:src="@drawable/estimate_confirm_btn" />
 
     <ImageButton
         android:id="@+id/dialog_estimate_confirm_confirm_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/estimate_confirm_cancle_btn"
-        android:layout_marginTop="7dp" />
+        android:src="@drawable/estimate_confirm_cancle_btn" />
 
 
 </LinearLayout>

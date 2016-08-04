@@ -128,8 +128,8 @@ public class NomalUserFragment extends Fragment implements View.OnClickListener 
         btn_nomal_qna.setOnClickListener(this);
 
         return view;
-    }
 
+    }
 
     @Override
     public void onClick(View v) {

@@ -2,7 +2,6 @@ package com.pcm.pcmmanager.common.faq;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pcm.pcmmanager.BaseActivity;
 import com.pcm.pcmmanager.MyApplication;
 import com.pcm.pcmmanager.R;
 import com.pcm.pcmmanager.data.FaqList;
@@ -24,7 +24,7 @@ import java.io.IOException;
 
 import okhttp3.Request;
 
-public class FaqActivity extends AppCompatActivity {
+public class FaqActivity extends BaseActivity {
     public static final String PAGE_SIZE = "10";
     RecyclerView recyclerView;
     FaqAdapter mAdapter;

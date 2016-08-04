@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="10dp"
     android:background="@drawable/qna_detail_contents_card"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,26 +26,29 @@
             android:layout_weight="1"
             android:text="New Text"
             android:textColor="#626263"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            app:font="custom1" />
 
         <TextView
-            android:visibility="gone"
+            app:font="custom1"
             android:id="@+id/qna_detail_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="수정"
             android:textColor="@color/colorPrimary"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:visibility="gone" />
 
         <TextView
-            android:visibility="gone"
+            app:font="custom1"
             android:id="@+id/qna_detail_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="삭제"
             android:textColor="#626263"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <ImageView
@@ -54,6 +60,7 @@
         android:src="@drawable/underbar_30" />
 
     <TextView
+        app:font="custom1"
         android:id="@+id/qna_detail_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
